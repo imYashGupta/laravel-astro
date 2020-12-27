@@ -75,7 +75,9 @@
                                                         </td> --}}
                                                         <td>
                                                             <a href="{{ route("users.edit",$user) }}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
-
+                                                            @if($user->role=='USER')
+                                                            <a data-toggle="modal" data-target="#deleteUser" data-username="{{$user->name}}" data-url="{{route("users.destroy",$user->id)}}"  href="#" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi  mdi-delete font-18"></i></a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     @empty
@@ -104,11 +106,47 @@
 @endsection
 
 @section('script-bottom')
+<div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteUserLabel">Delete Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete <strong id="username"></strong> your account?
+            
+        </div>
+        <div class="modal-footer">
+        <form method="POST" id="delete-user-form"  > 
+            @method('DELETE')
+            @csrf
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
      $(document).ready(function () {
         $('#datatable').DataTable({
             order : []
         });
+
+        $('#deleteUser').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)  
+            var name = button.data('username')  
+            var url = button.data('url')  
+            var modal = $(this)
+            modal.find('#username').text(name);
+            modal.find('#delete-user-form').attr("action",url);
+            // modal.find('.modal-body input').val(recipient)
+        })
     });
+
+
 </script>
 @endsection
