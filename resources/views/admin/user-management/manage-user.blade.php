@@ -39,7 +39,7 @@
                                                         <td>{{$user->name}}</td>
                                                         <td>{{$user->email}}</td>                                                       
                                                         <td>
-                                                            @if($user->status===1)
+                                                            @if($user->status==1)
                                                             <i class="mdi mdi-checkbox-blank-circle text-success"></i> Active
                                                             @else
                                                             <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Deactivate
