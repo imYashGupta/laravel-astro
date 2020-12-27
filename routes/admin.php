@@ -3,7 +3,7 @@ Route::get("/test",function ()
 {
     return Hash::make("12345678"); 
 });
-Route::prefix('admin')->group(function ()
+Route::middleware("auth")->prefix('admin')->group(function ()
 {
     Route::get("/",function ()
     {
