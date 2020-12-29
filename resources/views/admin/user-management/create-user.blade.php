@@ -105,39 +105,7 @@
                                                          
                                                     </div>
                                                     @endif
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="country">Country </label> 
-                                                            <input  value="{{ $user ? $user->country : old("country")}}" id="country" name="country" type="text" class="form-control @error('country') is-invalid @enderror">
-                                                            @error('country')
-                                                            <span class="invalid-feedback d-block" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <div class="form-group">
-                                                            <label for="state">State </label> 
-                                                            <input  value="{{ $user ? $user->state : old("state")}}" id="state" name="state" type="text" class="form-control @error('state') is-invalid @enderror">
-                                                            @error('state')
-                                                            <span class="invalid-feedback d-block" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <div class="form-group">
-                                                            <label for="city">City </label> 
-                                                            <input  value="{{ $user ? $user->city : old("city")}}" id="city" name="city" type="text" class="form-control @error('city') is-invalid @enderror">
-                                                            @error('city')
-                                                            <span class="invalid-feedback d-block" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
+                                                    <user-country-state data-countries="{{ $countries }}" @if($user) country="{{ $user->country }}" state="{{ $user->state }}" city="{{ $user->city }}" @endif ></user-country-state>
                                                     <div class="col-sm-9">
                                                         <div class="form-group">
                                                             <label for="address">Address </label> 

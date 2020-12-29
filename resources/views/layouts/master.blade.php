@@ -8,6 +8,9 @@
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="app-url" content="{{  $_SERVER['PHP_SELF'] }}">
+
         @include('layouts.head')
     </head>
 <body class="fixed-left">

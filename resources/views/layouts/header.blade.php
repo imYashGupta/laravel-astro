@@ -15,17 +15,14 @@
             <li>
                 <a href="{{ route("dashboard") }}" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span>  Dashboard  </span> </a>
             </li>
-            <li class="has_sub">
-                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-outline"></i><span> User Management <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
-                <ul class="list-unstyled">
-                    <li><a href="{{route("users.create")}}">Add User</a></li>
-                    <li><a href="{{route("users.index")}}">Manage User</a></li>
-                </ul>
+          
+            <li>
+                <a href="{{route("users.index")}}" class="waves-effect"><i class="mdi mdi-account-outline"></i><span> User Management </span></a>
             </li>
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-border-all"></i><span> Product Management <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                 <ul class="list-unstyled">
-                    <li><a href="#">Categories</a></li>
+                    <li><a href="{{ route("category.index") }}">Categories</a></li>
                     <li><a href="#">Products</a></li>
                     <li><a href="#">Coupons</a></li>
                 </ul>

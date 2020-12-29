@@ -544,7 +544,7 @@ code {
   width: 240px;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  background: #263238;
+  background: #1A233A!important;
   position: absolute;
   z-index: 99;
 }
@@ -685,7 +685,7 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu {
-  background-color: #263238;
+  background-color: #1A233A!important;
   padding-bottom: 50px;
   width: 100%;
 }
@@ -725,7 +725,7 @@ body.fixed-left .side-menu.left {
   color: rgba(255, 255, 255, 0.5);
   display: block;
   padding: 12px 20px;
-  background-color: #263238;
+  background-color:#1A233A!important;
 }
 
 #sidebar-menu > ul > li > a:hover {

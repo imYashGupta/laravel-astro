@@ -15,5 +15,6 @@ Route::middleware("auth")->prefix('admin')->group(function ()
         return view("admin.index");
     })->name("dashboard");
     Route::resource('users', 'UserController');
+    Route::resource("category","CategoryController");
     Route::get('{any}', 'AdmiriaController@index');
 });

@@ -20,7 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+import UserCountryStateDropdown from "./components/UserCountryStateDropdown.vue";
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,6 +29,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#wrapper',
+    components:{
+        "user-country-state":UserCountryStateDropdown
+    },
     methods:{
         showPassword(){
             this.editPassword = !this.editPassword;

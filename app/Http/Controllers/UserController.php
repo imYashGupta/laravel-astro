@@ -6,6 +6,7 @@ use App\Mail\NotifyNewUser;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view("admin.user-management.create-user",["user" => false]);
+        $countries=DB::table("countries")->get();
+        return view("admin.user-management.create-user",["user" => false,"countries" => $countries]);
     }
 
     /**
@@ -94,8 +96,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-         $user= User::find($id);
-        return view("admin.user-management.create-user",["user" => $user,"edit" => true]);
+        $user= User::find($id);
+       /*  if(!is_null($user->country)){
+            $state = DB::table("states")->where()->get()
+        } */
+        $countries=DB::table("countries")->get();
+
+        return view("admin.user-management.create-user",["user" => $user,"edit" => true,"countries" => $countries]);
     }
 
     /**
@@ -154,5 +161,14 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route("users.index")->with("success","User Deleted.");
+    }
+
+    public function getCountryStateCity(Request $request)
+    {
+        $table = $request->from;
+        $where = $request->fieldname;
+        $id = $request->data;
+        $data=DB::table($table)->where($where,$id)->get();
+        return response()->json($data);
     }
 }
