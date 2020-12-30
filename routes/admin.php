@@ -16,5 +16,9 @@ Route::middleware("auth")->prefix('admin')->group(function ()
     })->name("dashboard");
     Route::resource('users', 'UserController');
     Route::resource("category","CategoryController");
+    Route::resource("product","Admin\ProductController")->except(["store","update"]);
+    Route::post("product/store","Admin\ProductController@store")->name("product.store");
+    Route::post("product/{prod}/update","Admin\ProductController@store")->name("product.update");
+    Route::post("product/image/delete","Admin\ProductController@deleteImage");
     Route::get('{any}', 'AdmiriaController@index');
 });

@@ -23,7 +23,7 @@
                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-border-all"></i><span> Product Management <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                 <ul class="list-unstyled">
                     <li><a href="{{ route("category.index") }}">Categories</a></li>
-                    <li><a href="#">Products</a></li>
+                    <li><a href="{{ route("product.index") }}">Products</a></li>
                     <li><a href="#">Coupons</a></li>
                 </ul>
             </li>
