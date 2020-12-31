@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -103,6 +104,7 @@ class CategoryController extends Controller
         if($category->id==1){
             return redirect()->back()->with("error","This category can not be deleted.");
         }
+        Product::where("category_id",$category->id)->update(["category_id" => 1]);
         $category->delete();
         return redirect()->back()->with("success","Category Deleted.");
     }
