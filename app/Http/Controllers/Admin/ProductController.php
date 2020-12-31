@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -98,7 +97,7 @@ class ProductController extends Controller
         $product->meta_description = $request->metadescription;
         if($request->hasFile("thumbnail")){
             $thumbnail=$request->file("thumbnail");
-            $thumbnailImage=Image::make($thumbnail->getRealPath());
+            $thumbnailImage=\Intervention\Image\Facades\Image::make($thumbnail->getRealPath());
             $thumbnailImage->resize(250,250);
             $thumbnailName=Str::random(40).'.'.$thumbnail->getClientOriginalExtension();
             Storage::disk('public')->put('products/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
