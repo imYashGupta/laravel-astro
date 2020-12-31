@@ -14,8 +14,11 @@ Route::middleware("auth")->prefix('admin')->group(function ()
     {
         return view("admin.index");
     })->name("dashboard");
-    Route::resource('users', 'UserController');
-    Route::resource("category","CategoryController");
+    Route::resources([
+        'users'     => 'UserController',
+        "category"  => "CategoryController",
+        "coupon"    => "CouponController"
+    ]);
     Route::resource("product","Admin\ProductController")->except(["store","update"]);
     Route::post("product/store","Admin\ProductController@store")->name("product.store");
     Route::post("product/{prod}/update","Admin\ProductController@store")->name("product.update");

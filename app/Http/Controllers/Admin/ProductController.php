@@ -165,7 +165,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->back()->with("success","Product deleted.");
     }
 
     public function genrateUniqueSlug($productName)

@@ -24,7 +24,7 @@
                 <ul class="list-unstyled">
                     <li><a href="{{ route("category.index") }}">Categories</a></li>
                     <li><a href="{{ route("product.index") }}">Products</a></li>
-                    <li><a href="#">Coupons</a></li>
+                    <li><a href="{{ route("coupon.index") }}">Coupons</a></li>
                 </ul>
             </li>
             <li>

@@ -8,7 +8,7 @@
 @endsection
 
 @section('breadcrumb')
-<h3 class="page-title">Products List</h1>
+<h3 class="page-title">Reviews</h1>
 @endsection
 
 @section('content')
@@ -20,46 +20,42 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                        <a href="{{ route("product.create")}}" class="btn btn-sm btn-primary text-white float-right">Add Product</a>
-
+                                        <a href="{{ route("coupon.create")}}" class="btn btn-sm btn-primary text-white float-right">Add Coupon</a>
                                             <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
-                                                    <th>Image</th>
-                                                    <th>Product Name</th>
-                                                    <th>Category</th>
-                                                    <th>Price</th>
-                                                    <th>Added Date</th>
+                                                    <th>Code</th>
+                                                    <th>Description</th>
+                                                    <th>Discount</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @forelse ($products as $product)
+                                                @forelse ($coupons as $coupon)     
                                                 <tr>
-                                                    <td class="product-list-img sorting_1" tabindex="0">
-                                                        <img  src="{{ $product->thumbnailUrl }}" class="img-fluid avatar-md rounded" alt="Product Image">
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="mt-0 m-b-5">{{$product->name}}</h6>
-                                                        <p class="m-0 font-14">{{\Illuminate\Support\Str::limit($product->short_description,50,'...')}}</p>
-                                                    </td>
-                                                    <td>
-                                                        {{$product->category}}
-                                                    </td>
-                                                    <td>&#x20B9;{{$product->price}}</td>
-                                                   
-                                                    <td>{{$product->created_at->format("d M,Y | h:i A")}} 
-                                                    </td>
-                                                 
-                                                    <td>
-                                                    <a href="{{route("product.edit",$product->id)}}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
-                                                    <a  data-toggle="modal" data-target="#ConfirmationModal" data-name="{{$product->name}}" data-url="{{route("product.destroy",$product->id)}}" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete font-18"></i></a>
-                                                    </td>
-                                                </tr>
-                                                @empty
+                                                    <td>{{ $coupon->code }}</td>
+                                                <td>{{ $coupon->description }}</td>
+                                                <td>{{ $coupon->discount }}{{($coupon->type=='percentage') ? "%" : "/-"}}
+                                              
+                                                </td>
+                                                <td>
+                                                    @if(strtotime($coupon->expire_date) > strtotime(date("Y-m-d")))
+                                                    <i class="mdi mdi-checkbox-blank-circle text-success"></i> Active
+                                                    @else
+                                                    <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Expired
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route("coupon.edit",$coupon->id) }}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
+                                                    <a  data-toggle="modal" data-target="#ConfirmationModal" data-name="{{$coupon->code}}" data-url="{{route("coupon.destroy",$coupon->id)}}" href="{{route('coupon.destroy',$coupon->id)}}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete font-18"></i></a>
                                                     
-                                                
-                                                @endforelse
+                                                </td>
+                                                </tr>
+                                                  
+                                                @empty
+                                                        
+                                                    @endforelse
                                                 </tbody>
                                             </table>
                                         </div>
@@ -72,18 +68,17 @@
 @endsection
 
 @section('script')
-
 <div class="modal fade" id="ConfirmationModal" tabindex="-1" aria-labelledby="ConfirmationLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ConfirmationLabel">Delete Product</h5>
+          <h5 class="modal-title" id="ConfirmationLabel">Delete Coupon</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            Are you sure you want to delete <strong id="name"></strong> Product? 
+            Are you sure you want to delete <strong id="name"></strong> Coupon? 
             
         </div>
         <div class="modal-footer">
@@ -106,11 +101,12 @@
 @endsection
 
 @section('script-bottom')
+
 <script type="text/javascript">
     $(document).ready(function () {
           $('#datatable').DataTable();
-          
-        $('#ConfirmationModal').on('show.bs.modal', function (event) {
+
+          $('#ConfirmationModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)  
             var name = button.data('name')  
             var url = button.data('url')  
