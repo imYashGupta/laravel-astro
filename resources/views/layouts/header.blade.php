@@ -42,8 +42,8 @@
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-pencil-box-outline"></i><span> Blog Management <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                 <ul class="list-unstyled">
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Manage Blog</a></li>
+                    <li><a href="{{ route("blog-category.index") }}">Categories</a></li>
+                    <li><a href="{{ route("blog.index") }}">Manage Blog</a></li>
                 </ul>
             </li>
             <li class="has_sub">

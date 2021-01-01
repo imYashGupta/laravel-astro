@@ -17,7 +17,9 @@ Route::middleware("auth")->prefix('admin')->group(function ()
     Route::resources([
         'users'     => 'UserController',
         "category"  => "CategoryController",
-        "coupon"    => "CouponController"
+        "coupon"    => "CouponController",
+        "blog-category" => "BlogCategoryController",
+        "blog"      => "BlogController"
     ]);
     Route::resource("product","Admin\ProductController")->except(["store","update"]);
     Route::post("product/store","Admin\ProductController@store")->name("product.store");
