@@ -41,7 +41,8 @@ const app = new Vue({
     },
     data(){
         return {
-            editPassword:false
+            editPassword:false,
+            freeDelivery:false,
         }
     }
 });

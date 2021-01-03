@@ -3,7 +3,7 @@ Route::get("/test",function ()
 {
     return Hash::make("12345678"); 
 });
-Route::middleware("auth")->prefix('admin')->group(function ()
+Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
 {
     Route::get("/",function ()
     {
@@ -19,7 +19,8 @@ Route::middleware("auth")->prefix('admin')->group(function ()
         "category"  => "CategoryController",
         "coupon"    => "CouponController",
         "blog-category" => "BlogCategoryController",
-        "blog"      => "BlogController"
+        "blog"      => "BlogController",
+        "shipping" => "ShippingController"
     ]);
     Route::resource("product","Admin\ProductController")->except(["store","update"]);
     Route::post("product/store","Admin\ProductController@store")->name("product.store");

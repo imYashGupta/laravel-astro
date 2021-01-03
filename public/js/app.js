@@ -50866,7 +50866,8 @@ var app = new Vue({
   },
   data: function data() {
     return {
-      editPassword: false
+      editPassword: false,
+      freeDelivery: false
     };
   }
 });

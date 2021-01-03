@@ -56,7 +56,7 @@
                 </ul>
             </li>
             <li>
-                <a href="calendar" class="waves-effect"><i class="mdi mdi-truck-delivery"></i><span>Shipping Management</span></a>
+                <a href="{{route("shipping.index")}}" class="waves-effect"><i class="mdi mdi-truck-delivery"></i><span>Shipping Management</span></a>
             </li>
             <li>
                 <a href="calendar" class="waves-effect"><i class="mdi mdi-ticket-account"></i><span>Support Ticket</span></a>
