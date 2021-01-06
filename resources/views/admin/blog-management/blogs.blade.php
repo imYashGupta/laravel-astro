@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title',"Blogs Management")
 @section('css')
 <!-- DataTables -->
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />

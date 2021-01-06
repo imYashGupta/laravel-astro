@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdmiriaController extends Controller
+class AdminController extends Controller
 {
+    public function error(Request $request)
+    {
+        // return view("admin.error",["code" => ])
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,5 +86,17 @@ class AdmiriaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function lockedScreen()
+    {   
+        if(session()->has("locked")){
+            return view("admin.lock-screen",["user" => session()->get("locked")]);
+        }else{
+            $user = auth()->user();
+            session(['locked' => $user]);
+            Auth::logout();
+            return view("admin.lock-screen",["user" => $user]);
+        }
     }
 }

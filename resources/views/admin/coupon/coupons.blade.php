@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"Coupons Management")
 
 @section('css')
 <!-- DataTables -->
@@ -8,7 +9,7 @@
 @endsection
 
 @section('breadcrumb')
-<h3 class="page-title">Reviews</h1>
+<h3 class="page-title">Coupons</h1>
 @endsection
 
 @section('content')

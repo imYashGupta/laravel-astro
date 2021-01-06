@@ -49,6 +49,10 @@ class User extends Authenticatable
 
     public function getdisplayPictureUrlAttribute()
     {
-        return Storage::disk('public')->url('users/'.$this->display_image);
+        if(is_null($this->display_image)){
+            return asset('assets/images/placeholder/profile-placeholder.png');
+        }else{
+            return Storage::disk('public')->url('users/'.$this->display_image);
+        }
     }
 }

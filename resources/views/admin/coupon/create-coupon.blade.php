@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"Coupons Management")
 
 @section('css')
 <!-- Select 2 -->

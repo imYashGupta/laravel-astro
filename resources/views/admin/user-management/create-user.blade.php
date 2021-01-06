@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"User Management")
 
 @section('css')
 <!-- Select 2 -->

@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"Shipping Management")
 
 @section('css')
 <!-- Select 2 -->

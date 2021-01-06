@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title',"Product Management")
 @section('css')
 <!-- Select 2 -->
 <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />

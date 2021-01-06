@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',"Blogs Management")
+@section('title',"Testimonials Management")
 
 @section('css')
 <!-- DataTables -->
@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumb')
-<h3 class="page-title">Blog Categories</h1>
+<h3 class="page-title">Testimonials Management</h1>
 @endsection
 
 @section('content')
@@ -21,11 +21,13 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                        <a href="{{ route("blog-category.create")}}" class="btn btn-primary text-white float-right">Add new</a>
+                                        <a href="{{ route("testimonial.create")}}" class="btn btn-sm btn-primary text-white float-right">Add new</a>
                                             <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
+                                                        <th>Image</th>
                                                         <th>Name</th>
+                                                        <th>Designation</th>
                                                         <th>Description</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
@@ -33,23 +35,19 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    @forelse ($categories as $category)
+                                                    @forelse ($testimonials as $testimonial)
                                                     <tr>
-                                                        <td>{{$category->name}} @if($category->id==1) <span data-toggle="tooltip" data-placement="top" title="" data-original-title="This is the default category and it cannot be deleted. " class="mdi mdi-help"> </span> @endif</td>
-                                                        <td>{{$category->description}}</td>                                                       
-                                                        <td>
-                                                            @if($category->status==1)
-                                                            <i class="mdi mdi-checkbox-blank-circle text-success"></i> Active
-                                                            @else
-                                                            <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Deactivate
-                                                            @endif
-                                                        </td>                                                                                                            
-                                                        <td>
-                                                            <a href="{{ route("blog-category.edit",$category) }}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
-                                                            @if($category->id!=1)
-                                                            <a data-toggle="modal" data-target="#ConfirmationModal" data-name="{{$category->name}}" data-url="{{route("blog-category.destroy",$category->id)}}"  href="#" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi  mdi-delete font-18"></i></a>
-                                                            @endif
+                                                        <td class="product-list-img  " tabindex="0">
+                                                            <img  src="{{ $testimonial->imageUrl }}" class="img-fluid avatar-md rounded" alt="Testimonial Image">
                                                         </td>
+                                                         <td> {{ $testimonial->name}}</td>
+                                                         <td> {{ $testimonial->designation}}</td>
+                                                         <td> {{ $testimonial->description}}</td>
+                                                         <td>{{ $testimonial->status=='1' ? "Active" : "Disable"}}</td>
+                                                         <td> 
+                                                            <a href="{{route("testimonial.edit",$testimonial->id)}}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
+                                                            <a data-toggle="modal" data-target="#ConfirmationModal" data-name="{{$testimonial->name}}" data-url="{{route("testimonial.destroy",$testimonial->id)}}" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete font-18"></i></a>
+                                                         </td>
                                                     </tr>
                                                     @empty
                                                         
@@ -81,13 +79,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ConfirmationLabel">Delete Category</h5>
+          <h5 class="modal-title" id="ConfirmationLabel">Delete Testimonial</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            Are you sure you want to delete <strong id="name"></strong> Category? <br> Blogs that belongs to this category will be Uncategorized.
+            Are you sure you want to delete <strong id="name"></strong> Review? 
             
         </div>
         <div class="modal-footer">

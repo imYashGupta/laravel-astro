@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"Blogs Management")
 
 @section('css')
 <!-- Select 2 -->

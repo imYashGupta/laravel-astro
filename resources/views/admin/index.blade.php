@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"Dashboard")
 
 @section('css')
 <!-- C3 charts css -->

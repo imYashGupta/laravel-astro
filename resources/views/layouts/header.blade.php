@@ -31,10 +31,10 @@
                 <a href="calendar" class="waves-effect"><i class="mdi mdi-cart-outline"></i><span> Order Management </span></a>
             </li>
             <li>
-                <a href="calendar" class="waves-effect"><i class="mdi mdi-star-half"></i><span>Reviews & Rating</span></a>
+                <a href="{{route("review.index")}}" class="waves-effect"><i class="mdi mdi-star-half"></i><span>Reviews & Rating</span></a>
             </li>
             <li>
-                <a href="calendar" class="waves-effect"><i class="mdi mdi-thumbs-up-down"></i><span>Testimonial</span></a>
+                <a href="{{ route("testimonial.index") }}" class="waves-effect"><i class="mdi mdi-thumbs-up-down"></i><span>Testimonial</span></a>
             </li>
             <li>
                 <a href="calendar" class="waves-effect"><i class="mdi mdi-view-carousel"></i><span>Slider Management</span></a>
