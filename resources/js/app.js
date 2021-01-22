@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuelidate from "vuelidate";
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,27 +23,45 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 import UserCountryStateDropdown from "./components/UserCountryStateDropdown.vue";
 import ProductImages from "./components/ProductImages.vue";
+import AddToCartBtn from "./components/AddToCartBtn.vue";
+import HeaderCart from "./components/HeaderCart.vue";
+import ReviewForm from "./components/ReviewForm.vue";
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+export const eventBus = new Vue();
+Vue.use(Vuelidate);
 
 const app = new Vue({
     el: '#wrapper',
     components:{
         "user-country-state":UserCountryStateDropdown,
-        "product-images":ProductImages
+        "product-images":ProductImages,
+        "add-to-cart-btn":AddToCartBtn,
+        "header-cart":HeaderCart,
+        "review-form":ReviewForm
     },
     methods:{
         showPassword(){
             this.editPassword = !this.editPassword;
-        }
+        },
+        showToast(msg){
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            x.innerHTML = msg;
+            setTimeout(function(){ 
+                x.className = x.className.replace("show", ""); 
+                x.innerHTML = "";
+            }, 3000);
+        },
+      
     },
     data(){
         return {
             editPassword:false,
             freeDelivery:false,
         }
-    }
+    },
 });

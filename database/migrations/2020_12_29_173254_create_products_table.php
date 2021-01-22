@@ -24,8 +24,8 @@ class CreateProductsTable extends Migration
             $table->float('discount',9,3);
             $table->integer("units");
             $table->integer("availability");
-            $table->integer("min_qty");
-            $table->integer("max_qty");
+            $table->integer("min_qty")->nullable();
+            $table->integer("max_qty")->nullable();
             $table->string("thumbnail");
             $table->text("meta_title")->nullable();
             $table->text("meta_keyword")->nullable();

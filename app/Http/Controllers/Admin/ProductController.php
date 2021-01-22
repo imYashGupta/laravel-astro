@@ -25,10 +25,10 @@ class ProductController extends Controller
             'discount' => 'numeric|between:0,99|regex:/^\d+(\.\d{1,3})?$/',
             "units"  => "required|integer|min:1",
             "availability" => "required|in:0,1",
-            "min" => "digits_between:1,999",
-            "max" => "digits_between:1,999",
-            "thumbnail" =>  $reqThumb.'mimes:jpeg,jpg,png,gif|max:10000',
-            'images.*' => 'image|mimes:jpeg,jpg,png,gif|max:10000',
+            "min_qty" => "nullable|digits_between:1,999",
+            "max_qty" => "nullable|digits_between:1,999",
+            "thumbnail" =>  $reqThumb.'mimes:jpeg,jpg,png,gif,jfif|max:10000',
+            'images.*' => 'mimes:jpeg,jpg,png,gif,jfif|max:10000',
         ]);
     }
 
@@ -73,6 +73,7 @@ class ProductController extends Controller
                     return redirect()->back()->withErrors(["images" => "max number of images reached!"]);
                 }
             }
+
         }else{
             $this->validation($request,true);
             // if(count($request->images) > 5 ){
@@ -82,14 +83,14 @@ class ProductController extends Controller
             $str="created";
         }   
         $product->name = $request->name;
-        $product->slug = $this->genrateUniqueSlug($request->name);
+        $product->slug = $prod->id ? $prod->slug : $this->genrateUniqueSlug($request->name);
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->category_id = $request->category;
         $product->units = $request->units;
         $product->availability = $request->availability;
-        $product->min_qty = $request->min;
-        $product->max_qty = $request->max;
+        $product->min_qty = $request->min_qty;
+        $product->max_qty = $request->max_qty;
         $product->price = $request->price;
         $product->discount = $request->discount;
         $product->meta_title = $request->metatitle;
@@ -98,7 +99,7 @@ class ProductController extends Controller
         if($request->hasFile("thumbnail")){
             $thumbnail=$request->file("thumbnail");
             $thumbnailImage=\Intervention\Image\Facades\Image::make($thumbnail->getRealPath());
-            $thumbnailImage->resize(250,250);
+            $thumbnailImage->resize(300,240);
             $thumbnailName=Str::random(40).'.'.$thumbnail->getClientOriginalExtension();
             Storage::disk('public')->put('products/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
             Storage::disk('public')->putFileAs('products',$request->file("thumbnail"),$thumbnailName); //save orignal
@@ -108,16 +109,15 @@ class ProductController extends Controller
         if($request->has("images")){
             $images =$request->file("images");
             foreach($images as $image){
+                $thumbnailImage=\Intervention\Image\Facades\Image::make($image->getRealPath())->resize(100,100);
                 $imageName = Str::random(40).'.'.$image->getClientOriginalExtension();
-                Storage::disk('public')->putFileAs('products',$image,$imageName);
+                Storage::disk('public')->putFileAs('products',$image,$imageName); //save orignal 
+                Storage::disk('public')->put('products/thumbnails/'.$imageName,(string) $thumbnailImage->encode()); //save thumbnail cropped
                 DB::table("product_images")->insert(["name" => $imageName,"product_id" => $product->id]);
-                /* $productImage = new ProductImage();
-                $productImage->name = $imageName;
-                $productImage->product_id = $product->id;
-                $productImage->save(); */
+           
             }
         }
-       return redirect()->back()->with("success","Product $str.");
+       return redirect()->route("product.index")->with("success","Product $str.");
     }
 
     /**

@@ -4,7 +4,7 @@
 <!-- Select 2 -->
 <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ URL::asset('assets/css/imageuploadify.min.css') }}">
-
+<link href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet" />
 @endsection
 
 @section('breadcrumb')
@@ -29,7 +29,7 @@
                                             {{-- <form method="POST" action="{{route("product.store")}}" enctype="multipart/form-data"> --}}
                                                 @csrf
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="name">Product Name</label>
                                                             <input  value="@if($product){{ $product->name }}@else{{ old('name')}}@endif" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
@@ -41,7 +41,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="short_description">Short Description</label>
-                                                            <input  value="@if($product){{ $product->short_description }}@else{{ old('short_description')}}@endif" id="short_description" name="short_description" type="text" class="form-control @error('short_description') is-invalid @enderror">
+                                                            <textarea id="short_description" name="short_description" cols="30" rows="3" class="form-control @error('short_description') is-invalid @enderror">@if($product){{ $product->short_description }}@else{{ old('short_description')}}@endif</textarea>
                                                             @error('short_description')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
@@ -49,24 +49,30 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="description">Description</label>
-                                                            <textarea  class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5">@if($product){{ $product->description }}@else{{ old('description')}}@endif</textarea>
-                                                            @error('description')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
+                                                            <div>
+
+                                                                <label for="description" class="float-left">Description </label>
+                                                                @error('description')
+                                                            <span class="invalid-feedback d-block " role="alert">
+                                                                <strong class="pl-2"> {{ $message }}</strong>
                                                             </span>
                                                             @enderror
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                            <textarea name="description" id="summernote" class="summernote" cols="30" rows="10">{{ $product ? $product->description : old("description") }}</textarea>
+                                                            {{-- <textarea  class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5">@if($product){{ $product->description }}@else{{ old('description')}}@endif</textarea> --}}
+                                                            
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="category">Category</label> 
                                                             <select name="category" id="category" class="form-control @error('category') is-invalid @enderror"> 
                                                                 <option value="">Choose Category</option>
                                                                 @foreach($categories as $category)
-                                                                <option @if($product) {{ $category->id==$product->category_id ? "selected" :"" }} @endif value="{{$category->id}}">{{$category->name}}</option>
+                                                                <option {{ $product ? ($product->category_id==$category->id ? "selected" : "") : (old("category")==$category->id ? "selected" : '') }} value="{{$category->id}}">{{$category->name}}</option>
                                                                 @endforeach
                                                         	</select>
                                                             @error('category')
@@ -76,15 +82,9 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    
-                                                    
                                                 </div>
-
                                                 <div class="row">
-                                                   
-                                                    <div class="col-sm-6">
-                                                       
-                                                        
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="form-group col-md-4">
                                                                 <label for="price">Price</label>
@@ -130,7 +130,7 @@
                                                             </div>
                                                             <div class="form-group col-md-4">
                                                                 <label for="min_qty">Min Quantity (Optional)</label>
-                                                                <input value="@if($product){{ $product->min_qty }}@else{{ old('min_qty')}}@endif" class="form-control  @error('min_qty') is-invalid @enderror" id="min" name="min" type="number" step="1"  pattern="[0-9]" title="Numbers only" min="1"  >
+                                                                <input value="@if($product){{ $product->min_qty }}@else{{ old('min_qty')}}@endif" class="form-control  @error('min_qty') is-invalid @enderror" id="min" name="min_qty" type="number" step="1"  pattern="[0-9]" title="Numbers only" min="1"  >
                                                                 @error('min_qty')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -139,7 +139,7 @@
                                                             </div>
                                                             <div class="form-group col-md-4">
                                                                 <label for="max_qty">Max Quantity (Optional)</label>
-                                                                <input  value="@if($product){{ $product->max_qty }}@else{{ old('max_qty')}}@endif" class="form-control  @error('max_qty') is-invalid @enderror" id="max" name="max" type="number" step="1"  pattern="[0-9]" title="Numbers only" min="1" >
+                                                                <input  value="@if($product){{ $product->max_qty }}@else{{ old('max_qty')}}@endif" class="form-control  @error('max_qty') is-invalid @enderror" id="max" name="max_qty" type="number" step="1"  pattern="[0-9]" title="Numbers only" min="1" >
                                                                 @error('max_qty')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -233,6 +233,7 @@
 
 <script src="{{ URL::asset('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/imageuploadify.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/summernote/summernote-bs4.js') }}"></script>
 
 @endsection
 
@@ -256,8 +257,15 @@
         readURL(this);
     });
     $(document).ready(function() {
-                $('input[type="file"]').imageuploadify();
-            })
+        $('input[type="file"]').imageuploadify();
+    })
+    jQuery(document).ready(function(){
+        $('.summernote').summernote({
+            height: 400,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+        });
+    });
 </script>
 
 @endsection

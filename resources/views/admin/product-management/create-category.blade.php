@@ -47,8 +47,8 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="description">Meta Description</label>
-                                                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="5">{{ $category ? $category->description : "" }}</textarea>
+                                                            <label for="description">Description</label>
+                                                            <textarea   name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="5">{{ $category ? $category->description : "" }}</textarea>
                                                             @error('description')
                                                                 <span class="invalid-feedback d-block" role="alert">
                                                                     <strong>{{ $message }}</strong>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Product;
+use App\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -44,6 +45,7 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name  = $request->name;
+        $category->slug = Str::slug($request->name);
         $category->description = $request->description;
         $category->status = $request->status;
         $category->save();
@@ -88,6 +90,7 @@ class CategoryController extends Controller
 
         $category->name  = $request->name;
         $category->description = $request->description;
+        $category->slug = Str::slug($request->name);
         $category->status = $request->status;
         $category->save();
         return redirect()->route("category.index")->with("success","Category Updated.");

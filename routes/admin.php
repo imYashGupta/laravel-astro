@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
+
 Route::get("/test",function ()
 {
     return Hash::make("12345678"); 
@@ -31,6 +34,6 @@ Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
         Route::post("product/image/delete","Admin\ProductController@deleteImage");
         Route::get("review/{review}/action","ReviewController@action")->name("review.action");
         Route::get("error","AdminController@error")->name("admin.error");
-        Route::get('{any}', 'AdminController@index');
+        // Route::get('{any}', 'AdminController@index');
 });
  

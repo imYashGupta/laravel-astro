@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +27,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        View::composer('pages.includes.header', function($view)
+        {
+            $view->with('appData',[
+                "cartItem" => Cart::content(),
+                "cartTotal" => Cart::subtotal(),
+            ]);
+        });
+
     }
 }

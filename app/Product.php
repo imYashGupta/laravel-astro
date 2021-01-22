@@ -17,6 +17,8 @@ class Product extends Model
     {
         return Storage::disk('public')->url("products/thumbnails/".$this->thumbnail);
     }
+
+
     public function getCategoryAttribute()
     {
         $category= Category::find($this->category_id);
@@ -27,11 +29,23 @@ class Product extends Model
         }
     }
 
+    
+
     public function getImagesAttribute()
     {
         $collection=DB::table("product_images")->where("product_id",$this->id)->get();
         $collection->map(function($image ){
             $image->url =  Storage::disk('public')->url("products/".$image->name);
+        });
+        return $collection;
+    }
+
+    //for 100x100 size
+    public function getThumbnailsAttribute()
+    {
+        $collection=DB::table("product_images")->where("product_id",$this->id)->get();
+        $collection->map(function($image ){
+            $image->url =  Storage::disk('public')->url("products/thumbnails/".$image->name);
         });
         return $collection;
     }

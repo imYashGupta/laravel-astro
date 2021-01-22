@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Srmklive\PayPal\Services\ExpressCheckout;
 
 class HomeController extends Controller
 {
@@ -14,9 +15,15 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+            // $this->middleware('auth');
     }
 
+    public function homepage()
+    {
+        return view('pages.index');
+    }
+
+   
     /**
      * Show the application dashboard.
      *
@@ -27,5 +34,46 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function payment(Request $request)
+    {
+        $product = [];
+        $product['items'] = [
+            [
+                'name' => 'Nike Joyride 2',
+                'price' => 112,
+                'desc'  => 'Running shoes for Men',
+                'qty' => 2
+            ]
+        ];
   
+        $product['invoice_id'] = 1;
+        $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+        $product['return_url'] = route('success.payment');
+        $product['cancel_url'] = route('cancel.payment');
+        $product['total'] = 224;
+  
+        $paypalModule = new ExpressCheckout;
+  
+        $res = $paypalModule->setExpressCheckout($product);
+  
+        return redirect($res['paypal_link']);
+
+    }
+
+    public function paymentCancel()
+    {
+        dd('Your payment has been declend. The payment cancelation page goes here!');
+    }
+  
+    public function paymentSuccess(Request $request)
+    {
+        $paypalModule = new ExpressCheckout;
+        return $response = $paypalModule->getExpressCheckoutDetails($request->token);
+  
+        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+            dd('Payment was successfull. The payment success page goes here!');
+        }
+  
+        dd('Error occured!');
+    }
 }
