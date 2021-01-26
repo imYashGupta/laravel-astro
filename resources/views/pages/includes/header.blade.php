@@ -11,19 +11,13 @@
 				</div>
 				<div class="ast_autho_wrapper">
 					<ul>
-						<?php 
-						$login = 1 ;
-						if ($login == 0) {
-							
-							?>
-						<li><a class="popup-with-zoom-anim" href="#login-dialog"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</a></li>
+						 
+						<li><a class="popup-with-zoom-anim" href="#login-dialog" @click="showLoginError=false"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</a></li>
 						<li><a class="popup-with-zoom-anim" href="#signup-dialog"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a></li>
-						<?php
-							}else{ ?>
+					 
+						{{-- <li><a   href="user/user_dashboard.html"><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>	 --}}
 
-							<li><a class="popup-with-zoom-anim" href="user/user_dashboard.html"><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>	
-
-						<?php	}	?>
+					
 						<!-- <li class="ast_search">
 							<a href="javascript:;"><i class="fa fa-search"></i></a>
 							<div class="ast_search_field">
@@ -34,13 +28,17 @@
 							</div>
 						</li> -->
 						<li class="ast_cart">
-							<a href="javascript:;"><i class="fa fa-shopping-cart"></i> Cart </a>
+							<a href="/cart"><i class="fa fa-shopping-cart"></i> Cart (<span id="cartCount">{{$appData["cartItem"]->count()}}</span>)</a>
 							<header-cart cart="{{$appData["cartItem"]}}" total="{{$appData["cartTotal"]}}"></header-cart>
 						</li>
 					</ul><!---->
 					<div id="login-dialog" class="zoom-anim-dialog mfp-hide">
 						<h1>Login Form</h1>
-						<form action="user/user_dashboard.html">
+						<div class="clearfix"></div>
+						<div class="alert alert-danger" role="alert" v-if="showLoginError">
+							Please Login to apply Coupon Code
+						  </div>
+						<form action="">
 							<input type="text" placeholder="Email">
 							<input type="password" placeholder="Password">
 							<div class="ast_login_data">
@@ -49,12 +47,27 @@
 								<a href="#">Forgot password ?</a>
 							</div>
 							<button type="submit" class="ast_btn">Login</button>
-							<p>Create An Account ? <a href="#">SignUp</a></p>
+							<p>Create An Account ? <a class="popup-with-zoom-anim" href="#signup-dialog" >SignUp</a></p>
 						</form>
 					</div>
+					{{-- <div id="login-dialog-a" class="zoom-anim-dialog mfp-hide">
+						<h1>Login Form A</h1>
+						<form action="">
+							<input type="text" placeholder="Email">
+							<input type="password" placeholder="Password">
+							<div class="ast_login_data">
+								<label class="tp_custom_check" for="remember_me">Remember me <input type="checkbox" name="ast_remember_me" value="yes" id="ast_remember_me"><span class="checkmark"></span>
+								</label>
+								<a href="#">Forgot password ?</a>
+							</div>
+							<button type="submit" class="ast_btn">Login</button>
+							<p>Create An Account ? <a class="popup-with-zoom-anim" href="#login-dialog" >SignUp</a></p>
+						</form>
+					</div> --}}
 					<div id="signup-dialog" class="zoom-anim-dialog mfp-hide">
 						<h1>signup form</h1>
 						<form>
+
 							<input type="text" placeholder="Name">
 							<input type="text" placeholder="Email">
 							<input type="password" placeholder="Password">
@@ -64,9 +77,10 @@
 								<option value="female">Female</option>
 							</select>
 							<button type="submit" class="ast_btn">submit</button>
-							<p>Have An Account ? <a href="#">Login</a></p>
+							<p>Create An Account ? <a class="popup-with-zoom-anim" href="#login-dialog" >SignUp</a></p>
 						</form>
 					</div>
+					 
 				</div>
 			</div>
 		</div>

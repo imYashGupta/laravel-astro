@@ -1,4 +1,5 @@
 <template>
+
   <div class="ast_cart_box">
     <div class="ast_cart_list">
       <ul v-if="typeof cartItems !== 'undefined' && cartItems.length > 0">
@@ -32,6 +33,7 @@
       <a  href="/checkout"><button type="button">checkout</button></a>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -56,6 +58,8 @@ export default {
               this.cartItems = Object.values(response.data.cart);
               this.$parent.showToast(response.data.message);
               this.carttotal =  response.data.total;
+            document.getElementById("cartCount").innerHTML = this.cartItems.length;
+
             }).catch(error => {
               console.log(error)
             })
@@ -66,7 +70,7 @@ export default {
             this.cartItems = Object.values(cart);
             this.carttotal = total;
             this.$parent.showToast(message);
-            console.log("update")
+            document.getElementById("cartCount").innerHTML = this.cartItems.length;
         });
         const cartObj = JSON.parse(this.cart);
         this.cartItems=Object.values(cartObj);

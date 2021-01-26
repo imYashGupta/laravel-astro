@@ -2,17 +2,18 @@
 
 namespace App;
 
+use App\Review;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
 
     use SoftDeletes;
 
-    protected $appends = ["thumbnailUrl","category","images"];
+    protected $appends = ["thumbnailUrl","category","images","rating"];
     public function getThumbnailUrlAttribute()
     {
         return Storage::disk('public')->url("products/thumbnails/".$this->thumbnail);
@@ -48,5 +49,19 @@ class Product extends Model
             $image->url =  Storage::disk('public')->url("products/thumbnails/".$image->name);
         });
         return $collection;
+    }
+
+    public function getRatingAttribute()
+    {
+        $reviews=Review::where("product_id",$this->id)->get();
+        $total = 0;
+        foreach($reviews as $review){
+            $total = $total + $review->rating;
+        }
+        if($reviews->count() > 0){
+            return ceil($total/$reviews->count());
+        }else{
+            return NULL;
+        }
     }
 }

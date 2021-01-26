@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Review;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -165,6 +166,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        Review::where("product_id",$product->id)->delete();
         return redirect()->back()->with("success","Product deleted.");
     }
 

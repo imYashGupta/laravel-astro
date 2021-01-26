@@ -52,7 +52,7 @@
 									<div class="ast_info_bottom">
 										
 
-										<add-to-cart-btn   product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty")) }}'></add-to-cart-btn>
+										<add-to-cart-btn   product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
 									</div>
 								</div>
 							</div>

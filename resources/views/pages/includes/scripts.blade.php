@@ -7,5 +7,8 @@
 <script type="text/javascript" src="{{URL::asset("src/js/jquery.countTo.js")}}"></script>
 <script type="text/javascript" src="{{URL::asset("src/js/jquery.appear.js")}}"></script>
 <script type="text/javascript" src="{{URL::asset("src/js/custom.js")}}"></script>
+<script>
+    
+</script>
 <!--Main js file End-->
 @yield('scripts')

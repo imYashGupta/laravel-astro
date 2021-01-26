@@ -18,6 +18,12 @@ Route::get('/','HomeController@homepage')->name('homepage');
 Route::get('/shop','ShopController@shop')->name('shop');
 Route::post("/cart/add","CartController@add")->name("cart.add");
 Route::get("/cart/remove/{rowId}","CartController@remove");
+Route::get("/cart","CartController@cart");
+Route::post("/cart/update","CartController@update");
+Route::post("/cart/coupon-apply","CartController@coupon");
+Route::post('{product_slug}/review','ShopController@addReview')->name('product.addReview');
+
+
 
 Auth::routes();
 

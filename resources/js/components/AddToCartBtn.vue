@@ -9,7 +9,7 @@
 import Axios from 'axios';
 import { eventBus } from "./../app";
 export default {
-    props:["product"],
+    props:["product","readqty"],
     data(){
         return {
             prod:{},
@@ -19,10 +19,23 @@ export default {
     methods:{
         addToCart(){
             this.loading=true;
-            const qty = this.prod.min_qty===null ? 1 : this.prod.min_qty;
+            let inpQty;
+            if(this.readqty=='true'){
+              inpQty = document.getElementById("quantity").value;
+              if(this.prod.min_qty!==null && this.prod.min_qty > inpQty){
+                inpQty = 1;
+              }
+              if(this.prod.max_qty!==null && this.prod.max_qty < inpQty){
+                inpQty = 1;
+              } 
+            }
+            else{
+              inpQty = this.prod.min_qty===null ? 1 : this.prod.min_qty;
+            }
+
             Axios.post("cart/add",{
                 product:this.prod.id,
-                qty:qty
+                qty:inpQty
             }).then(response => {
                 this.loading=false;
                 eventBus.$emit("updateCart",response.data);

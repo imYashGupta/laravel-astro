@@ -49,7 +49,7 @@ Version: 1.0
 		overflowY: 'auto',
 
 		closeBtnInside: true,
-		preloader: false,
+		preloader: true,
 		
 		midClick: true,
 		removalDelay: 300,

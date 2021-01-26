@@ -111,25 +111,29 @@
 									<h3>{{$product->name}}</h3>
 									<div class="product_rating">
 										<span class="ref_number">Ref No. #{{$product->id}}</span>
+										@if (!is_null($product->rating))
 										<span class="rating_star">
+											@for ($i = 0; $i < $product->rating; $i++)
 											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
+											@endfor
+											@for ($i = 0; $i < 5-$product->rating; $i++)
 											<i class="fa fa-star-o" aria-hidden="true"></i>
+											@endfor
 										</span>
+							 
+										@endif
 									</div>
 									<p>{{ $product->short_description }}</p>
 									<div class="stock_details">{{ $product->units }} In Stock</div>
-									<div class="prod_quantity">QTY <input type="number" name="quantity" id="quantity" value="1" min="1" /></div>
+									<div class="prod_quantity">QTY <input type="number" name="quantity" id="quantity" value="{{!is_null($product->min_qty) ? $product->min_qty : 1}}" min="{{!is_null($product->min_qty) ? $product->min_qty : 1}}" @if(!is_null($product->max_qty)) max="{{$product->max_qty}}" @endif/></div>
 									<div class="product_buy">
 										<form action="{{ route("cart.add") }}" method="POST" class="d-inline-block">
 											@csrf
 											<input type="hidden" name="product" value="{{$product->id}}">
 											<input type="hidden" name="qty" value="{{$product->min_qty ? $product->min_qty : 1}}">
-											<button type="submit" class="buy_btn ast_btn" value="Buy Now">Buy Now</button>
+											{{-- <button type="submit" class="buy_btn ast_btn" value="Buy Now">Buy Now</button> --}}
 										</form>
-										<add-to-cart-btn product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty")) }}'></add-to-cart-btn>
+										<add-to-cart-btn readqty="true" product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
 										<a href="#" class="ad_wishlist">Add To Wishlist 
 									    	<i class="fa fa-heart-o" aria-hidden="true"></i>
 										</a>
@@ -142,16 +146,16 @@
 					<!-- product description tabs -->
 					<div class="product_desc_tabs">
 						<ul class="tabs">
-							<li class="tab-link " data-tab="tab-1">descriptions</li>
-							<li class="tab-link current" data-tab="tab-2">reviews</li>
+							<li class="tab-link current" data-tab="tab-1">descriptions</li>
+							<li class="tab-link " data-tab="tab-2">reviews</li>
 						</ul>
 						<div class="product_tab_content">
-							<div id="tab-1" class="tab_content ">
-								<h4>Discription</h4>
+							<div id="tab-1" class="tab_content  current">
+								<h4>Discription </h4>
 								{!! $product->description!!}
 							</div>
-							<div id="tab-2" class="tab_content current">
-								<review-form></review-form>
+							<div id="tab-2" class="tab_content ">
+								<review-form product-name="{{$product->name}}" reviews='@json($reviews)' route="{{ route("product.addReview",$product->slug) }}" authenticated="{{auth()->check() ? json_encode(["email" => auth()->user()->email,"name" => auth()->user()->name]) : 'false'}}"></review-form>
 							</div>
 						</div>
 					</div>
@@ -164,10 +168,11 @@
 						<h1>related  <span>products</span></h1>
 					</div>	
 					<div class="owl-carousel owl-theme">
+						@foreach ($relatedProducts as $product)
 						<div class="item">
 							<div class="ast_product_section">
 								<div class="ast_product_image">
-									<a href="shop_single.php"><img src="src/images/content/Products/Gemstone.jpg" class="img-responsive"></a>
+									<a href="shop_single.php"><img src="{{$product->thumbnailUrl}}" class="img-responsive"></a>
 								</div>
 								<div class="ast_product_info">
 									<i class="fa fa-star"></i>
@@ -175,7 +180,7 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star-o"></i>
 									<i class="fa fa-star-o"></i>
-									<h4 class="ast_shop_title"><a href="shop_single.php">gemstones</a></h4>
+									<h4 class="ast_shop_title"><a href="shop_single.php">{{$product->name}}</a></h4>
 									<p>$30.00</p>
 									<div class="ast_info_bottom">
 										<a href="#" class="ast_add_cart ast_btn">add to cart</a>
@@ -183,63 +188,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="item">
-							<div class="ast_product_section">
-								<div class="ast_product_image">
-									<a href="shop_single.php"><img src="src/images/content/Products/Navgrah.jpg" class="img-responsive"></a>
-								</div>
-								<div class="ast_product_info">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<h4 class="ast_shop_title"><a href="shop_single.php">navgraha Yantra</a></h4>
-									<p>$30.00</p>
-									<div class="ast_info_bottom">
-										<a href="#" class="ast_add_cart ast_btn">add to cart</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ast_product_section">
-								<div class="ast_product_image">
-									<a href="shop_single.php"><img src="src/images/content/Products/Rudhrakhsa.jpg" class="img-responsive"></a>
-								</div>
-								<div class="ast_product_info">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<h4 class="ast_shop_title"><a href="shop_single.php">rudraksha</a></h4>
-									<p>$30.00</p>
-									<div class="ast_info_bottom">
-										<a href="#" class="ast_add_cart ast_btn">add to cart</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ast_product_section">
-								<div class="ast_product_image">
-									<a href="shop_single.php"><img src="src/images/content/Products/Fengshui.jpg" class="img-responsive"></a>
-								</div>
-								<div class="ast_product_info">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<h4 class="ast_shop_title"><a href="shop_single.php">fang shui</a></h4>
-									<p>$30.00</p>
-									<div class="ast_info_bottom">
-										<a href="#" class="ast_add_cart ast_btn">add to cart</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						@endforeach
 					</div>	
 				</div>
 			</div>
@@ -263,5 +212,12 @@
 <script type="text/javascript" src="src/js/slick/jquery-migrate-1.2.1.min.js">
 </script>
 <script type="text/javascript" src="src/js/slick/slick.min.js"></script>
+<script>
+	
+
+	$("#quantity").on("keypress",function(){
+		return false;
+	})
+</script>
 <!--Main js file End-->
 @endsection
