@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="widget text-widget">
-					<img src="src/images/header/pathway_logo.png" alt="Logo" width="230">
+					<img src="/src/images/header/pathway_logo.png" alt="Logo" width="230">
 					<h4 class="widget-title">our newsletter</h4>
 					<div class="ast_newsletter">
 						<p>Fell Free To Contact.</p>
@@ -33,11 +33,11 @@
 					<h4 class="widget-title">our services</h4>
 					<div class="ast_servicelink">
 						<ul>
-							<li><a href="horoscopes.php">horoscopes</a></li>
-							<li><a href="vastu-shastra.php">vastushastra</a></li>
-							<li><a href="lifeissue.php">lifeissue</a></li>
-							<li><a href="tarot.php">tarot cards</a></li>
-							<li><a href="journal.php">Birth journal</a></li>
+							<li><a href="service" >horoscopes</a></li>
+							<li><a href="service">vastushastra</a></li>
+							<li><a href="service">lifeissue</a></li>
+							<li><a href="service">tarot cards</a></li>
+							<li><a href="service">Birth journal</a></li>
 						</ul>
 					</div>				
 				</div>			
@@ -47,11 +47,11 @@
 					<h4 class="widget-title">quick links</h4>
 					<div class="ast_sociallink">
 						<ul>
-							<li><a href="about.php">about</a></li>
-							<li><a href="blog.php">blog</a></li>
-							<li><a href="appointment.php">Appointment</a></li>
-							<li><a href="faq.php">FAQ</a></li>
-							<li><a href="contact.php">contact</a></li>
+							<li><a href="about-us">about</a></li>
+							<li><a href="blogs">blog</a></li>
+							<li><a href="appointment">Appointment</a></li>
+							<li><a href="faq">FAQ</a></li>
+							<li><a href="contact-us">contact</a></li>
 						</ul>
 					</div>				
 				</div>			

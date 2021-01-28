@@ -30,6 +30,50 @@
 <div class="ast_shop_wrapper ast_toppadder70 ast_bottompadder70">
 	<div class="container">
 		<div class="row">
+		    	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<div class="ast_shop_sidebar sidebar_wrapper">
+					{{-- <aside class="widget widget_search">
+						<input type="text" placeholder="Search...">
+						<button type="button"><i class="fa fa-search"></i></button>
+					</aside>   --}}
+					<form action="{{ Request::getRequestUri()}}">
+
+						<aside class="widget widget_filter">
+							<h4 class="widget-title">filter by price</h4>
+							<div id="slider-range" class="price-filter-range" name="rangeInput"></div>
+							
+							<div class="filter_input">
+								@if(Request::has("category"))
+									<input type="hidden" name="category" value="{{Request::get("category")}}">
+								@endif
+								<input name="min" @if(Request::has("min")) values="{{ Request::get("min") }}" @endif type="text" min="0" max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" />
+								<input name="max" @if(Request::has("max")) values="{{ Request::get("max") }}" @endif type="text" min="0" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field" />
+							</div>
+							<button class="price-range-search ast_btn" id="price-range-submit">Search </button>
+						</aside>
+					</form>
+						<aside class="widget widget_categories">
+						<h4 class="widget-title">Categories</h4>
+						<ul>
+							<li><a href="{{route("shop")}}">All Products</a></li>
+							@foreach ($categories as $category)
+							<li><a class="{{ Request::has("category") ? Request::get('category')==$category->slug ? 'text-primary' : '' : ''}}" href="{{route("shop")}}?category={{$category->slug}}">{{$category->name}}</a></li>
+							@endforeach
+				 
+						</ul>
+					</aside>
+					<!--<aside class="widget widget_latest_product">-->
+					<!--	<h4 class="widget-title">new products</h4>-->
+					<!--	<ul>-->
+					<!--		<li><a href="#">gemstone</a></li>-->
+					<!--		<li><a href="#">navgraha yantra</a></li>-->
+					<!--		<li><a href="#">rings</a></li>-->
+					<!--		<li><a href="#">yantra</a></li>-->
+					<!--		<li><a href="#">books</a></li>-->
+					<!--	</ul>-->
+					<!--</aside>-->
+				</div>
+			</div>
 			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 				<div class="row">
 					<div class="ast_shop_main">
@@ -75,50 +119,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-				<div class="ast_shop_sidebar sidebar_wrapper">
-					{{-- <aside class="widget widget_search">
-						<input type="text" placeholder="Search...">
-						<button type="button"><i class="fa fa-search"></i></button>
-					</aside>   --}}
-					<form action="{{ Request::getRequestUri()}}">
-
-						<aside class="widget widget_filter">
-							<h4 class="widget-title">filter by price</h4>
-							<div id="slider-range" class="price-filter-range" name="rangeInput"></div>
-							
-							<div class="filter_input">
-								@if(Request::has("category"))
-									<input type="hidden" name="category" value="{{Request::get("category")}}">
-								@endif
-								<input name="min" @if(Request::has("min")) values="{{ Request::get("min") }}" @endif type="text" min="0" max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" />
-								<input name="max" @if(Request::has("max")) values="{{ Request::get("max") }}" @endif type="text" min="0" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field" />
-							</div>
-							<button class="price-range-search ast_btn" id="price-range-submit">Search </button>
-						</aside>
-					</form>
-						<aside class="widget widget_categories">
-						<h4 class="widget-title">Categories</h4>
-						<ul>
-							<li><a href="{{route("shop")}}">All Products</a></li>
-							@foreach ($categories as $category)
-							<li><a class="{{ Request::has("category") ? Request::get('category')==$category->slug ? 'text-primary' : '' : ''}}" href="{{route("shop")}}?category={{$category->slug}}">{{$category->name}}</a></li>
-							@endforeach
-				 
-						</ul>
-					</aside>
-					<aside class="widget widget_latest_product">
-						<h4 class="widget-title">new products</h4>
-						<ul>
-							<li><a href="#">gemstone</a></li>
-							<li><a href="#">navgraha yantra</a></li>
-							<li><a href="#">rings</a></li>
-							<li><a href="#">yantra</a></li>
-							<li><a href="#">books</a></li>
-						</ul>
-					</aside>
-				</div>
-			</div>
+		
 		</div>
 	</div>
 </div>

@@ -172,7 +172,7 @@
 						<div class="item">
 							<div class="ast_product_section">
 								<div class="ast_product_image">
-									<a href="shop_single.php"><img src="{{$product->thumbnailUrl}}" class="img-responsive"></a>
+									<a href="{{ route("product",$product->slug) }}"><img src="{{$product->thumbnailUrl}}" class="img-responsive"></a>
 								</div>
 								<div class="ast_product_info">
 									<i class="fa fa-star"></i>
@@ -180,7 +180,7 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star-o"></i>
 									<i class="fa fa-star-o"></i>
-									<h4 class="ast_shop_title"><a href="shop_single.php">{{$product->name}}</a></h4>
+									<h4 class="ast_shop_title"><a href="{{ route("product",$product->slug) }}">{{$product->name}}</a></h4>
 									<p>$30.00</p>
 									<div class="ast_info_bottom">
 										<a href="#" class="ast_add_cart ast_btn">add to cart</a>

@@ -24,6 +24,32 @@
 <div class="ast_blog_wrapper ast_toppadder70 ast_bottompadder70">
 	<div class="container">
 		<div class="row">
+		    	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="sidebar_wrapper">
+										
+					<aside class="widget widget_categories">
+						<h4 class="widget-title">Categories</h4>
+						<ul>
+							<li><a href="{{ route("blogs") }}">All Blogs</a></li>
+							@foreach ($categories as $category)
+							<li><a href="{{ route("blogs") }}?category={{ $category->name }}">{{ $category->name }}</a></li>
+							@endforeach
+						</ul>
+					</aside>
+					
+										
+					<aside class="widget widget_recent_entries">
+						<h4 class="widget-title">Popular Posts</h4>
+						<ul>
+							@foreach ($popularBlogs as $blog)
+							<li><a href="{{ route("blog",$blog->slug) }}">{{Str::limit($blog->title,85,'...')}}</a></li>								
+							@endforeach
+						</ul>
+					</aside>
+					
+					
+				</div>
+			</div>
 			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 				<div class="row">
 					@forelse ($blogs as $blog)
@@ -65,32 +91,7 @@
 				</div>
 				{{ $blogs->links() }}
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="sidebar_wrapper">
-										
-					<aside class="widget widget_categories">
-						<h4 class="widget-title">Categories</h4>
-						<ul>
-							<li><a href="{{ route("blogs") }}">All Blogs</a></li>
-							@foreach ($categories as $category)
-							<li><a href="{{ route("blogs") }}?category={{ $category->name }}">{{ $category->name }}</a></li>
-							@endforeach
-						</ul>
-					</aside>
-					
-										
-					<aside class="widget widget_recent_entries">
-						<h4 class="widget-title">Popular Posts</h4>
-						<ul>
-							@foreach ($popularBlogs as $blog)
-							<li><a href="{{ route("blog",$blog->slug) }}">{{Str::limit($blog->title,85,'...')}}</a></li>								
-							@endforeach
-						</ul>
-					</aside>
-					
-					
-				</div>
-			</div>
+		
 		</div>
 	</div>
 </div>
