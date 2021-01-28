@@ -50,6 +50,18 @@
                 window.location.reload();
             }
         }
+
+        $('form#form-action').submit(function(){
+            $(this).find(':input[type=submit]').prop('disabled', true);
+            $(this).find(':input[type=submit]').val('Please wait');
+            let btn = $(this).find('button[type=submit]').first();
+            // console.log(btn.text())
+            if(btn.text()=='Save Changes'){
+                // console.log("lo")
+                btn.text('Please wait...');
+                $(this).find(':button[type=submit]').prop('disabled', true);
+            }
+        });
         </script>   
 </body>
 </html>

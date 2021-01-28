@@ -23,7 +23,7 @@ Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
         "category"  => "CategoryController",
         "coupon"    => "CouponController",
         "blog-category" => "BlogCategoryController",
-        "blog"      => "BlogController",
+        "blog"      => "Admin\BlogController",
         "shipping" => "ShippingController",
         "testimonial" => "TestimonialController",
         "review"   => "ReviewController"

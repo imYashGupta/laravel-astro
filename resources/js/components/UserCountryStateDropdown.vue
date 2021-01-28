@@ -1,6 +1,6 @@
 <template>
-    <div class="row pl-2 pr-2">
-        <div class="col-sm-6">
+    <div class="row col-md-12  ">
+        <div class="col-md-4">
             <div class="form-group">
                 <label for="country">Country </label>
                 <select v-model="selectedCountry"  name="_country" id="country" class="form-control" @change="findState($event)">
@@ -10,7 +10,7 @@
                 <input type="hidden" name="country" :value="selectedCountry">
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-4">
             <div class="form-group">
                 <label for="state">State </label>
                 <select name="_state" id="state" v-model="selectedState" class="form-control" @change="findCities()"> 
@@ -20,7 +20,7 @@
                 <input type="hidden" name="state" :value="selectedState">
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-4">
             <div class="form-group">
                 <label for="city">City </label>
                 <select name="_city" id="city" v-model="selectedCity" class="form-control"  > 

@@ -22,6 +22,7 @@ class CreateBlogsTable extends Migration
             $table->longText("content");
             $table->integer("status");
             $table->string("thumbnail");
+            $table->integer("views")->default(0);
             $table->text("meta_title")->nullable();
             $table->text("meta_keyword")->nullable();
             $table->longText("meta_description")->nullable();

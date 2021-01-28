@@ -77,10 +77,10 @@
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 				<div class="ast_shop_sidebar sidebar_wrapper">
-					<!-- <aside class="widget widget_search">
+					{{-- <aside class="widget widget_search">
 						<input type="text" placeholder="Search...">
 						<button type="button"><i class="fa fa-search"></i></button>
-					</aside> -->
+					</aside>   --}}
 					<form action="{{ Request::getRequestUri()}}">
 
 						<aside class="widget widget_filter">

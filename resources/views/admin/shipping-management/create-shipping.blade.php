@@ -21,7 +21,7 @@
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title">{{$shipping ? "Edit" : "Create"}} shipping</h4>
                                             <p class="text-muted m-b-30 font-14">Fill all information below</p>
-                                            <form action="{{ $shipping ? route("shipping.update",$shipping) : route("shipping.store") }}" method="POST">
+                                            <form id="form-action" action="{{ $shipping ? route("shipping.update",$shipping) : route("shipping.store") }}" method="POST">
                                                 @csrf
                                                 @if($shipping) @method("PATCH") @endif
                                                 <div class="row">

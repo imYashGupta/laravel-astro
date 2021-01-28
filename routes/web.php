@@ -25,10 +25,26 @@ Route::post('{product_slug}/review','ShopController@addReview')->name('product.a
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get("/pay","HomeController@payment");
 Route::get('cancel-payment', 'HomeController@paymentCancel')->name('cancel.payment');
 Route::get('payment-success', 'HomeController@paymentSuccess')->name('success.payment');
+Route::resource("enquiry","EnquiryController");
+Route::get("contact-us",function(){
+    return view("pages.contact");
+});
+Route::get("about-us","HomeController@about")->name("about");
+Route::get("services",function(){
+    return view("pages.services");
+});
+Route::get("blogs","BlogController@blogs")->name("blogs");
+Route::get("blog/{slug}","BlogController@blog")->name("blog");
+Route::get("faq",function(){
+    return view("pages.faq");
+});
+Route::get("appointment",function(){
+    return view("pages.appointment");
+});
 Route::get("{product_slug}",'ShopController@product')->name("product");

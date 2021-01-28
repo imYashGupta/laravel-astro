@@ -1,11 +1,6 @@
-<?php include 'includes/style.php';?>
-
-<body>
-<!-- Header Start -->
-<?php include 'includes/header.php';?>
-
-<!-- Header End --> 
-<!--Breadcrumb start-->
+@extends("layouts.web-master")
+@section('content')
+	
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
 	<div class="container">
@@ -38,7 +33,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="images/content/sv5.png" alt="Service">
+					<img src="src/images/content/sv5.png" alt="Service">
 					<h4>Birth Journal</h4>
 					<p>Birth Journal or Kundli is the establishment of astrology. ... At the point when this date and time is of some individual's introduction to the world,</p>
 					<div class="clearfix"></div>
@@ -47,7 +42,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="images/content/sv6.png" alt="Service">
+					<img src="src/images/content/sv6.png" alt="Service">
 					<h4>vastu shastra</h4>
 					<p>Vastu shastra is a traditional Indian system of architecture originating in India. Texts from the Indian subcontinent describe principles of design,</p>
 					<div class="clearfix"></div>
@@ -56,7 +51,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="images/content/sv4.png" alt="Service">
+					<img src="src/images/content/sv4.png" alt="Service">
 					<h4>Horoscopes</h4>
 					<p>A horoscope is an astrological chart or diagram representing the positions of the Sun, Moon, planets, astrological aspects and sensitive angles at the time of an event,</p>
 					<div class="clearfix"></div>
@@ -65,7 +60,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="images/content/sv2.png" alt="Service">
+					<img src="src/images/content/sv2.png" alt="Service">
 					<h4>Gemstones</h4>
 					<p>Astrological Gem offers a radiant selection of fine, natural, Jyotish quality gemstones for Vedic astrology & Ayurveda.</p>
 					<div class="clearfix"></div>
@@ -74,7 +69,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="images/content/sv3.png" alt="Service">
+					<img src="src/images/content/sv3.png" alt="Service">
 					<h4>Numerology</h4>
 					<p></p>
 					<div class="clearfix"></div>
@@ -83,7 +78,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="images/content/sv1.png" alt="Service">
+					<img src="src/images/content/sv1.png" alt="Service">
 					<h4>kundli dosh</h4>
 					<p></p>
 					<div class="clearfix"></div>
@@ -111,28 +106,28 @@
 			<div class="ast_counter_wrapper">
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 					<div class="ast_counter">
-						<span><img src="images/content/timer_1.png" alt="timer"></span>
+						<span><img src="src/images/content/timer_1.png" alt="timer"></span>
 						<h2 class="timer" data-from="0" data-to="200" data-speed="5000"></h2>
 						<h4>Offices Worldwide</h4>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 					<div class="ast_counter">
-						<span><img src="images/content/timer_2.png" alt="timer"></span>
+						<span><img src="src/images/content/timer_2.png" alt="timer"></span>
 						<h2 class="timer" data-from="0" data-to="800" data-speed="5000"></h2>
 						<h4>skilled Astrologers</h4>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 					<div class="ast_counter">
-						<span><img src="images/content/timer_3.png" alt="timer"></span>
+						<span><img src="src/images/content/timer_3.png" alt="timer"></span>
 						<h2 class="timer" data-from="0" data-to="60" data-speed="5000"></h2>
 						<h4>Countries Covered</h4>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 					<div class="ast_counter">
-						<span><img src="images/content/timer_4.png" alt="timer"></span>
+						<span><img src="src/images/content/timer_4.png" alt="timer"></span>
 						<h2 class="timer" data-from="0" data-to="30" data-speed="5000"></h2>
 						<h4>Years of Experiences</h4>
 					</div>
@@ -148,13 +143,4 @@
 		
 	</div>
 </div>
-<!-- Download wrapper End-->
-<!-- Footer wrapper start-->
-<?php include 'includes/footer.php';?>
-
-<!-- Footer wrapper End-->
-<!--Main js file Style--> 
-<?php include 'includes/script.php';?>
-<!--Main js file End-->
-</body>
-</html>
+@endsection

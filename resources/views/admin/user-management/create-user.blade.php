@@ -16,14 +16,14 @@
                             @include('components.alert')
 
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <div class="card m-b-20">
                                         <div class="card-body">
 
                                             <h4 class="mt-0 header-title">{{ $user ? 'Update' : 'Create New'}} User</h4>
                                             <p class="text-muted m-b-30 font-14">Fill the information below</p>
 
-                                        <form action="{{ $user ? route("users.update",$user) : route("users.store")  }}" method="POST" enctype="multipart/form-data">
+                                        <form id="form-action" action="{{ $user ? route("users.update",$user) : route("users.store")  }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                                 <div class="row">
                                                     <div class="col-sm-6">
@@ -169,7 +169,7 @@
                                                     </div>
                                                     @endif
                                                 </div>
-                                                <button type="submit" class="btn btn-success waves-effect waves-light">Save Changes</button>
+                                                <button   type="submit" class="btn btn-success waves-effect waves-light">Save Changes</button>
                                             </form>
                                         </div>
                                     </div>
@@ -215,6 +215,8 @@
         console.log("logs")
         readURL(this);
     });
+
+   
     
 </script>
 

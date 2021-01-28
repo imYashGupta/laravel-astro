@@ -1,11 +1,5 @@
-<?php include 'includes/style.php';?>
-
-<body>
-<!-- Header Start -->
-<?php include 'includes/header.php';?>
-
-<!-- Header End -->  
-<!--Breadcrumb start-->
+@extends("layouts.web-master")
+@section('content')
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
 	<div class="container">
@@ -127,13 +121,4 @@
 		
 	</div>
 </div>
-<!-- Download wrapper End-->
-<!-- Footer wrapper start-->
-<?php include 'includes/footer.php';?>
-
-<!-- Footer wrapper End-->
-<!--Main js file Style--> 
-<?php include 'includes/script.php';?>
-<!--Main js file End-->
-</body>
-</html>
+@endsection

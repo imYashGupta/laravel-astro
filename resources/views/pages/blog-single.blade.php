@@ -1,11 +1,5 @@
-<?php include 'includes/style.php';?>
-
-<body>
-<!-- Header Start -->
-<?php include 'includes/header.php';?>
-
-<!-- Header End -->  
-<!--Breadcrumb start-->
+@extends('layouts.web-master')
+@section('content')	
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
 	<div class="container">
@@ -36,16 +30,15 @@
 				<div class="ast_blog_box">
 					<div class="ast_blog_img">
 						<span class="ast_date_tag">28 august, 2018</span>
-						<img src="images/content/blog_single.jpg" alt="Blog" title="Blog">
+						<img src="{{ $blog->thumbnailUrl }}" width="100%" alt="Blog" title="Blog">
 					</div>
 					<div class="ast_blog_info">
 						<ul class="ast_blog_info_text">
-							<li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 28 comments</a></li>
-							<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Andrew Coyne</a></li>
+							<li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{$blog->created_at->format("d F,Y")}}</a></li>
+							{{-- <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li> --}}
 						</ul>
-						<h3 class="ast_blog_info_heading">Rahu Enters Cancer and Ketu Enters Capricorn.</h3>
-						<p class="ast_blog_info_details">Sadipscing elitr, vero eos et accusam et justo duo dolores et ea rebum. sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Nam cursus imperdiet elit. Fusce sollicitudin eget nulla in condime. We pride ourselves on offering exceptional customer experiences for every client that walks through our doors.</p>
-						<p class="ast_blog_info_details">Finibus non magna sed varius. Fusce risus eros, dapibus vitae dignissim vel consequat et dolor. Consetetur sadipscing elitr, vero eos et accusam et justo duo dolores et ea rebum. sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua.</p>
+						<h3 class="ast_blog_info_heading">{{$blog->title}}.</h3>
+						<p class="ast_blog_info_details">{!! $blog->content !!}</p>
 					</div>
 				</div>
 				<div class="ast_blog_comment_wrapper">
@@ -135,30 +128,22 @@
 					<aside class="widget widget_categories">
 						<h4 class="widget-title">Categories</h4>
 						<ul>
-							<li><a href="#">Zodiac</a></li>
-							<li><a href="#">Vastu shastra</a></li>
-							<li><a href="#">horoscope</a></li>
-							<li><a href="#">starts</a></li>
-							<li><a href="#">planets</a></li>
-							<li><a href="#">gemstone</a></li>
-							<li><a href="#">numerology</a></li>
-							<li><a href="#">tarot cards</a></li>
+							<li><a href="{{ route("blogs") }}">All Blogs</a></li>
+							@foreach ($categories as $category)
+							<li><a href="{{ route("blogs") }}?category={{ $category->name }}">{{ $category->name }}</a></li>
+							@endforeach
 						</ul>
 					</aside>
 					
 					
 					<aside class="widget widget_recent_entries">
-						<h4 class="widget-title">Recent Posts</h4>
+						<h4 class="widget-title">Popular Posts</h4>
 						<ul>
-							<li><a href="#">Hello world!</a></li>
-							<li><a href="#">zodiac Sign</a></li>
-							<li><a href="#">cultures look</a></li>
-							<li><a href="#">symbolic associations</a></li>
-							<li><a href="#">outer planets</a></li>
+							@foreach ($popularBlogs as $blog)
+							<li><a href="{{ route("blog",$blog->slug) }}">{{Str::limit($blog->title,85,'...')}}</a></li>								
+							@endforeach
 						</ul>
 					</aside>
-					
-
 				</div>
 			</div>
 		</div>
@@ -171,14 +156,4 @@
 		
 	</div>
 </div>
-<!-- Download wrapper End-->
-<!-- Footer wrapper start-->
-<?php include 'includes/footer.php';?>
-
-<!-- Footer wrapper End-->
-<!--Main js file Style--> 
-<?php include 'includes/script.php';?>
-
-<!--Main js file End-->
-</body>
-</html>
+@endsection

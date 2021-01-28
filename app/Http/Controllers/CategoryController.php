@@ -39,10 +39,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => ["required","min:3"],
+            "name" => ["required","min:3","unique:categories"],
             "status" => ["required","in:0,1"]
+        ],[
+            "name.unique" => "Category name already exists."
         ]);
-
+        
         $category = new Category();
         $category->name  = $request->name;
         $category->slug = Str::slug($request->name);
@@ -84,8 +86,10 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            "name" => ["required","min:3"],
+            "name" => ["required","min:3","unique:categories,name,".$category->id],
             "status" => ["required","in:0,1"]
+        ],[
+            "name.unique" => "Category name already exists."
         ]);
 
         $category->name  = $request->name;

@@ -38,8 +38,10 @@ class BlogCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => ["required","min:3"],
+            "name" => ["required","min:3","unique:blog_categories"],
             "status" => ["required","in:0,1"]
+        ],[
+            "name.unique" => "Category name already exists."
         ]);
 
         $category = new BlogCategory();
@@ -82,8 +84,10 @@ class BlogCategoryController extends Controller
     public function update(Request $request, BlogCategory $blogCategory)
     {
         $request->validate([
-            "name" => ["required","min:3"],
+            "name" => ["required","min:3","unique:blog_categories,name,".$blogCategory->id],
             "status" => ["required","in:0,1"]
+        ],[
+            "name.unique" => "Category name already exists."
         ]);
 
         $blogCategory->name  = $request->name;

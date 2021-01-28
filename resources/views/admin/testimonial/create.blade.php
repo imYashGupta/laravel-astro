@@ -18,7 +18,7 @@
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title">{{$testimonial ? "Edit" : "Create"}} testimonial</h4>
                                             <p class="text-muted m-b-30 font-14">Fill all information below</p>
-                                            <form action="{{ $testimonial ? route("testimonial.update",$testimonial) : route("testimonial.store") }}" method="POST" enctype="multipart/form-data">
+                                            <form id="form-action" action="{{ $testimonial ? route("testimonial.update",$testimonial) : route("testimonial.store") }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @if($testimonial) @method("PATCH") @endif
                                                 <div class="row">

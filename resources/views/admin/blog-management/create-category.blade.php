@@ -19,14 +19,14 @@
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title">{{$category ? "Edit" : "Create"}} Category</h4>
                                             <p class="text-muted m-b-30 font-14">Fill all information below</p>
-                                            <form action="{{ $category ? route("blog-category.update",$category) : route("blog-category.store") }}" method="POST">
+                                            <form id="form-action" action="{{ $category ? route("blog-category.update",$category) : route("blog-category.store") }}" method="POST">
                                                 @csrf
                                                 @if($category) @method("PATCH") @endif
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="name">Category Name</label>
-                                                            <input value="{{ $category ? $category->name : "" }}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
+                                                            <input value="{{ $category ? $category->name : old("name") }}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
                                                             @error('name')
                                                                 <span class="invalid-feedback d-block" role="alert">
                                                                     <strong>{{ $message }}</strong>

@@ -16,7 +16,7 @@
             <div class="page-content-wrapper">
                         <div class="container-fluid">
                             <div class="row">
-                                <form action="{{ $blog ? route("blog.update",$blog) : route("blog.store") }}" method="POST" enctype="multipart/form-data">
+                                <form id="form-action" action="{{ $blog ? route("blog.update",$blog) : route("blog.store") }}" method="POST" enctype="multipart/form-data">
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">

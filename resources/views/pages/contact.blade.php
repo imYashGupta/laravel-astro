@@ -1,11 +1,14 @@
-<?php include 'includes/style.php';?>
-
-<body>
-<!-- Header Start -->
-<?php include 'includes/header.php';?>
-
-<!-- Header End -->  
-<!--Breadcrumb start-->
+@extends("layouts.web-master")
+@section('styles')
+	<style>
+		.response{
+			color: #832625;
+    padding-left: 15px;
+		}
+	</style>
+@endsection
+@section('content')
+	
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
 	<div class="container">
@@ -62,7 +65,7 @@
 </div>
 <!--Content Us End-->
 <!--Content Us Start-->
-<div class="ast_mapnform_wrapper ast_toppadder70">
+<div class="ast_mapnform_wrapper ast_toppadder70" id="form-show">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-1 col-xs-offset-0">
@@ -76,28 +79,33 @@
 	<div class="ast_contact_map">
 		<div class="col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
 			<div class="ast_contact_form">
-				<form>
+				<form method="POST" id="contact-form" action="{{ route("enquiry.store") }}">
+					@csrf
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<label>first name</label>
-						<input type="text" name="first_name" class="require">
+						<input value="{{ old("firstname") }}" type="text" name="firstname" class="require">
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<label>last name</label>
-						<input type="text" name="last_name" class="require">
+						<input value="{{ old("lastname") }}" type="text" name="lastname" class="require">
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<label>email</label>
-						<input type="text" name="email" class="require" data-valid="email" data-error="Email should be valid.">
+						<input value="{{ old("email") }}" type="text" name="email" class="require" data-valid="email" data-error="Email should be valid.">
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<label>subject</label>
-						<input type="text" name="subject" class="require">
+						<input value="{{ old("subject") }}" type="text" name="subject" class="require">
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<label>message</label>
-						<textarea rows="5" name="message" class="require"></textarea>
+						<textarea rows="5" name="message" class="require">{{ old("message") }}</textarea>
 					</div>
-					<div class="response"></div>
+					<div class="response">
+						@if ($errors->any())
+							{{$errors->first()}}
+						@endif
+					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<button class="ast_btn pull-right submitForm" type="button" form-type="contact">send</button>
 					</div>
@@ -114,14 +122,11 @@
 		
 	</div>
 </div>
-<!-- Download wrapper End-->
-<!-- Footer wrapper start-->
-<?php include 'includes/footer.php';?>
-
-<!-- Footer wrapper End-->
-<!--Main js file Style--> 
-<?php include 'includes/script.php';?>
-
-<!--Main js file End-->
-</body>
-</html>
+@endsection
+@section('scripts')
+	@if(session()->has("success"))
+	<script>
+		swal("Thank You!", "for contacting us – we will get back to you soon!", "success");
+	</script>
+	@endif
+@endsection

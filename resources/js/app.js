@@ -27,6 +27,9 @@ import AddToCartBtn from "./components/AddToCartBtn.vue";
 import HeaderCart from "./components/HeaderCart.vue";
 import ReviewForm from "./components/ReviewForm.vue";
 import Cart from "./components/Cart.vue";
+import SignUp from "./components/SignUp.vue";
+import Login from "./components/Login.vue";
+import ForgotPassword from "./components/ForgotPassword.vue";
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -43,7 +46,10 @@ const app = new Vue({
         "add-to-cart-btn":AddToCartBtn,
         "header-cart":HeaderCart,
         "review-form":ReviewForm,
-        'cart':Cart
+        'cart':Cart,
+        'sign-up':SignUp,
+        'login-form':Login,
+        'forgot-password-form':ForgotPassword
     },
     methods:{
         showPassword(){
@@ -58,13 +64,15 @@ const app = new Vue({
                 x.innerHTML = "";
             }, 3000);
         },
+        
       
     },
     data(){
         return {
             editPassword:false,
             freeDelivery:false,
-            showLoginError:false
+            showLoginError:false,
+            btnLoading:false,
         }
     },
     created(){

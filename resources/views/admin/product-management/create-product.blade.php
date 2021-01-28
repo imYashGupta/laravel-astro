@@ -4,7 +4,9 @@
 <!-- Select 2 -->
 <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ URL::asset('assets/css/imageuploadify.min.css') }}">
-<link href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet" />
+{{-- <link href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet" /> --}}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
 @endsection
 
 @section('breadcrumb')
@@ -17,7 +19,7 @@
            @include('components.alert')
 
                             <div class="row">
-                                <form class="col-12" method="POST" action="{{$product ? route("product.update",$product->id):route("product.store")}}" enctype="multipart/form-data">
+                                <form id="form-action" class="col-12" method="POST" action="{{$product ? route("product.update",$product->id):route("product.store")}}" enctype="multipart/form-data">
 
                                 <div >
                                     <div class="card m-b-20">

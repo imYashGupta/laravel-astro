@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 class CouponController extends Controller
 {
 
-    public function validation($request)
+    public function validation($request,$isUpdate)
     {   
+        $validation = $isUpdate ? "required|min:3|unique:coupons,code,".$isUpdate : "required|min:3|unique:coupons";
         $request->validate([
-            "code" => "required|min:3",
+            "code" => $validation,
             "description" => "required",
             "type" => "required|in:fixed,percentage",
             "discount" => "required|integer",
@@ -19,6 +20,8 @@ class CouponController extends Controller
             "min_amount" => "required|integer",
             "coupon_limit" => "nullable|integer",
             "user_limit" => "nullable|integer",
+        ],[
+            "code.unique" => "Coupon code already exists."
         ]);
 
         if($request->type=='percentage' AND $request->discount > 99){
@@ -54,7 +57,7 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validation($request);
+        $this->validation($request,false);
 
         $coupon = new Coupon();
         $coupon->code = $request->code;
@@ -100,7 +103,7 @@ class CouponController extends Controller
      */
     public function update(Request $request, Coupon $coupon)
     {
-        $this->validation($request);
+        $this->validation($request,$coupon->id);
         $coupon->code = $request->code;
         $coupon->description = $request->description;
         $coupon->type = $request->type;

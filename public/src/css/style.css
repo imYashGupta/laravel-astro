@@ -227,6 +227,33 @@ input:focus, textarea:focus, select:focus, button:focus {
 	padding:0px 15px;
 	margin-bottom:15px;
 }
+#forgot-password-dialog {
+	background: white;
+	padding: 20px 30px;
+	text-align: left;
+	max-width: 400px;
+	margin: 40px auto;
+	position: relative;
+	text-align:right;
+}
+#forgot-password-dialog h1{
+    float: left;
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 25px;
+    font-size: 24px;
+	text-align:left;
+	text-transform:capitalize;
+}
+#forgot-password-dialog input{
+	float:left;
+	width:100%;
+	border:1px solid #e1e1e1;
+	border-radius:3px;
+	height:45px;
+	padding:0px 15px;
+	margin-bottom:15px;
+}
 #signup-dialog {
 	background: white;
 	padding: 20px 30px;
@@ -4862,7 +4889,7 @@ li.ast_search , li.ast_cart{
 	font-size:16px;
 }
 
-#login-dialog , #signup-dialog{
+#login-dialog , #signup-dialog ,#forgot-password-dialog{
 	text-align:center;
 }
 #login-dialog .ast_login_data{
@@ -4898,12 +4925,12 @@ li.ast_search , li.ast_cart{
     margin-right: 10px;
     margin-top: 7px;
 }
-#signup-dialog p , #login-dialog p{
+#signup-dialog p , #login-dialog p ,#forgot-password-dialog p{
 	text-align:center;
 	margin-top:10px;
 	margin-bottom:0;
 }
-#signup-dialog p a , #login-dialog p a{
+#signup-dialog p a , #login-dialog p a ,#forgot-password-dialog p a{
 	color:#832625;
 }
 #signup-dialog .ast_btn{

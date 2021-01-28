@@ -21,7 +21,7 @@
 
                                             <h4 class="mt-0 header-title">{{$coupon ? 'Update' : 'Add new'}} coupon</h4>
                                             <p class="text-muted m-b-30 font-14">Fill all information below</p>
-                                            <form action="{{ $coupon ? route('coupon.update',$coupon->id) : route("coupon.store") }}" method="POST" >
+                                            <form id="form-action" action="{{ $coupon ? route('coupon.update',$coupon->id) : route("coupon.store") }}" method="POST" >
                                                 @csrf
                                                 @if($coupon) @method("PATCH") @endif
                                                 <div class="row">

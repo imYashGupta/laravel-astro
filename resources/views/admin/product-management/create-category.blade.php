@@ -18,14 +18,14 @@
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title">{{$category ? "Edit" : "Create"}} Category</h4>
                                             <p class="text-muted m-b-30 font-14">Fill all information below</p>
-                                            <form action="{{ $category ? route("category.update",$category) : route("category.store") }}" method="POST">
+                                            <form id="form-action" action="{{ $category ? route("category.update",$category) : route("category.store") }}" method="POST">
                                                 @csrf
                                                 @if($category) @method("PATCH") @endif
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="name">Category Name</label>
-                                                            <input value="{{ $category ? $category->name : "" }}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
+                                                            <input value="{{ $category ? $category->name : old("name") }}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
                                                             @error('name')
                                                                 <span class="invalid-feedback d-block" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="description">Description</label>
-                                                            <textarea   name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="5">{{ $category ? $category->description : "" }}</textarea>
+                                                            <textarea   name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="5">{{ $category ? $category->description : old("description") }}</textarea>
                                                             @error('description')
                                                                 <span class="invalid-feedback d-block" role="alert">
                                                                     <strong>{{ $message }}</strong>

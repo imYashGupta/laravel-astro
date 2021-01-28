@@ -124,7 +124,9 @@ class CartController extends Controller
         }
         
         return response()->json(["message" => "Coupon code is invalid or expired.","error" => true],200);
-
+        //Coupon "asdasdasd" does not exist!
+        //Coupon code applied successfully.
+        //The minimum spend for this coupon is ₹5,000.00.
 
     }
  

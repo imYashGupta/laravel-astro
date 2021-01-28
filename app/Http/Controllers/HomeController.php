@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -20,7 +21,16 @@ class HomeController extends Controller
 
     public function homepage()
     {
-        return view('pages.index');
+        $testimonials=Testimonial::where("status",1)->get();
+
+        return view('pages.index',["testimonials" => $testimonials]);
+    }
+
+    public function about()
+    {
+        $testimonials=Testimonial::where("status",1)->get();
+
+        return view('pages.about',["testimonials" => $testimonials]);
     }
 
    

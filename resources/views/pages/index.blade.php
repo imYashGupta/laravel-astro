@@ -266,42 +266,17 @@
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0">
 				<div class="ast_testimonials_slider">
 					<div class="owl-carousel owl-theme">
-   					<div class="item">
-   						<div class="ast_testimonials_slider_box">
-							<img src="src/images/content/tm2.jpg" alt="Testimonial">
-							<div class="ast_testimonials_slider_box_text">
-								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or less normal distribution.</p>
-								<h4>Charlyn Stewart, <span>astrologer</span></h4>
-							</div>
-   						</div>   					
-   					</div>
-   					<div class="item">
-   						<div class="ast_testimonials_slider_box">
-   							<img src="src/images/content/tm1.jpg" alt="Testimonial">
-							<div class="ast_testimonials_slider_box_text">
-								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or less normal distribution.</p>
-								<h4>Kenneth Page, <span>tarot reader</span></h4>
-							</div>					
-   						</div>   					
-   					</div>
-   					<div class="item">
-   						<div class="ast_testimonials_slider_box">
-   							<img src="src/images/content/tm3.jpg" alt="Testimonial">
-							<div class="ast_testimonials_slider_box_text">
-								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or less normal distribution.</p>
-								<h4>Louis Robinson, <span>horoscoper</span></h4>
-							</div>
-   						</div>
-   					</div>
+					@foreach ($testimonials as $item)
 					<div class="item">
-   						<div class="ast_testimonials_slider_box">
-   							<img src="src/images/content/tm4.jpg" alt="Testimonial">
+						<div class="ast_testimonials_slider_box">
+							<img src="{{$item->imageUrl}}" alt="Testimonial">
 							<div class="ast_testimonials_slider_box_text">
-								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or less normal distribution.</p>
-								<h4>Judith Tierney, <span>psychologist</span></h4>
+								<p>{{ $item->description }}.</p>
+								<h4>{{$item->name}}, <span>{{$item->designation}}</span></h4>
 							</div>
-   						</div>
-   					</div>
+						</div>   					
+					</div>
+					@endforeach
 					</div>
 				</div>
 			</div>
