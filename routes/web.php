@@ -44,6 +44,9 @@ Route::get("blog/{slug}","BlogController@blog")->name("blog");
 Route::get("faq",function(){
     return view("pages.faq");
 });
+Route::get("service",function(){
+      return view("pages.service-single");
+});
 Route::get("appointment",function(){
     return view("pages.appointment");
 });

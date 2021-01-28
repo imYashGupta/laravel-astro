@@ -41,86 +41,86 @@
 						<p class="ast_blog_info_details">{!! $blog->content !!}</p>
 					</div>
 				</div>
-				<div class="ast_blog_comment_wrapper">
-					<h4 class="ast_blog_heading">all comments</h4>
-					<ul>
-						<li>
-							<div class="ast_blog_comment">
-								<div class="ast_comment_image">
-									<img src="http://via.placeholder.com/80x80" alt="">
-								</div>
-								<div class="ast_comment_text">
-									<h5 class="ast_bloger_name">Andrew Coyne</h5>
-									<span class="ast_blog_date">May 12, 2018</span>
-									<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>
-									<a href="" class="ast_comment_reply">Reply</a>
-								</div>
-							</div>
-							<ul>
-								<li>
-									<div class="ast_blog_comment">
-										<div class="ast_comment_image">
-											<img src="http://via.placeholder.com/80x80" alt="">
-										</div>
-										<div class="ast_comment_text">
-											<h5 class="ast_bloger_name">Elexa Styan</h5>
-											<span class="ast_blog_date">May 13, 2018</span>
-											<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>
-											<a href="" class="ast_comment_reply">Reply</a>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<div class="ast_blog_comment">
-								<div class="ast_comment_image">
-									<img src="http://via.placeholder.com/80x80" alt="">
-								</div>
-								<div class="ast_comment_text">
-									<h5 class="ast_bloger_name">Sarah Silvester</h5>
-									<span class="ast_blog_date">May 14, 2018</span>
-									<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>
-									<a href="" class="ast_comment_reply">Reply</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="ast_blog_comment">
-								<div class="ast_comment_image">
-									<img src="http://via.placeholder.com/80x80" alt="">
-								</div>
-								<div class="ast_comment_text">
-									<h5 class="ast_bloger_name">Cody Duff</h5>
-									<span class="ast_blog_date">May 15, 2018</span>
-									<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>
-									<a href="" class="ast_comment_reply">Reply</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="ast_blog_message_wrapper">
-					<h4 class="ast_blog_heading">Leave a reply</h4>
-					<div class="ast_blog_messages">
-						<form>
-							<div class="row">
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<textarea rows="5" placeholder="Your Message"></textarea>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<input type="text" placeholder="Name*">
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-									<input type="email" placeholder="Email*">
-								</div>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<a href="#" id="ed_submit" class="ast_btn">reply</a>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
+				<!--<div class="ast_blog_comment_wrapper">-->
+				<!--	<h4 class="ast_blog_heading">all comments</h4>-->
+				<!--	<ul>-->
+				<!--		<li>-->
+				<!--			<div class="ast_blog_comment">-->
+				<!--				<div class="ast_comment_image">-->
+				<!--					<img src="http://via.placeholder.com/80x80" alt="">-->
+				<!--				</div>-->
+				<!--				<div class="ast_comment_text">-->
+				<!--					<h5 class="ast_bloger_name">Andrew Coyne</h5>-->
+				<!--					<span class="ast_blog_date">May 12, 2018</span>-->
+				<!--					<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>-->
+				<!--					<a href="" class="ast_comment_reply">Reply</a>-->
+				<!--				</div>-->
+				<!--			</div>-->
+				<!--			<ul>-->
+				<!--				<li>-->
+				<!--					<div class="ast_blog_comment">-->
+				<!--						<div class="ast_comment_image">-->
+				<!--							<img src="http://via.placeholder.com/80x80" alt="">-->
+				<!--						</div>-->
+				<!--						<div class="ast_comment_text">-->
+				<!--							<h5 class="ast_bloger_name">Elexa Styan</h5>-->
+				<!--							<span class="ast_blog_date">May 13, 2018</span>-->
+				<!--							<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>-->
+				<!--							<a href="" class="ast_comment_reply">Reply</a>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</li>-->
+				<!--			</ul>-->
+				<!--		</li>-->
+				<!--		<li>-->
+				<!--			<div class="ast_blog_comment">-->
+				<!--				<div class="ast_comment_image">-->
+				<!--					<img src="http://via.placeholder.com/80x80" alt="">-->
+				<!--				</div>-->
+				<!--				<div class="ast_comment_text">-->
+				<!--					<h5 class="ast_bloger_name">Sarah Silvester</h5>-->
+				<!--					<span class="ast_blog_date">May 14, 2018</span>-->
+				<!--					<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>-->
+				<!--					<a href="" class="ast_comment_reply">Reply</a>-->
+				<!--				</div>-->
+				<!--			</div>-->
+				<!--		</li>-->
+				<!--		<li>-->
+				<!--			<div class="ast_blog_comment">-->
+				<!--				<div class="ast_comment_image">-->
+				<!--					<img src="http://via.placeholder.com/80x80" alt="">-->
+				<!--				</div>-->
+				<!--				<div class="ast_comment_text">-->
+				<!--					<h5 class="ast_bloger_name">Cody Duff</h5>-->
+				<!--					<span class="ast_blog_date">May 15, 2018</span>-->
+				<!--					<p class="ast_blog_post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula mauris ac facilisis congue. Fusce sem enim, rhoncus volutpat condimentum ac, placerat semper ligula. Suspendisse in viverra justo, eu placerat urna. Vestibulum blandit diam suscipit nibh mattis ullamcorper. Nullam a condimentum nulla, ut facilisis enim. </p>-->
+				<!--					<a href="" class="ast_comment_reply">Reply</a>-->
+				<!--				</div>-->
+				<!--			</div>-->
+				<!--		</li>-->
+				<!--	</ul>-->
+				<!--</div>-->
+				<!--<div class="ast_blog_message_wrapper">-->
+				<!--	<h4 class="ast_blog_heading">Leave a reply</h4>-->
+				<!--	<div class="ast_blog_messages">-->
+				<!--		<form>-->
+				<!--			<div class="row">-->
+				<!--				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+				<!--					<textarea rows="5" placeholder="Your Message"></textarea>-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+				<!--					<input type="text" placeholder="Name*">-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+				<!--					<input type="email" placeholder="Email*">-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+				<!--					<a href="#" id="ed_submit" class="ast_btn">reply</a>-->
+				<!--				</div>-->
+				<!--			</div>-->
+				<!--		</form>-->
+				<!--	</div>-->
+				<!--</div>-->
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 				<div class="sidebar_wrapper">

@@ -18,10 +18,10 @@ class BlogController extends Controller
 
     public function blogs(Request $request)
     {
-        $blogs=Blog::where("status",1)->simplePaginate(4);
+        $blogs=Blog::where("status",1)->latest()->simplePaginate(4);
         if ($request->has("category")){
             $category=BlogCategory::where("name",$request->category)->first();
-            $blogs=Blog::where("category_id",$category->id)->where("status",1)->simplePaginate(4);
+            $blogs=Blog::where("category_id",$category->id)->where("status",1)->latest()->simplePaginate(4);
         }
         return view("pages.blogs",["blogs" => $blogs,"categories" => $this->categories,"popularBlogs" => $this->popularBlogs]);
     }
