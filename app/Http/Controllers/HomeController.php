@@ -29,11 +29,36 @@ class HomeController extends Controller
     public function about()
     {
         $testimonials=Testimonial::where("status",1)->get();
-
-        return view('pages.about',["testimonials" => $testimonials]);
+        $getAbout=DB::table("page_management")->where("name","about")->first();    
+        $about= json_decode($getAbout->content,true); 
+        return view('pages.about',["testimonials" => $testimonials,"about" => $about]);
     }
 
+    public function services()
+    {
+        $services=DB::table("page_management")->whereIn("name",["horoscopes","numerology","kundli-dosh","birth-journal","vastu-shastra","gemstones"])->get();     
+        $services->map(function ($service)
+        {
+            $service->description = json_decode($service->content,true)["description"];
+            /* $service->_content = json_decode($service->content,true)["content"];
+            $service->image = json_decode($service->content,true)["image"]; */
+            $service->name =  $service->name;
+            $service->main = json_decode($service->content,true)["main"];
+
+        });
+        return view("pages.services",["services" => $services]);
+    }
+
+    public function service(Request $request,$service)
+    {
+        $getService=DB::table("page_management")->where("name",$service)->first();     
+        $_service = json_decode($getService->content,true);
+        return view("pages.service-single",["service" => $_service,"name" => $getService->name]);
    
+    }
+
+
+
     /**
      * Show the application dashboard.
      *

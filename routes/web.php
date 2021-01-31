@@ -36,9 +36,9 @@ Route::get("contact-us",function(){
     return view("pages.contact");
 });
 Route::get("about-us","HomeController@about")->name("about");
-Route::get("services",function(){
-    return view("pages.services");
-});
+
+Route::get("services","HomeController@services")->name("services");
+Route::get("services/{service}","HomeController@service")->name("service");
 Route::get("blogs","BlogController@blogs")->name("blogs");
 Route::get("blog/{slug}","BlogController@blog")->name("blog");
 Route::get("faq",function(){
@@ -49,5 +49,5 @@ Route::get("service",function(){
 });
 Route::get("appointment",function(){
     return view("pages.appointment");
-});
+})->name("appointment");
 Route::get("{product_slug}",'ShopController@product')->name("product");

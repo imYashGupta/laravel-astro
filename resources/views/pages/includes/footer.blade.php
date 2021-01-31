@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="widget text-widget">
-					<img src="/src/images/header/pathway_logo.png" alt="Logo" width="230">
+					<img src="{{$appData['logo'] }}" alt="Logo" width="230">
 					<h4 class="widget-title">our newsletter</h4>
 					<div class="ast_newsletter">
 						<p>Fell Free To Contact.</p>
@@ -61,9 +61,9 @@
 					<h4 class="widget-title">get in touch</h4>
 					<div class="ast_gettouch">
 						<ul>
-							<li><i class="fa fa-home" aria-hidden="true"></i> <p>6, Aspen Drive, Wembley, HA0 2PW</p></li>
-							<li><i class="fa fa-at" aria-hidden="true"></i> <a href="#">hir21st@gmail.com</a><a href="#"></a></li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i> <p>075021000096</p><p></p></li>
+							<li><i class="fa fa-home" aria-hidden="true"></i> <p>{{$appData["address"] }}</p></li>
+							<li><i class="fa fa-at" aria-hidden="true"></i> <a href="#">{{$appData["email"] }}</a><a href="#"></a></li>
+							<li><i class="fa fa-phone" aria-hidden="true"></i> <p>{{$appData["phone"] }}</p><p></p></li>
 						</ul>
 					</div>				
 				</div>			

@@ -47,7 +47,7 @@
                                                     <td>
                                                         {{$product->category}}
                                                     </td>
-                                                    <td>&#x20B9;{{$product->price}}</td>
+                                                    <td>&#163;{{$product->price}}</td>
                                                    
                                                     <td>{{$product->created_at->format("d M,Y | h:i A")}} 
                                                     </td>

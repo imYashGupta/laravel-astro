@@ -5,7 +5,7 @@
 <div class="topbar-left">
     <div class="">
         <!--<a href="index" class="logo text-center">Admiria</a>-->
-        <a href="index" class="logo"><img src="{{ URL::asset('assets/images/logo-sm.png') }}" height="36" alt="logo"></a>
+        <a href="index" class="logo"><img src="{{ URL::asset('/src/images/header/pathway_logo.png') }}" height="36" alt="logo"></a>
     </div>
 </div>
 <div class="sidebar-inner slimscrollleft">
@@ -49,10 +49,11 @@
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-file-document-box"></i><span> Page Management <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                 <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Term & Condition</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{route("page.about")}}">About Us</a></li>
+                    <li><a href="{{route("page.services")}}">Services</a></li>
+                    <li><a href="{{route("page.terms")}}">Term & Condition</a></li>
+                    <li><a href="{{ route("page.privacy") }}">Privacy Policy</a></li>
+                    <li><a href="{{route("faq.create")}}">FAQ</a></li>
                 </ul>
             </li>
             <li>
@@ -62,7 +63,7 @@
                 <a href="calendar" class="waves-effect"><i class="mdi mdi-ticket-account"></i><span>Support Ticket</span></a>
             </li>
             <li>
-                <a href="calendar" class="waves-effect"><i class="mdi mdi-settings"></i><span>Site Setting</span></a>
+                <a href="{{route("settings")}}" class="waves-effect"><i class="mdi mdi-settings"></i><span>Site Setting</span></a>
             </li>
              
         </ul>

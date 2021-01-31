@@ -43,21 +43,21 @@
 				<div class="ast_contact_info">
 					<span><i class="fa fa-phone" aria-hidden="true"></i></span>
 					<h4>phone</h4>
-					<p>075021000096<br></p>
+					<p>{{$appData["phone"] }}<br></p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_contact_info">
 					<span><i class="fa fa-envelope-open-o" aria-hidden="true"></i></span>
 					<h4>email</h4>
-					<p><a href="#">hir21st@gmail.com</a><br><a href="#"></a></p>
+					<p><a href="#">{{$appData["email"] }}</a><br><a href="#"></a></p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_contact_info">
 					<span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
 					<h4>address</h4>
-					<p>6, Aspen Drive, Wembley, HA0 2PW</p>
+					<p>{{$appData["address"] }}</p>
 				</div>
 			</div>
 		</div>
@@ -112,7 +112,7 @@
 				</form>
 			</div>
 		</div>
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.665591193351!2d-81.23677798444672!3d28.54976958245048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e7666b70c7639b%3A0x138d66cd5d424720!2sBloomfield+Dr%2C+Orlando%2C+FL+32825%2C+USA!5e0!3m2!1sen!2sin!4v1501822735922" allowfullscreen></iframe>
+		<iframe src="{{$appData['map_data'] }}" allowfullscreen></iframe>
 	</div>
 </div>
 <!--Content Us End-->

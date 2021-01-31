@@ -5,8 +5,8 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="ast_contact_details">
 					<ul>
-						<li><i class="fa fa-phone" aria-hidden="true"></i> 075021000096</li>
-						<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> hir21st@gmail.com</a></li>
+						<li><i class="fa fa-phone" aria-hidden="true"></i> {{$appData["phone"] }}</li>
+						<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{$appData["email"] }}</a></li>
 					</ul>
 				</div>
 				<div class="ast_autho_wrapper">
@@ -77,7 +77,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 				<div class="ast_logo">
-					<a href="index.php"><img src="/src/images/header/pathway_logo.png" alt="Logo" title="Logo" width="230"></a>
+					<a href="index.php"><img src="{{$appData['logo'] }}" alt="Logo" title="Logo" width="230"></a>
 					<button class="ast_menu_btn"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
 			</div>
