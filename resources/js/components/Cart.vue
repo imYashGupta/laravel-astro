@@ -56,7 +56,7 @@
                             >
                                 Apply Coupon Code
                             </button>
-                            <a  class="ast_btn popup-with-zoom-anim" href="#login-dialog" v-else @click="showLoginError" > Apply Coupon Code</a>
+                            <a class="ast_btn popup-with-zoom-anim" href="#login-dialog" v-else @click="showLoginError('Please Login to apply Coupon Code')" > Apply Coupon Code</a>
                            </form>
                         </div>
                     </td>
@@ -81,11 +81,14 @@
                 >Continue Shopping
             </a>
             <a
-                href="checkout.php"
+                v-if="auth==true"
+                href="/checkout"
                 value="Apply Cupon Code"
                 class="proceed_btn ast_btn"
                 >checkout
             </a>
+            <a class="ast_btn popup-with-zoom-anim" href="#login-dialog" v-else @click="showLoginError('Please login to continue checkout')" >checkout</a>
+
         </div>
         </template>
         <template v-else>
@@ -151,8 +154,8 @@ export default {
                 
             })
         },
-        showLoginError(){
-            eventBus.$emit("showLoginError",true);
+        showLoginError(msg){
+            eventBus.$emit("showLoginError",msg);
         }
     },
     created(){

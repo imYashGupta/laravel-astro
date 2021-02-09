@@ -17,7 +17,8 @@ class EnquiryController extends Controller
      */
     public function index()
     {
-        //
+        $enquiries= Enquiry::latest()->get();
+        return view("admin.enquiries.enquiries",compact("enquiries"));
     }
 
     /**

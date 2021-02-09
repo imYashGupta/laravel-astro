@@ -97,24 +97,26 @@ class CartController extends Controller
                 $UserlogsCount= $couponUserLogs->count();
                 $logsCount= $couponLogs->count();
                 if($UserlogsCount >= $coupon->user_limit){
+
                     return response()->json(["message" => "you have already use this coupon","error" => true]);
                 }
                 if($logsCount >= $coupon->coupon_limit){
                     return response()->json(["message" => "Coupon code is invalid or expired.","error" => true],200);
                 }
+
                 // calculating Discount
                     if($coupon->type=='percentage'){
-                        $discount = ($coupon->discount/100) * str_replace( ',', '', Cart::subtotal() );
+                        $discount = $coupon->discount * (double) str_replace( ',', '', Cart::subtotal()) / 100;
                         $coupon->message = "Coupon Applied.";
                     }else{
-                        $discount = str_replace( ',', '', Cart::subtotal() ) - $coupon->discount;
+                        $discount = $coupon->discount;
                         $coupon->message = "Coupon Applied.";
                     }
                     $coupon->discountAmount = $discount;
-                    $coupon->subtotal = number_format($discount,2,'.',',');
-                    $coupon->discountAmount_str = number_format(str_replace( ',', '', Cart::subtotal() )- $discount,2,'.',',');
-                session()->put("coupon",$coupon);
-                return response()->json(["success" => true,"message" => "Coupon Applied.","coupon" => $coupon->code,"subtotal" =>  $coupon->subtotal,"discount" => $coupon->discountAmount_str]);
+                    $coupon->subtotal = str_replace( ',', '', Cart::subtotal())-$discount;
+                    $coupon->discountAmount_str = number_format(str_replace( ',', '', Cart::subtotal()) - $discount,2,'.',',');
+                    session()->put("coupon",$coupon);
+                return response()->json(["success" => true,"message" => "Coupon Applied.","coupon" => $coupon->code,"subtotal" =>  $coupon->subtotal,"discount" => $discount]);
             }
             /* else{
                 return response()->json(["message" => ""]);

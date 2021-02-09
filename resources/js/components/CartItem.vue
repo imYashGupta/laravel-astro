@@ -11,7 +11,7 @@
                 <h4><a :href="item.options.url">{{item.name}}</a></h4>
             </div>
         </td>
-        <td>${{item.price}}</td>
+        <td>&#128;{{item.price}}</td>
         <td>
             <input
                 type="number"
@@ -21,7 +21,7 @@
                 @change="qtyUpdate"
             />
         </td>
-        <td>${{item.subtotal}}</td>
+        <td>&#128;{{item.subtotal}}</td>
         <td>
             <span @click="removeItem" class="close_pro"><i class="fa fa-trash"></i></span>
         </td>

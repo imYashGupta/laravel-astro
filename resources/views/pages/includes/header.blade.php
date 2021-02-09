@@ -18,7 +18,7 @@
 						 <li><a class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  href="user/user_dashboard.html"><i class="fa fa-user" aria-hidden="true"></i> My Account</a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
-								<li><a href="#">Profile</a></li>
+								<li><a href="{{ route("user.dashboard") }}">Profile</a></li>
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 									document.getElementById('logout-form').submit();">Logout</a></li>
 							  </ul>
@@ -44,15 +44,15 @@
 							</div>
 						</li> -->
 						<li class="ast_cart">
-							<a href="/cart"><i class="fa fa-shopping-cart"></i> Cart (<span id="cartCount">{{$appData["cartItem"]->count()}}</span>)</a>
-							<header-cart cart="{{$appData["cartItem"]}}" total="{{$appData["cartTotal"]}}"></header-cart>
+							<a href="/cart" @click.prevent><i class="fa fa-shopping-cart"></i> Cart (<span id="cartCount">{{$header["cartItem"]->count()}}</span>)</a>
+							<header-cart cart="{{$header["cartItem"]}}" total="{{$header["cartTotal"]}}"></header-cart>
 						</li>
 					</ul><!---->
 					<div id="login-dialog" class="zoom-anim-dialog mfp-hide">
 						<h1>Login Form</h1>
 						<div class="clearfix"></div>
 						<div class="alert alert-danger" role="alert" v-if="showLoginError">
-							Please Login to apply Coupon Code
+							@{{showLoginError}}
 						  </div>
 						<login-form></login-form>
 					</div>
@@ -77,7 +77,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 				<div class="ast_logo">
-					<a href="index.php"><img src="{{$appData['logo'] }}" alt="Logo" title="Logo" width="230"></a>
+					<a href="{{route("homepage")}}" ><img  style="height: 61px;" src="{{$appData['logo'] }}" alt="Logo" title="Logo" width="230"></a>
 					<button class="ast_menu_btn"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
 			</div>

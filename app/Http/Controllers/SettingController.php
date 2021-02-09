@@ -65,7 +65,7 @@ class SettingController extends Controller
         if($request->hasFile("logo")){
             $logo = $request->file("logo");
             $logoImage=\Intervention\Image\Facades\Image::make($logo->getRealPath());
-            $logoImage->resize(160,64);
+            $logoImage->resize(638,168);
             $imageName = 'pathway_logo.'.$request->logo->getClientOriginalExtension();
             $logoImage->save(public_path('/src/images/header/'.$imageName));
             $this->logo->update(["value" => asset('/src/images/header').'/'.$imageName]);

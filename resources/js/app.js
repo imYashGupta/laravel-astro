@@ -30,6 +30,8 @@ import Cart from "./components/Cart.vue";
 import SignUp from "./components/SignUp.vue";
 import Login from "./components/Login.vue";
 import ForgotPassword from "./components/ForgotPassword.vue";
+import CheckoutCountryState from "./components/CheckoutCountryState.vue";
+import ProfileCountryState from "./components/ProfileCountryState.vue";
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49,7 +51,9 @@ const app = new Vue({
         'cart':Cart,
         'sign-up':SignUp,
         'login-form':Login,
-        'forgot-password-form':ForgotPassword
+        'forgot-password-form':ForgotPassword,
+        'checkout-country-state':CheckoutCountryState,
+        'profile-country-state':ProfileCountryState,
     },
     methods:{
         showPassword(){
@@ -76,8 +80,8 @@ const app = new Vue({
         }
     },
     created(){
-        eventBus.$on("showLoginError",() => {
-            this.showLoginError = true;
+        eventBus.$on("showLoginError",(msg) => {
+            this.showLoginError = msg;
         })
     }
 });

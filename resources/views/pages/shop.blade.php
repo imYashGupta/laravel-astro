@@ -92,7 +92,7 @@
 									<i class="fa fa-star-o"></i>
 									<i class="fa fa-star-o"></i>
 									<h4 class="ast_shop_title"><a href="{{route("product",$product->slug)}}">{{$product->name}}</a></h4>
-									<p>${{$product->price}}</p>
+									<p>&#128;{{$product->price}}</p>
 									<div class="ast_info_bottom">
 										
 
@@ -126,7 +126,7 @@
 <!-- shop section end -->
 
  <!-- Download wrapper start-->
-<div class="ast_download_wrapper ast_toppadder20 ast_bottompadder20 d-none">
+<div class="ast_download_wrapper ast_toppadder20 ast_bottompadder20  ">
 	<div class="container">
 		
 	</div>

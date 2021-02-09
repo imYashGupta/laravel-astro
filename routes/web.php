@@ -18,20 +18,39 @@ Route::get('/','HomeController@homepage')->name('homepage');
 Route::get('/shop','ShopController@shop')->name('shop');
 Route::post("/cart/add","CartController@add")->name("cart.add");
 Route::get("/cart/remove/{rowId}","CartController@remove");
-Route::get("/cart","CartController@cart");
+Route::get("/cart","CartController@cart")->name("cart");
 Route::post("/cart/update","CartController@update");
 Route::post("/cart/coupon-apply","CartController@coupon");
 Route::post('{product_slug}/review','ShopController@addReview')->name('product.addReview');
 
 
 
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get("/pay","HomeController@payment");
-Route::get('cancel-payment', 'HomeController@paymentCancel')->name('cancel.payment');
-Route::get('payment-success', 'HomeController@paymentSuccess')->name('success.payment');
-Route::resource("enquiry","EnquiryController");
+Route::get("/dashboard","DashboardController@dashboard")->name("user.dashboard");
+Route::get("/profile","DashboardController@profile")->name("user.profile");
+Route::get("/profile/edit","DashboardController@profileEdit")->name("user.profile.edit");
+Route::post("/profile/basic-info","DashboardController@updateBasicInfo")->name("user.profile.info");
+Route::post("/profile/address","DashboardController@updateAddress")->name("user.profile.address");
+Route::get("/profile/password","DashboardController@password")->name("user.profile.password");
+Route::post("/profile/password/update","DashboardController@updatePassword")->name("user.profile.update");
+
+Route::get("/orders","DashboardController@orders")->name("user.orders");
+Route::get("/orders/{order}","DashboardController@order")->name("user.order");
+Route::get("/my-appoinments","DashboardController@appoinments")->name("user.my-appoinments");
+
+Route::get("/pay","CheckoutController@payment");
+Route::get('cancel-payment', 'CheckoutController@paymentCancel')->name('cancel.payment');
+Route::get('order-success', 'CheckoutController@paymentSuccess')->name('success.payment');
+
+
+Route::resource("tickets","TicketController");
+Route::post("tickets/{ticket}/reply","TicketController@storeReply")->name("ticket.storeReply");
+Route::post("/enquiry.store","EnquiryController@store")->name("enquiry.store");
+
+
 Route::get("contact-us",function(){
     return view("pages.contact");
 });
@@ -50,4 +69,7 @@ Route::get("service",function(){
 Route::get("appointment",function(){
     return view("pages.appointment");
 })->name("appointment");
+Route::get("checkout","CheckoutController@checkoutPage")->name("checkout");
+Route::post("checkout","CheckoutController@checkout")->name("checkout.store");
+
 Route::get("{product_slug}",'ShopController@product')->name("product");

@@ -41,7 +41,7 @@
                                                         <img  src="{{ $product->thumbnailUrl }}" class="img-fluid avatar-md rounded" alt="Product Image">
                                                     </td>
                                                     <td>
-                                                        <h6 class="mt-0 m-b-5">{{$product->name}}</h6>
+                                                        <a class="mt-0 m-b-5" target="_blank" href="{{ route("product",$product->slug) }}">{{$product->name}}</a>
                                                         <p class="m-0 font-14">{{\Illuminate\Support\Str::limit($product->short_description,50,'...')}}</p>
                                                     </td>
                                                     <td>

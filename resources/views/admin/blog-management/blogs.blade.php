@@ -40,7 +40,7 @@
                                                         <img  src="{{ $blog->thumbnailUrl }}" class="img-fluid avatar-md rounded" alt="Product Image">
                                                     </td>
                                                     <td>
-                                                        <h6 class="mt-0 m-b-5">{{\Illuminate\Support\Str::limit($blog->title,50,'...')}}</h6>
+                                                        <a class="mt-0 h6 m-b-5" href="{{ route("blog",$blog->slug) }}" target="_blank">{{\Illuminate\Support\Str::limit($blog->title,50,'...')}}</a>
                                                         <p class="m-0 font-14">{{\Illuminate\Support\Str::limit($blog->short_description,50,'...')}}</p>
                                                     </td>
                                                     <td>
