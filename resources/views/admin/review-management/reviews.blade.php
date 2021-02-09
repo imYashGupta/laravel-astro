@@ -42,7 +42,7 @@
                                                             </td>
                                                             <td>
                                                                 @if(is_null($review->product["deleted_at"]))
-                                                                <a target="_blank" href="{{ route("product.edit",$review->product["id"]) }}">{{$review->product["name"]}}</a>
+                                                                <a target="_blank" href="{{ route("product",$review->product["slug"]) }}">{{$review->product["name"]}}</a>
                                                                 @else
                                                                 <span>{{$review->product["name"]}}</span>
                                                                 @endif

@@ -2,11 +2,12 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -40,7 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ["Name","displayPictureUrl"];
+    protected $appends = ["Name","displayPictureUrl","city_str","state_str","country_str"];
 
     public function getNameAttribute()
     {
@@ -54,5 +55,37 @@ class User extends Authenticatable implements MustVerifyEmail
         }else{
             return Storage::disk('public')->url('users/'.$this->display_image);
         }
+    }
+
+    public function getCityStrAttribute()
+    {
+        $city= DB::table("cities")->where("id",$this->city)->first();
+        if($city){
+            return $city->name;
+        }
+        return null;
+    }
+
+    public function getStateStrAttribute()
+    {
+        $state= DB::table("states")->where("id",$this->state)->first();
+        if($state){
+            return $state->name;
+        }
+        return null;
+    }
+
+    public function getCountryStrAttribute()
+    {
+        $country= DB::table("countries")->where("id",$this->country)->first();
+        if($country){
+            return $country->name;
+        }
+        return null;
+    }
+
+    public function tickets()
+    {
+       return $this->hasMany(Ticket::class);
     }
 }

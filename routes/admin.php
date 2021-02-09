@@ -28,8 +28,13 @@ Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
         "testimonial" => "TestimonialController",
         "review"   => "ReviewController",
         "faq" => "FaqController",
+        "order" => "OrderController",
+        "enquiries" => "EnquiryController",
+        
     ]);
- 
+        Route::get("support-tickets","Admin\TicketController@index")->name("support-tickets.index");
+        Route::get("support-tickets/{ticket}","Admin\TicketController@show")->name("support-tickets.show");
+        Route::post("support-tickets/{ticket}","Admin\TicketController@store")->name("support-tickets.store");
 
         Route::resource("product","Admin\ProductController")->except(["store","update"]);
         Route::post("product/store","Admin\ProductController@store")->name("product.store");

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="270" height="206" viewBox="0 0 270 206">
+  <g id="ads" transform="translate(-998 -490)">
+    <rect id="Rectangle_223" data-name="Rectangle 223" width="270" height="206" rx="10" transform="translate(998 490)" fill="#efefef"/>
+    <line id="Line_17" data-name="Line 17" x2="219" y2="167.089" transform="translate(1024 509.955)" fill="none" stroke="#dedede" stroke-width="1"/>
+    <line id="Line_18" data-name="Line 18" x1="219" y2="167.089" transform="translate(1024 509.955)" fill="none" stroke="#dedede" stroke-width="1"/>
+    <rect id="Rectangle_224" data-name="Rectangle 224" width="150" height="30" transform="translate(1058 578)" fill="#efefef"/>
+    <text id="Advertisement" transform="translate(1133 598)" fill="#999" font-size="14" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="-52.892" y="0">Advertisement</tspan></text>
+  </g>
+</svg>
