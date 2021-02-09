@@ -105,7 +105,7 @@ class CheckoutController extends Controller
         session()->put("billing.state",$state->name);
         session()->put("billing.city",$city->name);
         $paypalModule = new ExpressCheckout;  
-        return $res = $paypalModule->setExpressCheckout($product);
+        $res = $paypalModule->setExpressCheckout($product);
         return redirect($res['paypal_link']);
 
     }

@@ -41,7 +41,7 @@ Route::get("/orders","DashboardController@orders")->name("user.orders");
 Route::get("/orders/{order}","DashboardController@order")->name("user.order");
 Route::get("/my-appoinments","DashboardController@appoinments")->name("user.my-appoinments");
 
-Route::get("/pay","CheckoutController@payment");
+Route::get("/pay","HomeController@payment");
 Route::get('cancel-payment', 'CheckoutController@paymentCancel')->name('cancel.payment');
 Route::get('order-success', 'CheckoutController@paymentSuccess')->name('success.payment');
 
