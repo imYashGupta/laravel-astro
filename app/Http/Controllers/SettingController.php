@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {   
     public $name;
+    public $description;
+    public $title;
+    public $keywords;
     public $email;
     public $phone;
     public $address;
@@ -19,6 +22,9 @@ class SettingController extends Controller
 
     public function __construct( ) {
         $this->name = Setting::where("name","name")->first();
+        $this->description = Setting::where("name","description")->first();
+        $this->title = Setting::where("name","title")->first();
+        $this->keywords = Setting::where("name","keywords")->first();
         $this->email = Setting::where("name","email")->first();
         $this->phone = Setting::where("name","phone")->first();
         $this->address = Setting::where("name","address")->first();
@@ -33,13 +39,16 @@ class SettingController extends Controller
     {
         return view("admin.site-setting",[
             "name" => $this->name,
+            "description"   => $this->description,
+            "title"   => $this->title,
+            "keywords"   => $this->keywords,
             "email" => $this->email,
             "phone" => $this->phone,
             "address" => $this->address,
             "map_data" => $this->map_data,
             "logo" => $this->logo,
             "favicon" => $this->favicon,
-            "footer_text" => $this->footer_text
+            "footer_text" => $this->footer_text,
         ]);
     }
 
@@ -47,6 +56,9 @@ class SettingController extends Controller
     {
         $request->validate([
             "name" => ["required"],
+            "description" => ["required"],
+            "title" => ["required"],
+            "keywords" => ["required"],
             "email" => ["required","email"],
             "phone" => ["required"],
             "address" => ["required"],
@@ -56,6 +68,9 @@ class SettingController extends Controller
             "footer_text" => ["required"]
         ]);
         $this->name->update(["value" => $request->name]);
+        $this->description->update(["value" => $request->description]);
+        $this->title->update(["value" => $request->title]);
+        $this->keywords->update(["value" => $request->keywords]);
         $this->email->update(["value" => $request->email]);
         $this->phone->update(["value" => $request->phone]);
         $this->name->update(["value" => $request->name]);

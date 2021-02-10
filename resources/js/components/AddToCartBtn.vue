@@ -13,7 +13,7 @@ export default {
     data(){
         return {
             prod:{},
-            loading:false
+            loading:false,
         }
     },
     methods:{

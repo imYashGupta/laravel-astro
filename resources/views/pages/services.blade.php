@@ -1,4 +1,6 @@
 @extends("layouts.web-master")
+@section("title","Services | ".$appData['name']." - ".$appData['title'])
+
 @section('content')
 	
 <div class="ast_pagetitle">
@@ -7,14 +9,14 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="page_title">
-					<h2>services</h2>
+					<h2>services</h2> 
 				</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="services.php">services</a></li>
+					<li><a href="{{route("homepage")}}">home</a></li>
+					<li>/</li>
+					<li><a href="{{route("services")}}">services</a></li>
 				</ul>
 			</div>
 		</div>

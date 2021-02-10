@@ -123,6 +123,7 @@
 							 
 										@endif
 									</div>
+									<h2 style="margin: 0;margin-bottom: 15px;">€55</h2>
 									<p>{{ $product->short_description }}</p>
 									<div class="stock_details">{{ $product->units }} In Stock</div>
 									<div class="prod_quantity">QTY <input type="number" name="quantity" id="quantity" value="{{!is_null($product->min_qty) ? $product->min_qty : 1}}" min="{{!is_null($product->min_qty) ? $product->min_qty : 1}}" @if(!is_null($product->max_qty)) max="{{$product->max_qty}}" @endif/></div>
@@ -134,9 +135,9 @@
 											{{-- <button type="submit" class="buy_btn ast_btn" value="Buy Now">Buy Now</button> --}}
 										</form>
 										<add-to-cart-btn readqty="true" product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
-										<a href="#" class="ad_wishlist">Add To Wishlist 
+										<!-- <a href="#" class="ad_wishlist">Add To Wishlist 
 									    	<i class="fa fa-heart-o" aria-hidden="true"></i>
-										</a>
+										</a> -->
 									</div>
 								</div>
 							</div>
@@ -175,13 +176,17 @@
 									<a href="{{ route("product",$product->slug) }}"><img src="{{$product->thumbnailUrl}}" class="img-responsive"></a>
 								</div>
 								<div class="ast_product_info">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
+								@if (!is_null($product->rating))
+											@for ($i = 0; $i < $product->rating; $i++)
+											<i class="fa fa-star" aria-hidden="true"></i>
+											@endfor
+											@for ($i = 0; $i < 5-$product->rating; $i++)
+											<i class="fa fa-star-o" aria-hidden="true"></i>
+											@endfor
+							 
+										@endif
 									<h4 class="ast_shop_title"><a href="{{ route("product",$product->slug) }}">{{$product->name}}</a></h4>
-									<p>$30.00</p>
+									<p>&euro;30.00</p>
 									<div class="ast_info_bottom">
 										<a href="#" class="ast_add_cart ast_btn">add to cart</a>
 									</div>

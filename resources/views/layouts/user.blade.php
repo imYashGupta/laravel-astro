@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset("src/user/css/style.css")}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="app-url" content="{{  $_SERVER['PHP_SELF'] }}">
-    <title>Paathwayastro - Account</title>
+    <title>@yield('title',$appData['name'].' | '.$appData['title'])</title>
     <style>
         input,select{
             border: 1px solid #999999 !important;
@@ -50,7 +50,7 @@
                 <div class="collapse" id="showprofiledw">
                     <ul class="m-0 p-0">
                         <li>
-                            <a href="#">
+                            <a href="{{route("user.profile")}}">
                                 <img src="src/user/img/draw.svg" alt="left-nav-icons">
                                 Edit profile
                             </a>
@@ -62,10 +62,14 @@
                             </a>
                         </li> -->
                         <li>
-                            <a href="http://rmdfront.alcyone.in/sign_up.html">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
                                 <img src="/src/user/img/logout.svg" alt="left-nav-icons">
                                 Logout
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
                         </li>
                     </ul>
                 </div>
@@ -95,7 +99,7 @@
                 <div class="collapse" id="showprofiledw">
                     <ul class="m-0 p-0">
                     	<li>
-	                		<a href="user_profile.html">
+	                		<a href="{{route("user.profile.edit")}}">
                                 <img src="/src/user/img/draw.svg" alt="left-nav-icons">
                                 Edit profile
                             </a>
@@ -107,10 +111,14 @@
                             </a>
                     	</li> -->
                     	<li>
-                    		<a href="../index.php">
+                    		<a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
                                 <img src="/src/user/img/logout.svg" alt="left-nav-icons">
                                 Logout
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
                     	</li>
                     </ul>
                 </div>
@@ -150,7 +158,7 @@
                           </li>
                          
                           <li>
-                              <a href="user_appointment.html">
+                              <a href="{{route("tickets.index")}}">
                                   <img src="/src/user/img/calender.svg" alt="left-nav-icons"/>
                                   My Appointments
                               </a>

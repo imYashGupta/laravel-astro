@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',"Page Management")
+@section('title',"FAQ ")
 @section('breadcrumb')
 <h3 class="page-title">Page Management</h1>
 @endsection

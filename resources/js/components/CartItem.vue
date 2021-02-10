@@ -21,7 +21,7 @@
                 @change="qtyUpdate"
             />
         </td>
-        <td>&#128;{{item.subtotal}}</td>
+        <td>&euro;	{{item.subtotal}}</td>
         <td>
             <span @click="removeItem" class="close_pro"><i class="fa fa-trash"></i></span>
         </td>

@@ -504,6 +504,7 @@ class ComposerStaticInit701743741f88af5f895ebc122e52db84
     );
 
     public static $classMap = array (
+        'App\\Appointment' => __DIR__ . '/../..' . '/app/Appointment.php',
         'App\\Blog' => __DIR__ . '/../..' . '/app/Blog.php',
         'App\\BlogCategory' => __DIR__ . '/../..' . '/app/BlogCategory.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
@@ -515,6 +516,7 @@ class ComposerStaticInit701743741f88af5f895ebc122e52db84
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Admin\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BlogController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',
+        'App\\Http\\Controllers\\Admin\\TicketController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TicketController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',

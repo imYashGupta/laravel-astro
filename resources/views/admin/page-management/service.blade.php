@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title',"Service ")
 @section('css')
 <link href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet" />
 @endsection

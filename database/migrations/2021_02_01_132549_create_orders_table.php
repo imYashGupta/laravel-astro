@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string("user_id");
             $table->string("invoice_id");
+            $table->string("paypal_token");
             $table->string("billing_email");
             $table->json("billing_details");
             $table->string("coupon_id")->nullable();

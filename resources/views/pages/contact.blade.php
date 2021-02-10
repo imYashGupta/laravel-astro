@@ -1,4 +1,5 @@
 @extends("layouts.web-master")
+@section("title","Contact Us | ".$appData['name']." - ".$appData['title'])
 @section('styles')
 	<style>
 		.response{
@@ -20,9 +21,9 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="contact.php">contact us</a></li>
+					<li><a href="{{route("homepage")}}">home</a></li>
+					<li>/</li>
+					<li><a href="{{route('contact-us')}}">contact us</a></li>
 				</ul>
 			</div>
 		</div>

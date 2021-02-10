@@ -5,7 +5,7 @@
 <html lang="en"><!--<![endif]-->
 <!-- Begin Head -->
 <head>
-<title>Astrologer in London, UK | Best Astrologer in London, Indian Astrologer in London, UK | Astrology in London | Best Love Spells in London | Best Psychic in UK, Black Magic Removal in London Spiritual healer</title>
+<title>@yield('title',$appData['name'].' | '.$appData['title'])</title>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta name="description" content="Astrology">

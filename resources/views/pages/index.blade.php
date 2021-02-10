@@ -143,60 +143,18 @@
 					<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected hummer.</p>
 				</div>
 			</div>
+			@foreach ($services as $service)
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="ast_service_box">
-					<img src="src/images/content/sv5.png" alt="Service">
-					<h4>Birth Journal</h4>
-					<p>Birth Journal or Kundli is the establishment of astrology. ... At the point when this date and time is of some individual's introduction to the world,</p>
+					<img src="{{ $service->main }}" alt="Service">
+					<h4>{{ str_replace("-"," ",ucwords($service->name)) }}</h4>
+					<p>{{ $service->description }}</p>
 					<div class="clearfix"></div>
-					<a href="service" class="ast_btn">read more</a>
+					<a href="/services/{{ $service->name }}" class="ast_btn">read more</a>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				<div class="ast_service_box">
-					<img src="src/images/content/sv6.png" alt="Service">
-					<h4>vastu shastra</h4>
-					<p>Vastu shastra is a traditional Indian system of architecture originating in India. Texts from the Indian subcontinent describe principles of design,</p>
-					<div class="clearfix"></div>
-					<a href="service" class="ast_btn">read more</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				<div class="ast_service_box">
-					<img src="src/images/content/sv4.png" alt="Service">
-					<h4>Horoscopes</h4>
-					<p>A horoscope is an astrological chart or diagram representing the positions of the Sun, Moon, planets, astrological aspects and sensitive angles at the time of an event,</p>
-					<div class="clearfix"></div>
-					<a href="service" class="ast_btn">read more</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				<div class="ast_service_box">
-					<img src="src/images/content/sv2.png" alt="Service">
-					<h4>Gemstones</h4>
-					<p>Astrological Gem offers a radiant selection of fine, natural, Jyotish quality gemstones for Vedic astrology & Ayurveda.</p>
-					<div class="clearfix"></div>
-					<a href="service" class="ast_btn">read more</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				<div class="ast_service_box">
-					<img src="src/images/content/sv3.png" alt="Service">
-					<h4>Numerology</h4>
-					<p></p>
-					<div class="clearfix"></div>
-					<a href="service" class="ast_btn">read more</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				<div class="ast_service_box">
-					<img src="src/images/content/sv1.png" alt="Service">
-					<h4>kundli dosh</h4>
-					<p></p>
-					<div class="clearfix"></div>
-					<a href="service" class="ast_btn">read more</a>
-				</div>
-			</div>
+			@endforeach
+			 
 		</div>
 	</div>
 </div>

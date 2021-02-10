@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $appends = ["name","user","items","status_data"];
+    protected $appends = ["name","user","items","status_data","coupon"];
 
     public function getNameAttribute()
     {
@@ -30,6 +30,15 @@ class Order extends Model
             return $data;
         }
         return "";
+    }
+
+    public function getCouponAttribute()
+    {
+        if(!is_null($this->coupon_id)){
+            $coupon=Coupon::withTrashed()->find($this->coupon_id);
+            return $coupon;
+        }
+        return null;
     }
 
     public function getUserAttribute()

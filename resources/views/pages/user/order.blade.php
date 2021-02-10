@@ -96,6 +96,26 @@
                                                                         <td class="no-line text-right">&#163;{{$order->shipping_charge}}</td>
                                                                     </tr>
                                                                     @endif
+                                                                    @if($order->shipping_charge===0)
+                                                                    <tr>
+                                                                        <td class="no-line"></td>
+                                                                        <td class="no-line"></td>
+                                                                        <td class="no-line text-center">
+                                                                            <strong>Shipping</strong></td>
+                                                                        <td class="no-line text-right">&#163;{{$order->shipping_charge}}</td>
+                                                                    </tr>
+                                                                    @endif
+                                                                    @if(!is_null($order->coupon))
+                                                                    <tr>
+                                                                        <td class="no-line"></td>
+                                                                        <td class="no-line"></td>
+                                                                        <td class="no-line text-center">
+                                                                            <strong>Coupon Discount 
+                                                                                  (Code : {{$order->coupon->code}})   
+                                                                            </strong></td>
+                                                                        <td class="no-line text-right">&#163;{{$order->coupon_discount}}</td>
+                                                                    </tr>
+                                                                    @endif
                                                                     <tr>
                                                                         <td class="no-line"></td>
                                                                         <td class="no-line"></td>

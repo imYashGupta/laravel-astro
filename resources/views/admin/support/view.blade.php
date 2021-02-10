@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title',"Ticket #$ticket->id")
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">

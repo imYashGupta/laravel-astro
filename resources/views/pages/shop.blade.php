@@ -1,4 +1,5 @@
 @extends("layouts.web-master")
+@section("title","Shop | ".$appData['name']." - ".$appData['title'])
 @section('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
  
@@ -16,9 +17,9 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="/">home</a></li>
-					<li>//</li>
-					<li><a href="/shop">shop</a></li>
+					<li><a href="{{ route('homepage') }}">home</a></li>
+					<li>/</li>
+					<li><a href="{{ route('shop') }}">shop</a></li>
 				</ul>
 			</div>
 		</div>
@@ -86,11 +87,17 @@
 										<img src="{{$product->thumbnailUrl}}" class="img-responsive"></a>
 								</div>
 								<div class="ast_product_info">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
+
+								@if (!is_null($product->rating))
+											@for ($i = 0; $i < $product->rating; $i++)
+											<i class="fa fa-star" aria-hidden="true"></i>
+											@endfor
+											@for ($i = 0; $i < 5-$product->rating; $i++)
+											<i class="fa fa-star-o" aria-hidden="true"></i>
+											@endfor
+							 
+										@endif
+								 
 									<h4 class="ast_shop_title"><a href="{{route("product",$product->slug)}}">{{$product->name}}</a></h4>
 									<p>&#128;{{$product->price}}</p>
 									<div class="ast_info_bottom">

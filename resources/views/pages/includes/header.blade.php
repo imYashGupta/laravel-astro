@@ -77,7 +77,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 				<div class="ast_logo">
-					<a href="{{route("homepage")}}" ><img  style="height: 61px;" src="{{$appData['logo'] }}" alt="Logo" title="Logo" width="230"></a>
+					<a href="{{route("homepage")}}" ><img  style="height: 61px;" src="{{ $appData['logo'] }}" alt="Logo" title="Logo" width="230"></a>
 					<button class="ast_menu_btn"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
 			</div>

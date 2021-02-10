@@ -2,6 +2,7 @@
     <div>
         <div class="col-lg-6 col-md-6">
             <div class="form-group">
+                <label for="country" v-if="label">Country</label>
                 <select
                     v-model="selectedCountry"
                     name="_country"
@@ -26,6 +27,7 @@
         </div>
         <div class="col-lg-6 col-md-6">
             <div class="form-group">
+                <label for="state" v-if="label">State</label>
                 <select  name="_state" id="state" v-model="selectedState" class="form-control" @change="findCities()"
                     :class="stateError!==undefined ? 'is-error' : ''"
 
@@ -41,6 +43,7 @@
         </div>
         <div class="col-lg-6 col-md-6">
             <div class="form-group">
+                <label for="city" v-if="label">City</label>
                  <select
                     :class="cityError!==undefined ? 'is-error' : ''"
 
@@ -60,7 +63,7 @@
 <script>
 import axios from "axios";
 export default {
-    props: ["dataCountries", "country", "state", "city","countryError","stateError","cityError"],
+    props: ["dataCountries", "country", "state", "city","countryError","stateError","cityError","label"],
     data() {
         return {
             countries: [],

@@ -1,4 +1,5 @@
 @extends('layouts.web-master')
+@section("title",str_replace("-"," ",ucwords($name)) ." | ".$appData['name']." - ".$appData['title'])
 @section('content')
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
@@ -12,7 +13,9 @@
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
 					<li><a href="{{route("homepage")}}">home</a></li>
-					<li>//</li>
+					<li>/</li>
+					<li><a href="{{ route("services") }}">Services</a></li>
+					<li>/</li>
 					<li><a href="#">{{str_replace("-"," ",ucwords($name))}}</a></li>
 				</ul>
 			</div>

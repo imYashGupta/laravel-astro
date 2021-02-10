@@ -1,4 +1,5 @@
 @extends("layouts.web-master")
+@section("title","FAQ | ".$appData['name']." - ".$appData['title'])
 @section('content')
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>

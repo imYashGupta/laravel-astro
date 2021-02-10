@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\User;
 use App\Setting;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
         
         Schema::defaultStringLength(191);
             $name = Setting::where("name","name")->first();
+            $description = Setting::where("name","description")->first();
+            $title = Setting::where("name","title")->first();
+            $keywords = Setting::where("name","keywords")->first();
             $email = Setting::where("name","email")->first();
             $phone = Setting::where("name","phone")->first();
             $address = Setting::where("name","address")->first();
@@ -48,6 +52,9 @@ class AppServiceProvider extends ServiceProvider
                 "cartTotal" => Cart::subtotal(),
                 "cartCount" => Cart::count(),
                 "name" => $name->value,
+                "description"  => $description->value,
+                "title" => $title->value,
+                "keywords"  => $keywords->value,
                 "email" => $email->value,
                 "phone" => $phone->value,
                 "address" => $address->value,
@@ -65,6 +72,23 @@ class AppServiceProvider extends ServiceProvider
                     "cartItem" => Cart::content(),
                     "cartTotal" => Cart::subtotal(),
                     "cartCount" => Cart::count(),
+                ]);
+            });
+            View::composer('pages.includes.footer', function($view)
+            {
+                $services=DB::table("page_management")->whereIn("name",["horoscopes","numerology","kundli-dosh","birth-journal","vastu-shastra","gemstones"])->get();     
+                $services->map(function ($service)
+                {
+                    $service->description = json_decode($service->content,true)["description"];
+                    /* $service->_content = json_decode($service->content,true)["content"];
+                    $service->image = json_decode($service->content,true)["image"]; */
+                    $service->name =  $service->name;
+                    $service->main = json_decode($service->content,true)["main"];
+        
+                });
+                 
+                $view->with('footer',[
+                    "services" => $services,
                 ]);
             });
 

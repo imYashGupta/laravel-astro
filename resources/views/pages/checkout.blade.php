@@ -112,7 +112,7 @@
 							</div>
 						</div>
 						<div class="form-group checkbox">
-							<label> I have read and agree to the website terms and conditions
+							<label > I have read and agree to the website terms and conditions
 								<input type="checkbox" name="terms"   >
 								<span class="checkmark"></span>
 							</label>
@@ -122,7 +122,13 @@
 									</span>
 									@enderror
 						</div>
-						<button class="ast_btn next" type="submit">Next</button>
+						<button class="ast_btn next" type="submit">Pay 
+						@if(session()->has("coupon"))
+							£{{session()->get("coupon")["discountAmount_str"]}}
+						@else
+						£{{Cart::subtotal()}}
+						@endif
+						</button>
 					</form>
 					</div>
 					 

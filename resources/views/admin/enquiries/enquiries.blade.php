@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',"User Management")
+@section('title',"Enquiries")
 
 @section('css')
 <!-- DataTables -->

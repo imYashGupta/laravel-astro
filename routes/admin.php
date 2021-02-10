@@ -14,10 +14,7 @@ Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
         return view("admin.index");
     });
     
-    Route::get("/dashboard",function ()
-    {
-        return view("admin.index");
-    })->name("dashboard");
+    Route::get("/dashboard","AdminController@dashboard")->name("dashboard");
     Route::resources([
         'users'     => 'UserController',
         "category"  => "CategoryController",
@@ -32,11 +29,14 @@ Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
         "enquiries" => "EnquiryController",
         
     ]);
+    Route::resource("appointments","AppointmentController")->except(["store"]);
+    //store will be from front-end and will not require auth
+    Route::resource("product","Admin\ProductController")->except(["store","update"]);
+
         Route::get("support-tickets","Admin\TicketController@index")->name("support-tickets.index");
         Route::get("support-tickets/{ticket}","Admin\TicketController@show")->name("support-tickets.show");
         Route::post("support-tickets/{ticket}","Admin\TicketController@store")->name("support-tickets.store");
 
-        Route::resource("product","Admin\ProductController")->except(["store","update"]);
         Route::post("product/store","Admin\ProductController@store")->name("product.store");
         Route::post("product/{prod}/update","Admin\ProductController@store")->name("product.update");
         Route::post("product/image/delete","Admin\ProductController@deleteImage");

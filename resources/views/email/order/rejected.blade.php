@@ -288,6 +288,17 @@
 																			</td>
                                                                           </tr>
                                                                     @endif
+																	@if(!is_null($order->coupon))
+
+																		  <tr>
+																			<td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+																			  Coupon Discount
+																			</td>
+																			<td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+                                                                                -&#163;{{$order->coupon_discount}}
+																			</td>
+                                                                          </tr>
+                                                                    	@endif
                                                                           
 																		  <tr>
 																			<td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">

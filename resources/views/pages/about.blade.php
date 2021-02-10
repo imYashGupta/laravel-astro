@@ -1,4 +1,5 @@
 @extends('layouts.web-master')
+@section("title","About us | ".$appData['name']." - ".$appData['title'])
 @section('content')
 	
 <div class="ast_pagetitle">
@@ -12,9 +13,10 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="about.php">About us</a></li>
+				<li><a href="{{route('homepage')}}">home</a></li>
+
+					<li>/</li>
+					<li><a href="{{route("about")}}">About us</a></li>
 				</ul>
 			</div>
 		</div>

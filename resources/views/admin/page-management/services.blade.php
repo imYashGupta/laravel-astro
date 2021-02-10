@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title',"Services")
 @section('css')
 @endsection
 

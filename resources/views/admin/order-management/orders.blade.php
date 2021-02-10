@@ -6,9 +6,10 @@
 <!-- Responsive datatable examples -->
 <link href="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
+@section('title',"Orders")
 
 @section('breadcrumb')
-<h3 class="page-title">Order History</h1>
+<h3 class="page-title">Orders</h1>
 @endsection
 
 @section('content')

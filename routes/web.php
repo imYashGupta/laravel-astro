@@ -23,7 +23,8 @@ Route::post("/cart/update","CartController@update");
 Route::post("/cart/coupon-apply","CartController@coupon");
 Route::post('{product_slug}/review','ShopController@addReview')->name('product.addReview');
 
-
+//sb-fljj24599986@personal.example.com
+//7!E>Qz[e
 
 
 Auth::routes(['verify' => true]);
@@ -39,7 +40,8 @@ Route::post("/profile/password/update","DashboardController@updatePassword")->na
 
 Route::get("/orders","DashboardController@orders")->name("user.orders");
 Route::get("/orders/{order}","DashboardController@order")->name("user.order");
-Route::get("/my-appoinments","DashboardController@appoinments")->name("user.my-appoinments");
+Route::get("/orders/token/{token}","DashboardController@orderToken")->name("user.order.token");
+// Route::get("/my-appoinments","DashboardController@appoinments")->name("user.my-appoinments");
 
 Route::get("/pay","HomeController@payment");
 Route::get('cancel-payment', 'CheckoutController@paymentCancel')->name('cancel.payment');
@@ -53,7 +55,7 @@ Route::post("/enquiry.store","EnquiryController@store")->name("enquiry.store");
 
 Route::get("contact-us",function(){
     return view("pages.contact");
-});
+})->name("contact-us");
 Route::get("about-us","HomeController@about")->name("about");
 
 Route::get("services","HomeController@services")->name("services");
@@ -66,9 +68,8 @@ Route::get("faq",function(){
 Route::get("service",function(){
       return view("pages.service-single");
 });
-Route::get("appointment",function(){
-    return view("pages.appointment");
-})->name("appointment");
+Route::get("appointment","HomeController@appointment")->name("appointment");
+Route::post("appointments","AppointmentController@store")->name("appointments.store");
 Route::get("checkout","CheckoutController@checkoutPage")->name("checkout");
 Route::post("checkout","CheckoutController@checkout")->name("checkout.store");
 

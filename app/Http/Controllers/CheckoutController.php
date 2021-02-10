@@ -7,6 +7,7 @@ use App\Order;
 use App\OrderItem;
 use App\Product;
 use App\Setting;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,8 @@ class CheckoutController extends Controller
 {
     public function checkoutPage()
     {
+        // return session()->get("coupon");
+
         $countries=DB::table("countries")->get();
         if(Cart::count() > 0 AND auth()->check()){
             return view("pages.checkout",["countries" => $countries]);
@@ -132,6 +135,7 @@ class CheckoutController extends Controller
             $order=new Order();
             $order->user_id = auth()->user()->id;
             $order->invoice_id = $checkout["invoice_id"];
+            $order->paypal_token = $response["TOKEN"];
             $order->billing_email = $billing["email"];
             $order->billing_details = json_encode($billing);
             $order->coupon_id = $coupon ? $coupon["id"] : NULL;
@@ -154,7 +158,14 @@ class CheckoutController extends Controller
                 $orderItem->listed_price = $item->price;
                 $orderItem->save();
             }
-
+            if(session()->has("coupon")){
+                DB::table("coupon_redeems")->insert([
+                    "user_id" => auth()->user()->id,
+                    "coupon_id" => session()->get("coupon")["id"],
+                    "created_at"    => Carbon::now(),
+                    "updated_at"    => Carbon::now(),
+                ]);
+            }
             Mail::to($order->billing_email,$order->name)->bcc(env("ADMIN_EMAIL"),env("APP_NAME"))->queue(new Invoice($order));
             Cart::destroy();
             session()->forget("coupon");

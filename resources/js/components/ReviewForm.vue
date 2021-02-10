@@ -135,6 +135,11 @@ export default {
     renderStars(rating){
         return `<i class='fa fa-star mr-1px' aria-hidden='true'></i>`.repeat(rating)+`<i class='fa fa-star-o mr-1px' aria-hidden='true'></i>`.repeat(5-rating);
     },
+    resetForm(){
+      this.review = "";
+      this.email = "";
+      this.name = "";
+    },
     submit() {
       if (this.$v.$invalid) {
         // console.log(this.$v);
@@ -152,15 +157,21 @@ export default {
             if(response.status===201){
                 this.showSuccess = true;
                 this.message = response.data.message;
+                this.resetForm();
             }
             if(response.status===200){
                 this.alreadyDone = true;
                 this.message = response.data.message;
+                this.resetForm();
             }
           // console.log(response);
+                this.resetForm();
+
         })
         .catch((error) => {
           console.log(error);
+                this.resetForm();
+          
         });
     },
   },

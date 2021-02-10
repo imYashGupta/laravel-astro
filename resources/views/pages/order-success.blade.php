@@ -41,9 +41,8 @@
 					 
 					<div class="woocommerce_checkout_receipt step">
 						<h1>THANK YOU FOR YOUR ORDER!</h1>
-						<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-						<a href="#" class="ast_btn receipt_btn">Get Receipt</a>
-						<a href="#" class="ast_btn receipt_btn">View Order</a>
+						<p>An Invoice of order has been send to your email,we'd love to hear your feedback.</p>
+						<a href="{{ route("user.order.token",request()->token) }}" class="ast_btn receipt_btn">View Order</a>
 					</div>
 				</div>
 			</div>

@@ -1,4 +1,5 @@
 @extends("layouts.web-master")
+@section("title","Blogs | ".$appData['name']." - ".$appData['title'])
 @section('content')
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
@@ -11,9 +12,9 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="blog_rs.php">blog </a></li>
+					<li><a href="route('homepage')">home</a></li>
+					<li>/</li>
+					<li><a href="{{route('blogs')}}">blog </a></li>
 				</ul>
 			</div>
 		</div>
@@ -67,7 +68,7 @@
 									<li><a href="blog_single.php"><i class="fa fa-comments-o" aria-hidden="true"></i> 28 comments</a></li>
 									<li><a href="blog_single.php"><i class="fa fa-user" aria-hidden="true"></i> Andrew Coyne</a></li>
 								</ul> --}}
-								<h3 class="ast_blog_info_heading"><a href="blog_single.php">{{Str::limit($blog->title, 70, '...')}}.</a></h3>
+								<h3 class="ast_blog_info_heading"><a href="{{ route("blog",$blog->slug) }}">{{Str::limit($blog->title, 70, '...')}}.</a></h3>
 								<p class="ast_blog_info_details">{{ Str::limit($blog->short_description,200,'...') }}</p>
 								<a class="ast_btn" href="{{ route("blog",$blog->slug) }}">read more</a>
 							</div>

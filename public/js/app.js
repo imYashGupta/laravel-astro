@@ -2321,9 +2321,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["dataCountries", "country", "state", "city", "countryError", "stateError", "cityError"],
+  props: ["dataCountries", "country", "state", "city", "countryError", "stateError", "cityError", "label"],
   data: function data() {
     return {
       countries: [],
@@ -3077,6 +3080,11 @@ __webpack_require__.r(__webpack_exports__);
     renderStars: function renderStars(rating) {
       return "<i class='fa fa-star mr-1px' aria-hidden='true'></i>".repeat(rating) + "<i class='fa fa-star-o mr-1px' aria-hidden='true'></i>".repeat(5 - rating);
     },
+    resetForm: function resetForm() {
+      this.review = "";
+      this.email = "";
+      this.name = "";
+    },
     submit: function submit() {
       var _this = this;
 
@@ -3096,15 +3104,23 @@ __webpack_require__.r(__webpack_exports__);
         if (response.status === 201) {
           _this.showSuccess = true;
           _this.message = response.data.message;
+
+          _this.resetForm();
         }
 
         if (response.status === 200) {
           _this.alreadyDone = true;
           _this.message = response.data.message;
+
+          _this.resetForm();
         } // console.log(response);
 
+
+        _this.resetForm();
       })["catch"](function (error) {
         console.log(error);
+
+        _this.resetForm();
       });
     }
   },
@@ -40335,7 +40351,7 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("td", [_vm._v("€" + _vm._s(_vm.item.subtotal))]),
+    _c("td", [_vm._v("€\t" + _vm._s(_vm.item.subtotal))]),
     _vm._v(" "),
     _c("td", [
       _c("span", { staticClass: "close_pro", on: { click: _vm.removeItem } }, [
@@ -40369,6 +40385,10 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "col-lg-6 col-md-6" }, [
       _c("div", { staticClass: "form-group" }, [
+        _vm.label
+          ? _c("label", { attrs: { for: "country" } }, [_vm._v("Country")])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "select",
           {
@@ -40440,6 +40460,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-6 col-md-6" }, [
       _c("div", { staticClass: "form-group" }, [
+        _vm.label
+          ? _c("label", { attrs: { for: "state" } }, [_vm._v("State")])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "select",
           {
@@ -40511,6 +40535,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-6 col-md-6" }, [
       _c("div", { staticClass: "form-group" }, [
+        _vm.label
+          ? _c("label", { attrs: { for: "city" } }, [_vm._v("City")])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "select",
           {
@@ -40753,12 +40781,12 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "ast_cart_info" }, [
-                  _c("a", { attrs: { href: "#" } }, [
+                  _c("a", { attrs: { href: product.options.url } }, [
                     _vm._v(_vm._s(product.name))
                   ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v(_vm._s(product.qty) + " X " + _vm._s(product.price))
+                    _vm._v(_vm._s(product.qty) + " X €" + _vm._s(product.price))
                   ]),
                   _vm._v(" "),
                   _c(

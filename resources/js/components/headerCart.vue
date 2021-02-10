@@ -8,8 +8,8 @@
             <img :src="product.options.thumbnailUrl" class="img-responsive" />
           </div>
           <div class="ast_cart_info">
-            <a href="#">{{product.name}}</a>
-            <p>{{product.qty}} X {{product.price}}</p>
+            <a :href="product.options.url">{{product.name}}</a>
+            <p>{{product.qty}} X &euro;{{product.price}}</p>
             <a
               href="javascript:;"
               class="ast_cart_remove"

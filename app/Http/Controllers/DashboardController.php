@@ -94,4 +94,13 @@ class DashboardController extends Controller
         return view("pages.user.order",["order" => $order]);
 
     }
+
+    public function orderToken(Request $request,$token)
+    {
+        $order = Order::where("paypal_token",$token)->first();
+        if($order){
+            return redirect()->route("user.order",$order->id);
+        }
+        abort(404,"Order not found.");
+    }
 }

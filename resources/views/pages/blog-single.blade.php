@@ -1,4 +1,5 @@
 @extends('layouts.web-master')
+@section("title",$blog->title)
 @section('content')	
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
@@ -11,11 +12,9 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="blog.php">blog</a></li>
-					<li>//</li>
-					<li><a href="blog_single.php">blog single </a></li>
+					<li><a href="{{ route("homepage") }}">home</a></li>
+					<li>/</li>
+					<li><a href="{{ route("blogs") }}">blog</a></li>
 				</ul>
 			</div>
 		</div>

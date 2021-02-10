@@ -52,7 +52,9 @@
 <script src="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 <script>
     $(document).ready( function () {
-    $('#datatable').DataTable();
+    $('#datatable').DataTable({
+            "order": [[ 0, "desc" ]]
+        });
 } );
 </script>
 @endsection

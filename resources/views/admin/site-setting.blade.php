@@ -14,12 +14,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                @if($errors->any())
-                                {{ implode('', $errors->all('<div>:message</div>')) }}
-                            @endif
-                                {{-- <h4 class="card-title">Website Info</h4>
-                                --}}
-                                <p class="card-title-desc">Website Info</p>
+                                
+                                <h4 class="card-title">Website Info</h4>
+                               
+                                <p class="card-title-desc">Site Settings</p>
                                 <form action="{{ route("settings.update") }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
@@ -28,6 +26,42 @@
                                             <input class="form-control @error("name") is-invalid @endif " type="text" id="website-name"
                                                 autocomplete="off" name="name" value="{{ $name->value }}" />
                                             @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="title" class="col-sm-2 col-form-label">Title</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control @error("title") is-invalid @endif " type="text" id="title"
+                                                autocomplete="off" name="title" value="{{ $title->value }}" />
+                                            @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="website-description" class="col-sm-2 col-form-label">Meta Description</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control @error("description") is-invalid @endif " type="text" id="website-description"
+                                                autocomplete="off" name="description" value="{{ $description->value }}" />
+                                            @error('description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="keywords" class="col-sm-2 col-form-label">Meta Keywords</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control @error("keywords") is-invalid @endif " type="text" id="keywords"
+                                                autocomplete="off" name="keywords" value="{{ $keywords->value }}" />
+                                            @error('keywords')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

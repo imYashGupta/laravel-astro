@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',"Product Categories")
+@section('title',"Tickets")
 @section('css')
 <!-- DataTables -->
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />

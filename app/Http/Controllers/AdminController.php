@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function dashboard()
+    {
+        $sales= Order::sum("subtotal");
+        $income= Order::sum("amount_paid");
+        return view("admin.index",[
+            "sales" => $sales,
+            "income" => $income,
+        ]);
+    }
+    
+    
     public function error(Request $request)
     {
         // return view("admin.error",["code" => ])

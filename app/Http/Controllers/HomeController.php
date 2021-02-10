@@ -21,9 +21,19 @@ class HomeController extends Controller
 
     public function homepage()
     {
+        
         $testimonials=Testimonial::where("status",1)->get();
+        $services=DB::table("page_management")->whereIn("name",["horoscopes","numerology","kundli-dosh","birth-journal","vastu-shastra","gemstones"])->get();     
+        $services->map(function ($service)
+        {
+            $service->description = json_decode($service->content,true)["description"];
+            /* $service->_content = json_decode($service->content,true)["content"];
+            $service->image = json_decode($service->content,true)["image"]; */
+            $service->name =  $service->name;
+            $service->main = json_decode($service->content,true)["main"];
 
-        return view('pages.index',["testimonials" => $testimonials]);
+        });
+        return view('pages.index',["testimonials" => $testimonials,"services" => $services]);
     }
 
     public function about()
@@ -89,7 +99,7 @@ class HomeController extends Controller
   
         $paypalModule = new ExpressCheckout;
   
-        $res = $paypalModule->setExpressCheckout($product);
+        return $res = $paypalModule->setExpressCheckout($product);
   
         return redirect($res['paypal_link']);
 
@@ -110,5 +120,11 @@ class HomeController extends Controller
         }
   
         dd('Error occured!');
+    }
+
+    public function appointment()
+    {
+        $countries=DB::table("countries")->get();
+        return view("pages.appointment",compact("countries"));
     }
 }

@@ -33,11 +33,10 @@
 					<h4 class="widget-title">our services</h4>
 					<div class="ast_servicelink">
 						<ul>
-							<li><a href="service" >horoscopes</a></li>
-							<li><a href="service">vastushastra</a></li>
-							<li><a href="service">lifeissue</a></li>
-							<li><a href="service">tarot cards</a></li>
-							<li><a href="service">Birth journal</a></li>
+							@foreach ($footer["services"] as $item)
+							<li><a href="/services/{{ $item->name }}" >{{$item->name}}</a></li>
+							@endforeach
+				 
 						</ul>
 					</div>				
 				</div>			
@@ -70,7 +69,7 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="ast_copyright_wrapper">
-					<p>&copy; Copyright 2021, All Rights Reserved, <a href="#">Paathway</a></p>				
+					<p>{!! $appData["footer_text"] !!}</p>				
 				</div>			
 			</div>	
 		</div>	

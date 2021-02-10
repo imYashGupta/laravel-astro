@@ -1,4 +1,13 @@
 @extends("layouts.web-master")
+@section("title","Appointment | ".$appData['name']." - ".$appData['title'])
+@section('styles')
+	<style>
+		.is-error{
+			border: 1px solid #832625 !important;
+			margin-bottom: 0 !important;
+		}
+	</style>	
+@endsection
 @section('content')
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
@@ -11,9 +20,9 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="appointment.php">appointment</a></li>
+					<li><a href="{{route('homepage')}}">home</a></li>
+					<li>/</li>
+					<li><a href="{{route('appointment')}}">appointment</a></li>
 				</ul>
 			</div>
 		</div>
@@ -33,80 +42,70 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="ast_journal_box_wrapper">
-					<form>
+					<form method="POST" action="{{ route("appointments.store") }}">
 						<h3>appointment form</h3>
+						@csrf
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>name</label>
-							<input type="text" placeholder="Name">
+							<label for="name">name</label>
+							<input type="text" value="{{ old("name") }}" placeholder="Name" name="name" id="name" @error("name") class="is-error" @enderror >
+							@error('name')
+								<span class="invalid-feedback d-block" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>email</label>
-							<input type="text" placeholder="Email">
+							<label for="email">email</label>
+							<input type="email" value="{{ old("email") }}" placeholder="Email" name="email" id="email" @error("email") class="is-error" @enderror>
+							@error('email')
+								<span class="invalid-feedback d-block" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>mobile nmber</label>
-							<input type="text" placeholder="Mobile Number">
+							<label for="phone">mobile nmber</label>
+							<input type="text" value="{{ old("phone") }}" placeholder="Mobile Number" name="phone" id="phone" @error("phone") class="is-error" @enderror>
+							@error('phone')
+								<span class="invalid-feedback d-block" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>gender</label>
-							<select>
+							<label for="gender">gender</label>
+							<select name="gender" id="gender" @error("gender") class="is-error" @enderror>
 								<option value="male">Male</option>
 								<option value="female">Female</option>
 							</select>
+							@error('gender')
+								<span class="invalid-feedback d-block" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 						</div>
+						<checkout-country-state 
+							label="true"
+							data-countries="{{ $countries }}"
+							@error('country') country-error="{{$message}}" @enderror
+							@error('state') state-error="{{$message}}" @enderror
+							@error('city') city-error="{{$message}}" @enderror
+							@if(old("country")) country="{{ old("country") }}" @endif
+							@if(old("state")) state="{{ old("state") }}" @endif
+							@if(old("city")) city="{{ old("city") }}" @endif
+							>
+						</checkout-country-state>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>time of day</label>
-							<select>
-								<option value="1"> Morning </option>
-								<option value="2">Afternoon</option>
-								<option value="3">Evening </option>
-							</select>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>way to reach</label>
-							<select>
-								<option value="1">Phone </option>
-								<option value="2">Email</option>
-							</select>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>Preferred  Date</label>
-							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<input type="text" placeholder="Date">
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<input type="text" placeholder="Month">
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<input type="text" placeholder="Year">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>Preferred Time</label>
-							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<input type="text" placeholder="Hrs">
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<input type="text" placeholder="Mins">
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<input type="text" placeholder="Sec">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>address</label>
-							<textarea placeholder="Address" rows="4"></textarea>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<label>Reason for appointment</label>
-							<textarea placeholder="Message" rows="4"></textarea>
+							<label for="pincode">Pincode</label>
+							<input type="text" value="{{ old("pincode") }}" placeholder="Pincode" name="pincode" id="pincode" @error("pincode") class="is-error" @enderror>
+							@error('pincode')
+								<span class="invalid-feedback d-block" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<button type="button" class="ast_btn pull-right">make an appointment</button>
+							<button type="submit" class="ast_btn pull-right">make an appointment</button>
 						</div>
 					</form>
 				</div>
