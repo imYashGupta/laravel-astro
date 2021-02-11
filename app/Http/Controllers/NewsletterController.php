@@ -54,7 +54,10 @@ class NewsletterController extends Controller
         $request->validate([
             "email" => ["required","email"]
         ]);
-
+        $alreadyThere=Newsletter::where("email",$request->email)->exists();
+        if($alreadyThere){
+            return redirect()->back()->with("newsletter",["title" => "Great!","message" => "You are already in the subscriber list!"]);
+        }
         $newsletter=Newsletter::create([
             "email" => $request->email,
             "ip_address" => $request->ip()
@@ -64,7 +67,7 @@ class NewsletterController extends Controller
             "data"  => $newsletter->id,
             "message" => "New Subscriber",
         ]); */
-        return redirect()->back()->with("newsletter",true);
+        return redirect()->back()->with("newsletter",["title" => "Newsletter Subscribed!","message" => "Thank you for subscribing to our newsletter."]);
     }
 
     /**

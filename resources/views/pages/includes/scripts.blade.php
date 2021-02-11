@@ -14,7 +14,7 @@
 @endif
 @if(session()->has("newsletter"))
 <script>
-    swal("Newsletter Subscribed!", "Thank you for subscribing to our newsletter.", "success");
+    swal('{{ session()->get("newsletter")["title"] }}', '{{ session()->get("newsletter")["message"] }}', "success");
 </script>
 @endif
 <!--Main js file End-->

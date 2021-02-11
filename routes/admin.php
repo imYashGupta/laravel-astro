@@ -9,11 +9,8 @@ Route::get("/test",function ()
 Route::get("admin/lock-screen","AdminController@lockedScreen")->name("admin.locked");
 Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
 {
-    Route::get("/",function ()
-    {
-        return view("admin.index");
-    });
-    
+ 
+    Route::get("/","AdminController@dashboard")->name("dashboard");
     Route::get("/dashboard","AdminController@dashboard")->name("dashboard");
     Route::resources([
         'users'     => 'UserController',
