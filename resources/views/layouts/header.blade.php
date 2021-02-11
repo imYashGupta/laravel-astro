@@ -36,9 +36,9 @@
             <li>
                 <a href="{{ route("testimonial.index") }}" class="waves-effect"><i class="mdi mdi-thumbs-up-down"></i><span>Testimonial</span></a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="calendar" class="waves-effect"><i class="mdi mdi-view-carousel"></i><span>Slider Management</span></a>
-            </li>
+            </li> --}}
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-pencil-box-outline"></i><span> Blog Management <span class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                 <ul class="list-unstyled">
