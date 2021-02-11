@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Product;
 use App\Review;
+use App\Product;
+use App\Category;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -83,6 +84,12 @@ class ShopController extends Controller
         $review->review = $request->review;
         $review->product_id = $product->id;
         $review->save();
+        Notification::create([
+            "type" => "Review",
+            "data"  => $review->id,
+            "title" => "New Review For Product",
+            "message" => $review->name. " leaves a review for $product->name product",
+        ]);
         return response()->json(["message" => "Your review is awaiting approval."],201);
 
     }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Notification;
 use App\User;
 use App\Setting;
 use Illuminate\Support\Facades\DB;
@@ -90,6 +91,13 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('footer',[
                     "services" => $services,
                 ]);
+            });
+
+            View::composer('layouts.sidebar', function($view)
+            {
+                $notifications=Notification::latest()->get();
+                $unseen=Notification::whereNull("seen")->get();
+                $view->with('notifications',$notifications)->with("unseen",$unseen);
             });
 
     }

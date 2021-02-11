@@ -7,19 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AppointmentUser extends Mailable
+class Subscribe extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $appointment;
+
+    public $subscriber;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($appointment)
+    public function __construct($subscriber)
     {
-        $this->appointment = $appointment;
+        $this->subscriber = $subscriber;
     }
 
     /**
@@ -29,6 +30,6 @@ class AppointmentUser extends Mailable
      */
     public function build()
     {
-        return $this->subject("Paathway:Appointment Request")->view('email.appointment-user')->with(["appointment" => $this->appointment]);
+        return $this->subject(env("APP_NAME").": Newsletter Subscribe")->view('email.new-subscriber',["subscriber" => $this->subscriber]);
     }
 }

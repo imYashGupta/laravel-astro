@@ -69,6 +69,9 @@
                 <a href="{{route("appointments.index")}}" class="waves-effect"><i class="mdi mdi-account-box-outline"></i><span>Appointments</span></a>
             </li>
             <li>
+                <a href="{{route("newsletter.index")}}" class="waves-effect"><i class="mdi mdi-email-variant"></i><span>Newsletter Subscriber</span></a>
+            </li>
+            <li>
                 <a href="{{route("settings")}}" class="waves-effect"><i class="mdi mdi-settings"></i><span>Site Setting</span></a>
             </li>
              

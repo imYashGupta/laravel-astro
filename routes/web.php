@@ -70,7 +70,14 @@ Route::get("service",function(){
 });
 Route::get("appointment","HomeController@appointment")->name("appointment");
 Route::post("appointments","AppointmentController@store")->name("appointments.store");
+Route::get("appointment-submited/{id}","HomeController@appointmentSubmited")->name("appointment.submit");
+
 Route::get("checkout","CheckoutController@checkoutPage")->name("checkout");
 Route::post("checkout","CheckoutController@checkout")->name("checkout.store");
+
+//Newsletter
+Route::post("newsletter","NewsletterController@store")->name("newsletter.store");
+Route::get("newsletter/unsubscribe/{email}/","NewsletterController@unsubcribe")->name("newsletter.unsubcribe");
+
 
 Route::get("{product_slug}",'ShopController@product')->name("product");

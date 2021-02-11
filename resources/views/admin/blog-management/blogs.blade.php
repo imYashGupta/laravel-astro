@@ -30,6 +30,7 @@
                                                     <th>Category</th>
                                                     <th>Status</th>
                                                     <th>Published On</th>
+                                                    <th>Views</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
@@ -50,7 +51,7 @@
                                                    
                                                     <td>{{$blog->created_at->format("d M,Y | h:i A")}} 
                                                     </td>
-                                                 
+                                                    <td>{{ $blog->views }}</td>
                                                     <td>
                                                     <a href="{{route("blog.edit",$blog->id)}}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
                                                     <a  data-toggle="modal" data-target="#ConfirmationModal" data-name="{{$blog->title}}" data-url="{{route("blog.destroy",$blog->id)}}" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete font-18"></i></a>

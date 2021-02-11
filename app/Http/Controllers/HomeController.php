@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class HomeController extends Controller
 {
@@ -126,5 +128,16 @@ class HomeController extends Controller
     {
         $countries=DB::table("countries")->get();
         return view("pages.appointment",compact("countries"));
+    }
+
+    public function appointmentSubmited($id)
+    {
+        try {
+            $_id=decrypt($id);
+            $appointment=Appointment::findOrFail($_id);
+            return view("pages.appointment-success",compact("appointment"));
+        } catch (DecryptException  $th) {
+            abort(404);
+        }
     }
 }

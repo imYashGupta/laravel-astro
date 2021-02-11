@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ticket;
 use App\TicketReply;
+use App\Notification;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -69,6 +70,13 @@ class TicketController extends Controller
         }
         $ticket->files = json_encode($attachments);
         $ticket->save();
+
+        Notification::create([
+            "type" => "Ticket",
+            "data"  => $ticket->id,
+            "title" => "New ticket created",
+            "message" => "New ticket genrated by ".$ticket->name,
+        ]);
         return redirect()->route("tickets.create");
     }
 
@@ -99,6 +107,13 @@ class TicketController extends Controller
         $reply->files = json_encode($attachments);
         $reply->ip_address	 = $request->ip();
         $reply->save();
+
+        Notification::create([
+            "type" => "Ticket reply",
+            "data"  => $reply->id,
+            "title" => "Update on Ticket",
+            "message" => $reply->name. "replied to Ticket #".$reply->id,
+        ]);
     }
     /**
      * Display the specified resource.

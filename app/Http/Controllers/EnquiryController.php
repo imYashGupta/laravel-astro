@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enquiry;
-use App\Mail\EnquiryNotification;
+use App\Notification;
 use Illuminate\Http\Request;
+use App\Mail\EnquiryNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,6 +63,12 @@ class EnquiryController extends Controller
         $enquiry->ip_address = $request->ip();
         $enquiry->save();
         Mail::to("admin963@mailinator.com")->send(new EnquiryNotification($enquiry));
+        Notification::create([
+            "type" => "Enquiry",
+            "data"  => $enquiry->id,
+            "title" => "New enquiry received",
+            "message" => "$enquiry->firstname submitted an enquiry",
+        ]);
         return redirect("contact-us#form-show")->with("success",true);
      
     }

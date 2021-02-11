@@ -1,4 +1,5 @@
 @extends("layouts.web-master")
+@section("title",$title)
 @section('styles')
 	<style>
 		.is-error{
@@ -7,25 +8,7 @@
 	</style>	
 @endsection
 @section("content")
-<div class="ast_pagetitle">
-<div class="ast_img_overlay"></div>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12">
-				<div class="page_title">
-					<h2>checkout</h2>
-				</div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12">
-				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="#">checkout</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
+ 
 <!--Breadcrumb end-->
 
 <!-- Mens section Start -->
@@ -35,15 +18,13 @@
 			<div class="col-lg-10 col-sm-12 col-xs-12 col-lg-offset-1">
 				<div class="checkout_wrapper_box">
 				  <ul id="progressbar">
-						<li class="active">Order Complete</li>
 					</ul>
 				 
 					 
 					<div class="woocommerce_checkout_receipt step">
-						<h1>THANK YOU FOR YOUR ORDER!</h1>
-						<p>We have received your request And it will be processed shortly. Thank you for purchasing our product. Your support and trust in us are much appreciated.</p>
-						<a href="{{ route("user.order.token",request()->token) }}" class="ast_btn receipt_btn">View Order</a>
-					</div>
+						<h1>{{$title}}</h1>
+                        <p>{{ $message }}</p>
+                    </div>
 				</div>
 			</div>
 		</div>

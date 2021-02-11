@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,10 +13,9 @@ class AdminController extends Controller
     {
         $sales= Order::sum("subtotal");
         $income= Order::sum("amount_paid");
-        return view("admin.index",[
-            "sales" => $sales,
-            "income" => $income,
-        ]);
+        $latestOrders=Order::latest()->limit(5)->get();
+        $newUsers = User::latest()->limit(5)->get();
+        return view("admin.index",compact("sales","income","latestOrders","newUsers"));
     }
     
     

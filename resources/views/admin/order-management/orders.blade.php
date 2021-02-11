@@ -70,7 +70,7 @@
                                                     <th>Amount</th>
                                                     <th>Order Date</th>
                                                     <th>Payment</th>
-                                                    <th>Billing Email</th>
+                                                    <th>Billing Details</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -81,10 +81,10 @@
                                                         <td>
                                                             <a href="#" class="font-600 text-muted">#{{$order->id}}</a>
                                                         </td>
-                                                        <td>${{$order->amount_paid}}</td>
+                                                        <td>&euro;{{$order->amount_paid}}</td>
                                                         <td>{{$order->created_at->format("M d, Y h:i A")}} </td>
                                                         <td><i class="fa fa-cc-paypal text-muted font-20"></i> </td>
-                                                        <td>{{ $order->billing_email }}</td>
+                                                        <td>{{ $order->name }} <br>{{ $order->billing_email }}</td>
                                                         <td><span class="badge badge-{{$order->status_data["class"]}} hide-print text-uppercase">{{$order->status_data["text"]}}</span></td>
                                                         <td>
                                                             <a href="{{ route("order.show",$order->id) }}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="mdi mdi-eye font-18"></i></a>

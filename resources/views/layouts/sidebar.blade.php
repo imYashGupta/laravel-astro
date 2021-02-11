@@ -44,31 +44,25 @@
             <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="false" aria-expanded="false">
                 <i class="ion-ios7-bell noti-icon"></i>
-                <span class="badge badge-danger noti-icon-badge">3</span>
+                @if($unseen->count() > 0) <span class="badge badge-danger noti-icon-badge">{{$unseen->count()}}</span> @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
                 <!-- item-->
                 <div class="dropdown-item noti-title">
-                    <h5>Notification (3)</h5>
+                    <h5>Notification  @if($unseen->count() > 0) ({{$unseen->count()}}) @endif</h5>
                 </div>
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                    <p class="notify-details"><b>Your order is placed</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
+                @foreach ($notifications as $notification)
+                <a href="{{ route("notification.redirect",$notification->id) }}" class="dropdown-item notify-item {{!$notification->seen ? 'active' : ''}}">
+                    <div class="notify-icon {{$notification->info['bg']}}"><i class="mdi {{$notification->info['icon']}}"></i></div>
+                    <p class="notify-details"><b>{{$notification->title}}</b><small class="text-muted">{{$notification->message}}</small></p>
                 </a>
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
-                    <p class="notify-details"><b>New Message received</b><small class="text-muted">You have 87 unread messages</small></p>
-                </a>
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <div class="notify-icon bg-info"><i class="mdi mdi-martini"></i></div>
-                    <p class="notify-details"><b>Your item is shipped</b><small class="text-muted">It is a long established fact that a reader will</small></p>
-                </a>
-
+                @if($loop->iteration == 3)
+                @break
+                @endif
+                @endforeach
                 <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{route("notification.index")}}" class="dropdown-item notify-item">
                     View All
                 </a>
             </div>

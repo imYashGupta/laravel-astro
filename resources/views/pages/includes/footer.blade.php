@@ -17,13 +17,16 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="widget text-widget">
-					<img src="{{$appData['logo'] }}" alt="Logo" width="230">
+					<img src="{{$appData['logo'] }}" style="margin-bottom: 10px;" alt="Logo" width="230">
 					<h4 class="widget-title">our newsletter</h4>
 					<div class="ast_newsletter">
 						<p>Fell Free To Contact.</p>
 						<div class="ast_newsletter_box">
-							<input type="text" placeholder="Email">
-							<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>						
+							<form action="{{ route("newsletter.store") }}" method="POST">
+								@csrf
+								<input type="email" name="email" placeholder="Your Email">
+								<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>						
+							</form>
 						</div>
 					</div>				
 				</div>			

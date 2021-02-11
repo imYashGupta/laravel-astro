@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
-use App\Mail\AppointmentAdmin;
-use App\Mail\AppointmentUser;
+use App\Notification;
 use Illuminate\Http\Request;
+use App\Mail\AppointmentUser;
+use App\Mail\AppointmentAdmin;
 use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
@@ -61,9 +62,15 @@ class AppointmentController extends Controller
             "pincode" => $request->pincode,
             "ip_address" => $request->ip(),
         ]);
-        // Mail::to($appointment->email,$appointment->name)->queue(new AppointmentUser($appointment));
+        Mail::to($appointment->email,$appointment->name)->queue(new AppointmentUser($appointment));
         Mail::to(env("ADMIN_EMAIL"),env("APP_NAME"))->queue(new AppointmentAdmin($appointment));
-        return $appointment;
+        Notification::create([
+            "type" => "Appointment",
+            "data"  => $appointment->id,
+            "title" => "New appointment request",
+            "message" => $appointment->name." submited a appointment request",
+        ]);
+        return redirect()->route("appointment.submit",encrypt($appointment->id));
     }
 
     /**

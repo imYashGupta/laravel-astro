@@ -11,15 +11,17 @@ class AppointmentAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $appointment;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($appointment)
     {
-        //
+        $this->appointment = $appointment;
     }
+    
 
     /**
      * Build the message.
@@ -28,6 +30,6 @@ class AppointmentAdmin extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject("Paathway:New Appointment Request")->view('email.appointment-admin')->with(["appointment" => $this->appointment]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Invoice;
+use App\Notification;
 use App\Order;
 use App\OrderItem;
 use App\Product;
@@ -167,6 +168,12 @@ class CheckoutController extends Controller
                 ]);
             }
             Mail::to($order->billing_email,$order->name)->bcc(env("ADMIN_EMAIL"),env("APP_NAME"))->queue(new Invoice($order));
+            Notification::create([
+                "type" => "Order",
+                "data"  => $order->id,
+                "title" => "New Order received",
+                "message" => auth()->user()->name." place an order #$order->id"
+            ]);
             Cart::destroy();
             session()->forget("coupon");
             session()->forget("billing");

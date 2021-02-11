@@ -157,44 +157,8 @@
 											<tr>
 												<td
 													style="padding-bottom: 15px; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; line-height: 24px; color: #1B2733;">
-													{{ $appointment->name }} just submitted an Appointment request.
-													<table  role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"
-													align="center" width="100%" style="margin-top: 20px;">
-                                                        <tr >
-                                                            <td style="padding: 20px;">Name:</td>
-                                                            <td style="padding: 20px;">{{$appointment->name}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">Email:</td>
-                                                            <td style="padding: 20px;">{{$appointment->email}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">Phone:</td>
-                                                            <td style="padding: 20px;">{{$appointment->phone}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">IP Address:</td>
-                                                            <td style="padding: 20px;">{{$appointment->ip_address}}</td>
-                                                        </tr>
-                                                    </table>
-												</td>
-											</tr>
-											<tr>
-												<td align="left">
-													<table role="presentation" aria-hidden="true" cellspacing="0"
-														cellpadding="0" border="0" align="left" class="container">
-														<tr>
-															<td style="border-radius: 3px;" bgcolor="#000000">
-																<a class="btn"
-																	href="{{ route('appointments.index') }}"
-																	target="_blank"
-																	style="font-size: 18px; font-family: 'Source Sans Pro', sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; padding: 10px 20px; border-radius: 2px; border: 1px solid #000000; display: inline-block;">View in Admin</a>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</table>
+													<h1>Thank You!</h1>
+												<p>for subscribing to our newsletter.you will be the first to know about new releases,offers and special products. <br> Stay Tuned.</p>
 									</td>
 								</tr>
 							</table>

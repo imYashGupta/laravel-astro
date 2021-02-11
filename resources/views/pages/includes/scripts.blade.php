@@ -7,8 +7,15 @@
 <script type="text/javascript" src="{{URL::asset("src/js/jquery.countTo.js")}}"></script>
 <script type="text/javascript" src="{{URL::asset("src/js/jquery.appear.js")}}"></script>
 <script type="text/javascript" src="{{URL::asset("src/js/custom.js")}}"></script>
+@if(session()->has("verified"))
 <script>
-    
+    swal("Account Verified", "Thank You!", "success");
 </script>
+@endif
+@if(session()->has("newsletter"))
+<script>
+    swal("Newsletter Subscribed!", "Thank you for subscribing to our newsletter.", "success");
+</script>
+@endif
 <!--Main js file End-->
 @yield('scripts')

@@ -157,52 +157,9 @@
 											<tr>
 												<td
 													style="padding-bottom: 15px; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; line-height: 24px; color: #1B2733;">
-													{{ $enquiry->firstname.' '.$enquiry->lastname }} just submitted your enquiry form.
-													<table  role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"
-													align="center" width="100%" style="margin-top: 20px;">
-                                                        <tr >
-                                                            <td style="padding: 20px;">Firstname:</td>
-                                                            <td style="padding: 20px;">{{$enquiry->firstname}}</td>
-                                                        </tr>
-                                                        <tr >
-                                                            <td style="padding: 20px;">Lastname:</td>
-                                                            <td style="padding: 20px;">{{$enquiry->lastname}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">Email:</td>
-                                                            <td style="padding: 20px;">{{$enquiry->email}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">Subject:</td>
-                                                            <td style="padding: 20px;">{{$enquiry->subject}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">Message:</td>
-                                                            <td style="padding: 20px;">{{$enquiry->message}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding: 20px;">IP Address:</td>
-                                                            <td style="padding: 20px;">{{$enquiry->ip_address}}</td>
-                                                        </tr>
-                                                    </table>
-												</td>
-											</tr>
-											<tr>
-												<td align="left">
-													<table role="presentation" aria-hidden="true" cellspacing="0"
-														cellpadding="0" border="0" align="left" class="container">
-														<tr>
-															<td style="border-radius: 3px;" bgcolor="#000000">
-																<a class="btn"
-																	href="{{ route('login') }}"
-																	target="_blank"
-																	style="font-size: 18px; font-family: 'Source Sans Pro', sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; padding: 10px 20px; border-radius: 2px; border: 1px solid #000000; display: inline-block;">View in Admin</a>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</table>
+													<h1>Hello , {{$appointment->name}}</h1>
+													<p>
+														We have received your request and would like to thank you for submitting it to us. If your inquiry is urgent, please use the telephone number listed on the website to talk to us. <br>We will get back to you soon..
 									</td>
 								</tr>
 							</table>

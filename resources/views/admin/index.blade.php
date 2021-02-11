@@ -228,100 +228,30 @@
         <div class="col-xl-6">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <h4 class="mt-0 m-b-30 header-title">Latest Transactions</h4>
+                    <h4 class="mt-0 m-b-30 header-title">Newly Register Users</h4>
                     <div class="table-responsive">
                         <table class="table table-vertical">
                             <tbody>
+                            @foreach ($newUsers as $user)
                             <tr>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>   
                                 <td>
-                                    <img src="assets/images/users/avatar-2.jpg" alt="user-image" class="thumb-sm rounded-circle"/>
-                                    Herbert C. Patton
+                                    @if(is_null($user->email_verified_at))
+                                    <i class="mdi mdi-checkbox-blank-circle text-success"></i> Verified
+                                    @else
+                                    <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Unverified
+                                    @endif
+                                </td> 
+                                <td>
+                                    {{$user->created_at->diffForHumans()}}
                                 </td>
-                                <td><i class="mdi mdi-checkbox-blank-circle text-success"></i> Confirm</td>
                                 <td>
-                                    $14,584
-                                    <p class="m-0 text-muted font-14">Amount</p>
-                                </td>
-                                <td>
-                                    5/12/2016
-                                    <p class="m-0 text-muted font-14">Date</p>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                    <a href="{{ route("users.edit",$user) }}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <img src="assets/images/users/avatar-3.jpg" alt="user-image" class="thumb-sm rounded-circle"/>
-                                    Mathias N. Klausen
-                                </td>
-                                <td><i class="mdi mdi-checkbox-blank-circle text-warning"></i> Waiting payment</td>
-                                <td>
-                                    $8,541
-                                    <p class="m-0 text-muted font-14">Amount</p>
-                                </td>
-                                <td>
-                                    10/11/2016
-                                    <p class="m-0 text-muted font-14">Date</p>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="assets/images/users/avatar-4.jpg" alt="user-image" class="thumb-sm rounded-circle"/>
-                                    Nikolaj S. Henriksen
-                                </td>
-                                <td><i class="mdi mdi-checkbox-blank-circle text-success"></i> Confirm</td>
-                                <td>
-                                    $954
-                                    <p class="m-0 text-muted font-14">Amount</p>
-                                </td>
-                                <td>
-                                    8/11/2016
-                                    <p class="m-0 text-muted font-14">Date</p>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="assets/images/users/avatar-5.jpg" alt="user-image" class="thumb-sm rounded-circle"/>
-                                    Lasse C. Overgaard
-                                </td>
-                                <td><i class="mdi mdi-checkbox-blank-circle text-danger"></i> Payment expired</td>
-                                <td>
-                                    $44,584
-                                    <p class="m-0 text-muted font-14">Amount</p>
-                                </td>
-                                <td>
-                                    7/11/2016
-                                    <p class="m-0 text-muted font-14">Date</p>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="assets/images/users/avatar-6.jpg" alt="user-image" class="thumb-sm rounded-circle"/>
-                                    Kasper S. Jessen
-                                </td>
-                                <td><i class="mdi mdi-checkbox-blank-circle text-success"></i> Confirm</td>
-                                <td>
-                                    $8,844
-                                    <p class="m-0 text-muted font-14">Amount</p>
-                                </td>
-                                <td>
-                                    1/11/2016
-                                    <p class="m-0 text-muted font-14">Date</p>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -335,91 +265,26 @@
                     <div class="table-responsive">
                         <table class="table table-vertical mb-1">
                             <tbody>
+                            @foreach ($latestOrders as $order)
+                                
                             <tr>
-                                <td>#12354781</td>
+                                <td>#{{$order->id}}</td>
                                 <td>
-                                    <img src="assets/images/products/1.jpg" alt="user-image" style="height: 46px;" class="mr-2" />
-                                    Riverston Glass Chair
+                                    {{$order->name}}
                                 </td>
-                                <td><span class="badge badge-pill badge-success">Delivered</span></td>
+                                <td><span class="badge badge-{{$order->status_data["class"]}} hide-print text-uppercase">{{$order->status_data["text"]}}</span></td>
                                 <td>
-                                    $185
-                                </td>
-                                <td>
-                                    5/12/2016
+                                    &euro;{{$order->amount_paid}}
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                    {{$order->created_at->diffForHumans()}}
+                                </td>
+                                <td>
+                                    <a href="{{ route("order.show",$order->id) }}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="mdi mdi-eye font-18"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>#52140300</td>
-                                <td>
-                                    <img src="assets/images/products/2.jpg" alt="user-image" style="height: 46px;" class="mr-2" />
-                                    Shine Company Catalina
-                                </td>
-                                <td><span class="badge badge-pill badge-success">Delivered</span></td>
-                                <td>
-                                    $1,024
-                                </td>
-                                <td>
-                                    5/12/2016
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#96254137</td>
-                                <td>
-                                    <img src="assets/images/products/3.jpg" alt="user-image" style="height: 46px;" class="mr-2" />
-                                    Trex Outdoor Furniture Cape
-                                </td>
-                                <td><span class="badge badge-pill badge-danger">Cancel</span></td>
-                                <td>
-                                    $657
-                                </td>
-                                <td>
-                                    5/12/2016
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#12365474</td>
-                                <td>
-                                    <img src="assets/images/products/4.jpg" alt="user-image" style="height: 46px;" class="mr-2" />
-                                    Oasis Bathroom Teak Corner
-                                </td>
-                                <td><span class="badge badge-pill badge-warning">Shipped</span></td>
-                                <td>
-                                    $8451
-                                </td>
-                                <td>
-                                    5/12/2016
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#85214796</td>
-                                <td>
-                                    <img src="assets/images/products/5.jpg" alt="user-image" style="height: 46px;" class="mr-2" />
-                                    BeoPlay Speaker
-                                </td>
-                                <td><span class="badge badge-pill badge-success">Delivered</span></td>
-                                <td>
-                                    $584
-                                </td>
-                                <td>
-                                    5/12/2016
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
-                                </td>
-                            </tr>
+                            @endforeach
+                             
                             </tbody>
                         </table>
                     </div>

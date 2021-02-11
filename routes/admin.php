@@ -30,8 +30,12 @@ Route::middleware(["auth","admin"])->prefix('admin')->group(function ()
         
     ]);
     Route::resource("appointments","AppointmentController")->except(["store"]);
+    Route::resource("newsletter","NewsletterController")->except(["store"]);
     //store will be from front-end and will not require auth
     Route::resource("product","Admin\ProductController")->except(["store","update"]);
+
+        Route::get("notification/{notification}/view","NotificationController@redirect")->name("notification.redirect");
+        Route::get("notifications","NotificationController@notifications")->name("notification.index");
 
         Route::get("support-tickets","Admin\TicketController@index")->name("support-tickets.index");
         Route::get("support-tickets/{ticket}","Admin\TicketController@show")->name("support-tickets.show");
