@@ -138,12 +138,12 @@
               <div class="col-xl-3 col-lg-3 col-md-12 d-print-none">
                   <div class="left-nav">
                       <ul class="p-0 m-0">
-                          <li>
+                          <!-- <li>
                               <a href="{{route("user.dashboard")}}" @if(in_array(\Request::route()->getName(),["user.dashboard"])) class="active" @endif >
                                   <img src="/src/user/img/home-2.svg" alt="left-nav-icons"/>
                                   Dashboard  
                               </a>
-                          </li>
+                          </li> -->
                           <li>
                               <a href="{{route("user.profile")}}" @if(in_array(\Request::route()->getName(),["user.profile","user.profile.edit","user.profile.password"])) class="active" @endif>
                                   <img src="/src/user/img/user2.svg" alt="left-nav-icons"/>
@@ -157,14 +157,14 @@
                               </a>
                           </li>
                          
-                          <li>
-                              <a href="{{route("tickets.index")}}">
+                          <!-- <li>
+                              <a href="{{route("tickets.index")}}" >
                                   <img src="/src/user/img/calender.svg" alt="left-nav-icons"/>
                                   My Appointments
                               </a>
-                          </li>
+                          </li> -->
                           <li>
-                              <a href="{{route("tickets.index")}}">
+                              <a href="{{route("tickets.index")}}" @if(in_array(\Request::route()->getName(),["tickets.index","tickets.create"])) class="active" @endif>
                                   <img src="/src/user/img/chat2.svg" alt="left-nav-icons"/>
                                   My Ticket 
                               </a>

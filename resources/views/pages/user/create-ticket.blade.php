@@ -42,12 +42,12 @@
                                 <label for="inputRelatedService">Related Service</label>
                                 <select name="service" id="inputRelatedService" class="form-control @error('service') is-invalid @enderror">
                                     <option value="">None</option>
-                                    <option value="S2842">
-                                        Starter Package - pubilcparrot.com (Cancelled)
+                                    @foreach ($orders as $item)
+                                        
+                                    <option value="Order #{{$item->id}}">
+                                        Order #{{$item->id}}
                                     </option>
-                                    <option value="S2841">
-                                        Starter Package - publicparrot.com (Terminated)
-                                    </option>
+                                    @endforeach
                                 </select>
                                 @error('service')
                                 <span class="invalid-feedback" role="alert">

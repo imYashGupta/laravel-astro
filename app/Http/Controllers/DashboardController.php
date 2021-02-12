@@ -14,7 +14,7 @@ class DashboardController extends Controller
     //
     public function dashboard()
     {
-        return view("pages.user.dashboard");
+        return redirect()->route("user.profile");
     }
 
     public function profile()

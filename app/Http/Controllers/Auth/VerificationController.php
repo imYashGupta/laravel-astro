@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -45,16 +46,18 @@ class VerificationController extends Controller
     }
 
     public function verify(Request $request)
-{
-    $user = User::find($request->route('id'));
+    {
+        $user = User::find($request->route('id'));
 
-    if (!hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
-        throw new AuthorizationException;
+        if (!hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
+            throw new AuthorizationException;
+        }
+
+        if ($user->markEmailAsVerified())
+            event(new Verified($user));
+
+            Auth::login($user);
+
+        return redirect()->route("homepage")->with('verified', true);
     }
-
-    if ($user->markEmailAsVerified())
-        event(new Verified($user));
-
-    return redirect()->route("homepage")->with('verified', true);
-}
 }

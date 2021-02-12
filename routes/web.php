@@ -28,29 +28,34 @@ Route::post('{product_slug}/review','ShopController@addReview')->name('product.a
 
 
 Auth::routes(['verify' => true]);
+Route::middleware(["auth"])->group(function (){
+    Route::get("/dashboard","DashboardController@dashboard")->name("user.dashboard");
+    Route::get("/profile","DashboardController@profile")->name("user.profile");
+    Route::get("/profile/edit","DashboardController@profileEdit")->name("user.profile.edit");
+    Route::post("/profile/basic-info","DashboardController@updateBasicInfo")->name("user.profile.info");
+    Route::post("/profile/address","DashboardController@updateAddress")->name("user.profile.address");
+    Route::get("/profile/password","DashboardController@password")->name("user.profile.password");
+    Route::post("/profile/password/update","DashboardController@updatePassword")->name("user.profile.update");
+    Route::get("/orders","DashboardController@orders")->name("user.orders");
+    Route::get("/orders/{order}","DashboardController@order")->name("user.order");
+    Route::get("/orders/token/{token}","DashboardController@orderToken")->name("user.order.token");
+    Route::get("/pay","HomeController@payment");
+    Route::get('cancel-payment', 'CheckoutController@paymentCancel')->name('cancel.payment');
+    Route::get('order-success', 'CheckoutController@paymentSuccess')->name('success.payment');
+    Route::resource("tickets","TicketController");
+    Route::post("tickets/{ticket}/reply","TicketController@storeReply")->name("ticket.storeReply");
+    Route::get("checkout","CheckoutController@checkoutPage")->name("checkout");
+    Route::post("checkout","CheckoutController@checkout")->name("checkout.store");
 
+
+});
+Route::post("/enquiry.store","EnquiryController@store")->name("enquiry.store");
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get("/dashboard","DashboardController@dashboard")->name("user.dashboard");
-Route::get("/profile","DashboardController@profile")->name("user.profile");
-Route::get("/profile/edit","DashboardController@profileEdit")->name("user.profile.edit");
-Route::post("/profile/basic-info","DashboardController@updateBasicInfo")->name("user.profile.info");
-Route::post("/profile/address","DashboardController@updateAddress")->name("user.profile.address");
-Route::get("/profile/password","DashboardController@password")->name("user.profile.password");
-Route::post("/profile/password/update","DashboardController@updatePassword")->name("user.profile.update");
 
-Route::get("/orders","DashboardController@orders")->name("user.orders");
-Route::get("/orders/{order}","DashboardController@order")->name("user.order");
-Route::get("/orders/token/{token}","DashboardController@orderToken")->name("user.order.token");
 // Route::get("/my-appoinments","DashboardController@appoinments")->name("user.my-appoinments");
 
-Route::get("/pay","HomeController@payment");
-Route::get('cancel-payment', 'CheckoutController@paymentCancel')->name('cancel.payment');
-Route::get('order-success', 'CheckoutController@paymentSuccess')->name('success.payment');
 
 
-Route::resource("tickets","TicketController");
-Route::post("tickets/{ticket}/reply","TicketController@storeReply")->name("ticket.storeReply");
-Route::post("/enquiry.store","EnquiryController@store")->name("enquiry.store");
 
 
 Route::get("contact-us",function(){
@@ -72,8 +77,6 @@ Route::get("appointment","HomeController@appointment")->name("appointment");
 Route::post("appointments","AppointmentController@store")->name("appointments.store");
 Route::get("appointment-submited/{id}","HomeController@appointmentSubmited")->name("appointment.submit");
 
-Route::get("checkout","CheckoutController@checkoutPage")->name("checkout");
-Route::post("checkout","CheckoutController@checkout")->name("checkout.store");
 
 //Newsletter
 Route::post("newsletter","NewsletterController@store")->name("newsletter.store");

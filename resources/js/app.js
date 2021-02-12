@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+const marked = require('marked');
 
 window.Vue = require('vue');
 import Vuelidate from "vuelidate";
@@ -68,6 +69,14 @@ const app = new Vue({
                 x.innerHTML = "";
             }, 3000);
         },
+        renderMd(md){
+            return md;
+            const tokens = marked.lexer(md);
+            // console.log(tokens);
+            const html = marked.parser(tokens);
+            // console.log(html);
+            return html;
+        }
         
       
     },

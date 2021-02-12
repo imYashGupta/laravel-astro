@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\TicketReply;
 use App\Notification;
+use App\Order;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view("pages.user.create-ticket");
+
+        $orders = Order::where("user_id",auth()->user()->id)->get();
+        return view("pages.user.create-ticket",["orders" => $orders]);
     }
 
     /**
@@ -74,14 +77,14 @@ class TicketController extends Controller
         Notification::create([
             "type" => "Ticket",
             "data"  => $ticket->id,
-            "title" => "New ticket created",
-            "message" => "New ticket genrated by ".$ticket->name,
+            "title" => "Support ticket created",
+            "message" => "New ticket #$ticket->id genrated by user ".$ticket->name,
         ]);
-        return redirect()->route("tickets.create");
+        return redirect()->route("tickets.index")->with("success","Ticket Created.");
     }
 
 
-    public function storeReply(Request $request,$ticket)
+    public function storeReply(Request $request,Ticket $ticket)
     {
         $request->validate([
             "message"   => ["required"],
@@ -90,9 +93,10 @@ class TicketController extends Controller
             "attachments.*.mimes" => "attachments must be a file of type: jpg, jpeg, png, gif.",
             "attachments.*.max" => "attachments must not be more then 4MB.",
         ]);
+        
 
         $reply =new TicketReply();
-        $reply->ticket_id = $ticket;
+        $reply->ticket_id = $ticket->id;
         $reply->user_id = auth()->user()->id;
         $reply->reply_by = auth()->user()->name;
         $reply->message = $request->message;
@@ -107,13 +111,17 @@ class TicketController extends Controller
         $reply->files = json_encode($attachments);
         $reply->ip_address	 = $request->ip();
         $reply->save();
+        $ticket->status = 1;
+        $ticket->save();
 
         Notification::create([
-            "type" => "Ticket reply",
-            "data"  => $reply->id,
-            "title" => "Update on Ticket",
+            "type" => "Ticket",
+            "data"  => $ticket->id,
+            "title" => "Update on Ticket #$reply->ticket_id",
             "message" => $reply->name. "replied to Ticket #".$reply->id,
         ]);
+
+        return redirect()->route("tickets.index")->with("success","Reply added.");
     }
     /**
      * Display the specified resource.

@@ -1,23 +1,61 @@
-@extends('layouts.app')
+@extends('layouts.web-master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="ast_pagetitle">
+<div class="ast_img_overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="page_title">
+					<h2>Login</h2>
+				</div>
+			</div>
+			 
+		</div>
+	</div>
+</div>
+<div class="ast_journal_wrapper ast_toppadder70 ast_bottompadder70">
 
-                <div class="card-body">
+<div class="container">
+    <div class="row justify-content-center" style="
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ __('Register') }}</div>
+
+                <div class="panel-body">
+                @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="firstname" class="col-md-4 col-form-label text-md-right">Firstname</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
-                                @error('name')
+                                @error('firstname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">Lastname</label>
+
+                            <div class="col-md-6">
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+
+                                @error('lastname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -53,13 +91,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -73,5 +105,12 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+<!-- Download wrapper start-->
+<div class="ast_download_wrapper ast_toppadder20 ast_bottompadder20">
+	<div class="container">
+		
+	</div>
 </div>
 @endsection

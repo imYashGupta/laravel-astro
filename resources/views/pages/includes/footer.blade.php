@@ -54,6 +54,7 @@
 							<li><a href="appointment">Appointment</a></li>
 							<li><a href="faq">FAQ</a></li>
 							<li><a href="contact-us">contact</a></li>
+							<li><a href="/login">login</a></li>
 						</ul>
 					</div>				
 				</div>			

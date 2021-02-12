@@ -1,13 +1,33 @@
-@extends('layouts.app')
+@extends('layouts.web-master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<div class="ast_pagetitle">
+<div class="ast_img_overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="page_title">
+					<h2>Forgot Password</h2>
+				</div>
+			</div>
+			 
+		</div>
+	</div>
+</div>
+<div class="ast_journal_wrapper ast_toppadder70 ast_bottompadder70">
 
-                <div class="card-body">
+<div class="container">
+    <div class="row justify-content-center" style="
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">Forgot Password</div>
+
+                <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -43,5 +63,12 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+<!-- Download wrapper start-->
+<div class="ast_download_wrapper ast_toppadder20 ast_bottompadder20">
+	<div class="container">
+		
+	</div>
 </div>
 @endsection

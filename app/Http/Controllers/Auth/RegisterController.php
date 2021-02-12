@@ -90,6 +90,6 @@ class RegisterController extends Controller
 
         return $request->wantsJson()
                     ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath());
+                    : redirect()->back()->with("success","A verification link has been sent to your email.");
     }
 }

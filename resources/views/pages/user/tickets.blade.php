@@ -8,6 +8,7 @@
 @section('content')
 <div class="col-xl-9 col-lg-9 col-md-12">
     <div class="main-center-data">
+            @include('components.alert')
         <div class="heading-and-upgrade-button mb-4">
             <h3 class="display-username">My Ticket</h3>
             <a href="{{ route("tickets.create") }}"   class="theme-btn">Create Ticket</a>
@@ -42,7 +43,7 @@
                                         <td>{{ $ticket->created_at->format("F d ,Y (H:i)") }}</td>
                                             <td>{{$ticket->updated_at->diffForHumans()}}
                                         </td>
-                                        <td><a href="{{ route("support-tickets.show",$ticket->id) }}">View</a></td>
+                                        <td><a href="{{ route("tickets.show",$ticket->id) }}">View</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

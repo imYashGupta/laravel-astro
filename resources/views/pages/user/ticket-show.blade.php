@@ -19,14 +19,65 @@
                     This ticket is closed. You may reply to this ticket to reopen it.
                 </div>
                 @endif
-                <form method="POST" action="{{ route("ticket.storeReply",$ticket->id) }}" enctype="multipart/form-data" role="form">
+                
+
+
+
+
+            </div>
+            <div class="col-12 mt-3">
+                <div class="card mb-3 w-75 float-right" >
+                    <div class="card-header bg-primary text-white">
+                        {{$ticket->user->name}}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{$ticket->message}}</p>
+                        @if(count($ticket->getAttachments()) > 0)
+                                  <h6 class="text-muted">Attachments:</h6>
+                                  @endif
+                                  @foreach ($ticket->getAttachments() as $file)
+                                  <a href="{{$ticket->getAttachmentUrl($file)}}" target="_blank">
+                                      <img  src="{{$ticket->getAttachmentUrl($file)}}" alt="" class="rounded img-thumbnail" style="width: 120px;">      
+                                  </a>                                  
+                                  @endforeach
+                    </div>
+                    <div class="card-footer text-muted  ">
+                      {{$ticket->created_at->diffForHumans()}}
+                    </div>
+                </div>
+                @foreach ($ticket->getReplies() as $reply)
+                    <div class="card mb-3 w-75 @if($reply->user_id==auth()->user()->id) float-right @else float-left @endif  ">
+                        <div class="card-header  @if($reply->user_id==auth()->user()->id) bg-primary text-white  @endif">
+                            {{$reply->user->name}}
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{$reply->message}}</p>
+                            @if(count($reply->getAttachments()) > 0)
+                                <h6 class="text-muted">Attachments:</h6>
+                                @endif
+                                @foreach ($reply->getAttachments() as $file)
+                                <a href="{{$reply->getAttachmentUrl($file)}}" target="_blank">
+                                    <img  src="{{$reply ->getAttachmentUrl($file)}}" alt="" class="rounded img-thumbnail" style="width: 120px;">      
+                                </a>                                  
+                                @endforeach
+                        </div>
+                        <div class="card-footer text-muted">
+                        {{$reply->created_at->diffForHumans()}}
+                        </div>
+                    </div>
+                @endforeach
+
+                
+            </div>
+            <div class="col-md-12 ">
+                <form   method="POST" action="{{ route("ticket.storeReply",$ticket->id) }}" enctype="multipart/form-data" role="form">
                     @csrf
                     <div class="card">
-                        <div class="card-header" id="card-header" style="cursor: pointer;user-select: none;">
+                        <div class="card-header bg-primary text-white" id="card-header" style="cursor: pointer;user-select: none;">
                             <i class="fa fa-pencil"></i>
                             Reply Ticket
                         </div>
-                        <div class="card-body extra-padding  " @if ($errors->any())  @else style="display: none;-webkit-user-select: none;" @endif id="card">
+                        <div class="card-body extra-padding  "  id="card">
 
 
                             <div class="form-group">
@@ -68,36 +119,6 @@
                     </div>
 
                 </form>
-
-
-
-
-            </div>
-            <div class="col-12 mt-3">
-                @foreach ($ticket->getReplies() as $reply)
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            {{$reply->user->name}}
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{$reply->message}}</p>
-                        </div>
-                        <div class="card-footer text-muted">
-                        {{$reply->created_at->diffForHumans()}}
-                        </div>
-                    </div>
-                @endforeach
-                <div class="card ">
-                    <div class="card-header">
-                        {{$ticket->user->name}}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{$ticket->message}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                      {{$ticket->created_at->diffForHumans()}}
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -111,9 +132,9 @@
         element: document.getElementById("simplemde")
     });
 
-    $("#card-header").click(function() {
+    /* $("#card-header").click(function() {
         console.log("sad")
         $("#card").toggle();
-    })
+    }) */
 </script>
 @endsection

@@ -18,7 +18,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets=Ticket::where("user_id",auth()->user()->id)->latest()->get();
+        $tickets=Ticket::latest()->get();
         return view("admin.support.tickets",["tickets" => $tickets]);
     }
 
@@ -82,6 +82,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {   
+//        return $ticket->markdown();
         return view("admin.support.view",["ticket" => $ticket]);
     }
 

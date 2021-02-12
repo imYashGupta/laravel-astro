@@ -40,6 +40,13 @@ class Notification extends Model
                     "url" => route("appointments.index")
                 ];
                 break;
+            case 'Ticket':
+                return [
+                    "icon" => "mdi-ticket-account",
+                    "bg" => "bg-purple",
+                    "url" => route("support-tickets.show",$this->data)
+                ];
+                break;
             default:
                 return [
                     "icon" => "mdi-message",
