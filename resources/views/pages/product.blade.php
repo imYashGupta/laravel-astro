@@ -53,9 +53,13 @@
     margin-bottom: 15px
 }
 </style>
+ 
 @endsection
 @section('content')
-	
+
+<!-- Your share button code -->
+
+
 <!-- Header End --> 
 <!--Breadcrumb start-->
 <div class="ast_pagetitle">
@@ -140,7 +144,7 @@
 											{{-- <button type="submit" class="buy_btn ast_btn" value="Buy Now">Buy Now</button> --}}
 										</form>
 										<add-to-cart-btn readqty="true" product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
-										<a href="#"  style="background: #4267B2;color: white;border: #4267B2;" class="btn ast_btn" >Share on facebook
+										<a href="#" onclick="share_fb('{{ route('product',$product->slug) }}');return false;" rel="nofollow" share_url="http://urlhere.com/test/55d7258b61707022e3050000" target="_blank"    style="background: #4267B2;color: white;border: #4267B2;" class="btn ast_btn" >Share on facebook
 									    	<i class="fa fa-facebook" aria-hidden="true"></i>
 										</a>
 									</div>
@@ -229,6 +233,10 @@
 	$("#quantity").on("keypress",function(){
 		return false;
 	})
+
+	function share_fb(url) {
+  window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'facebook-share-dialog',"width=626, height=436")
+}
 </script>
 <!--Main js file End-->
 @endsection

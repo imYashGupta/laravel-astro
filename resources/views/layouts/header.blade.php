@@ -5,7 +5,7 @@
 <div class="topbar-left">
     <div class="">
         <!--<a href="index" class="logo text-center">Admiria</a>-->
-        <a href="index" class="logo"><img src="{{ URL::asset('/src/images/header/pathway_logo.png') }}" height="36" alt="logo"></a>
+        <a href="{{ route("dashboard") }}" class="logo"><img src="{{ URL::asset('/src/images/header/pathway_logo.png') }}" height="36" alt="logo"></a>
     </div>
 </div>
 <div class="sidebar-inner slimscrollleft">
