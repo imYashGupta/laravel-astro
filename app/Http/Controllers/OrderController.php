@@ -113,6 +113,7 @@ class OrderController extends Controller
                      
                     break;
             }
+            $order->save();
         }
         return redirect()->back()->with("success","Order status changed.");
     }

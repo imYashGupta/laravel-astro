@@ -23,6 +23,7 @@
 					<div class="woocommerce_checkout_receipt step">
 						<h1>THANK YOU FOR YOUR REQUESST!</h1>
 						<p>We have received your request and would like to thank you for submitting it to us. If your inquiry is urgent, please use the telephone number listed on the website to talk to us.<br>We will get back to you soon.</p>
+						<a href="/shop" class="btn ast_btn">Visit Shop</a>
 					</div>
 				</div>
 			</div>

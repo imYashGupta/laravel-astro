@@ -75,7 +75,7 @@
 						</div>
 					</div>
 					@empty
-						
+						<p>No Blogs Found.</p>
 					@endforelse
 					
 					{{-- <div class="col-lg-12">

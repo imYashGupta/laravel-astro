@@ -55,14 +55,7 @@
 			</div>
 			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 col-lg-pull-5 col-md-pull-5 col-sm-pull-5 col-xs-pull-0">
 				<div class="ast_about_info">
-					<!-- <h4>know about Paathway</h4> -->
-					<p>Paathway Astrofriend is having expertise in - Morden Vedic Astrology and knowledge of tradition astrology too. I Hiral Aaditkumar, a post graduate while Belonging to a ritual frame brahmin family my spiritual journey began in the early age of my childhood when I start understanding mother earth and Universe. I developed a natural interest in Astrology at a very young age and after meditation and practice, I began practicing the science of Astrology, Numerology and signature professionally.</p>
-					<p>Where My Guru Mr. Panckaj Nagar & My Father in law Late. Mr. Atul Dave moulded me as a Profession Astrologer. Over 10 years I have helped many people for all common issues of life related to health, wealth, job, career, sickness, marital issues.</p>
-					<p>-10 years of working experience as Astrologer</p>
-					<p>-Use logic and reason to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems</p>
-					<p>-Talk to others to convey information effectively</p>
-					<p>-Ability to listen to and understand information and ideas presented through spoken words and sentences</p>
-					<a href="/about-us" class="ast_btn">know more</a>
+					{!!$about["content"]!!}
 				</div>
 			</div>
 		</div>

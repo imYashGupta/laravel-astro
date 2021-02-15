@@ -25,6 +25,8 @@ class HomeController extends Controller
     {
         
         $testimonials=Testimonial::where("status",1)->get();
+        $getAbout=DB::table("page_management")->where("name","about")->first();    
+        $about= json_decode($getAbout->content,true); 
         $services=DB::table("page_management")->whereIn("name",["horoscopes","numerology","kundli-dosh","birth-journal","vastu-shastra","gemstones"])->get();     
         $services->map(function ($service)
         {
@@ -35,7 +37,7 @@ class HomeController extends Controller
             $service->main = json_decode($service->content,true)["main"];
 
         });
-        return view('pages.index',["testimonials" => $testimonials,"services" => $services]);
+        return view('pages.index',["testimonials" => $testimonials,"services" => $services,"about" => $about]);
     }
 
     public function about()

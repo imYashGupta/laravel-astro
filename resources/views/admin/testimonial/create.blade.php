@@ -67,7 +67,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6">
+                                                   <!--  <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Image</label> <br/>
                                                             <img src="@if($testimonial){{$testimonial->imageUrl}}@else{{ URL::asset('assets/images/placeholder/image_large-300x300.png') }}@endif" alt="Testmonial img" class="img-fluid" id="image" style="width: 230px;height:230px" />
@@ -81,7 +81,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <button type="submit" class="btn btn-success waves-effect waves-light">Save Changes</button>
                                                 <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>

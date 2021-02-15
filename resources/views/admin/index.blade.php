@@ -274,7 +274,7 @@
                                 </td>
                                 <td><span class="badge badge-{{$order->status_data["class"]}} hide-print text-uppercase">{{$order->status_data["text"]}}</span></td>
                                 <td>
-                                    &euro;{{$order->amount_paid}}
+                                &#163;{{$order->amount_paid}}
                                 </td>
                                 <td>
                                     {{$order->created_at->diffForHumans()}}

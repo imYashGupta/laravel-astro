@@ -1,5 +1,9 @@
 @extends("layouts.web-master")
 @section("styles")
+<meta property="og:url"                content="{{route("product",$product->slug)}}" />
+<meta property="og:title"              content="{{$product->name}}" />
+<meta property="og:description"        content="{{$product->short_description}}" />
+<meta property="og:image"              content="{{$product->thumbnailOrignal()}}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" type="text/css" href="src/js/slick/slick.css">
 <link rel="stylesheet" type="text/css" href="src/js/slick/slick-theme.css">
@@ -123,7 +127,8 @@
 							 
 										@endif
 									</div>
-									<h2 style="margin: 0;margin-bottom: 15px;">€55</h2>
+									<h2 style="margin: 0;margin-bottom: 15px;color:#832625">&#163;{{$product->price}} @if($product->discount!=0)<small class="cross-text">&#163;{{ $product->actualPrice }}</small>@endif </h2>
+									<h3><i aria-hidden="true" class="fa fa-phone"></i> You may also call us at  <a class="text-primary" href="tel:{{ $appData["phone"] }}">{{ $appData["phone"] }}</a> to order</h3>
 									<p>{{ $product->short_description }}</p>
 									<div class="stock_details">{{ $product->units }} In Stock</div>
 									<div class="prod_quantity">QTY <input type="number" name="quantity" id="quantity" value="{{!is_null($product->min_qty) ? $product->min_qty : 1}}" min="{{!is_null($product->min_qty) ? $product->min_qty : 1}}" @if(!is_null($product->max_qty)) max="{{$product->max_qty}}" @endif/></div>
@@ -135,9 +140,9 @@
 											{{-- <button type="submit" class="buy_btn ast_btn" value="Buy Now">Buy Now</button> --}}
 										</form>
 										<add-to-cart-btn readqty="true" product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
-										<!-- <a href="#" class="ad_wishlist">Add To Wishlist 
-									    	<i class="fa fa-heart-o" aria-hidden="true"></i>
-										</a> -->
+										<a href="#"  style="background: #4267B2;color: white;border: #4267B2;" class="btn ast_btn" >Share on facebook
+									    	<i class="fa fa-facebook" aria-hidden="true"></i>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -176,7 +181,7 @@
 									<a href="{{ route("product",$product->slug) }}"><img src="{{$product->thumbnailUrl}}" class="img-responsive"></a>
 								</div>
 								<div class="ast_product_info">
-								@if (!is_null($product->rating))
+										@if (!is_null($product->rating))
 											@for ($i = 0; $i < $product->rating; $i++)
 											<i class="fa fa-star" aria-hidden="true"></i>
 											@endfor
@@ -186,9 +191,10 @@
 							 
 										@endif
 									<h4 class="ast_shop_title"><a href="{{ route("product",$product->slug) }}">{{$product->name}}</a></h4>
-									<p>&euro;30.00</p>
+									<p>&#163;{{$product->price}} @if($product->discount!=0)<small class="cross-text">&#163;{{ $product->actualPrice }}</small>@endif</p>
+									
 									<div class="ast_info_bottom">
-										<a href="#" class="ast_add_cart ast_btn">add to cart</a>
+										<add-to-cart-btn   product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
 									</div>
 								</div>
 							</div>

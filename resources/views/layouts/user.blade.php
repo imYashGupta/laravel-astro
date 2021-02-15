@@ -138,12 +138,12 @@
               <div class="col-xl-3 col-lg-3 col-md-12 d-print-none">
                   <div class="left-nav">
                       <ul class="p-0 m-0">
-                          <!-- <li>
-                              <a href="{{route("user.dashboard")}}" @if(in_array(\Request::route()->getName(),["user.dashboard"])) class="active" @endif >
+                          <li>
+                              <a href="{{route("homepage")}}"  >
                                   <img src="/src/user/img/home-2.svg" alt="left-nav-icons"/>
-                                  Dashboard  
+                                  Home  
                               </a>
-                          </li> -->
+                          </li>
                           <li>
                               <a href="{{route("user.profile")}}" @if(in_array(\Request::route()->getName(),["user.profile","user.profile.edit","user.profile.password"])) class="active" @endif>
                                   <img src="/src/user/img/user2.svg" alt="left-nav-icons"/>

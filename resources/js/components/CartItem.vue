@@ -21,7 +21,7 @@
                 @change="qtyUpdate"
             />
         </td>
-        <td>&euro;	{{item.subtotal}}</td>
+        <td>&#163;	{{item.subtotal}}</td>
         <td>
             <span @click="removeItem" class="close_pro"><i class="fa fa-trash"></i></span>
         </td>
@@ -66,4 +66,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.cross-text{
+    text-decoration: line-through;
+}
+</style>

@@ -13,7 +13,7 @@ class Product extends Model
 
     use SoftDeletes;
 
-    protected $appends = ["thumbnailUrl","category","images","rating"];
+    protected $appends = ["thumbnailUrl","category","images","rating","actualprice"];
     public function getThumbnailUrlAttribute()
     {
         return Storage::disk('public')->url("products/thumbnails/".$this->thumbnail);
@@ -51,6 +51,12 @@ class Product extends Model
         return $collection;
     }
 
+    public function thumbnailOrignal()
+    {
+        return Storage::disk('public')->url("products/".$this->thumbnail);
+
+    }
+
     public function getRatingAttribute()
     {
         $reviews=Review::where("product_id",$this->id)->get();
@@ -63,5 +69,15 @@ class Product extends Model
         }else{
             return NULL;
         }
+    }
+
+    public function getPriceAttribute($price)
+    {
+            return $price - $this->discount;
+    }
+
+    public function getActualPriceAttribute()
+    {
+        return $this->price+$this->discount;
     }
 }

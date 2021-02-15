@@ -25,7 +25,7 @@
                                             <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Image</th>
+                                                        <!-- <th>Image</th> -->
                                                         <th>Name</th>
                                                         <th>Designation</th>
                                                         <th>Description</th>
@@ -37,9 +37,9 @@
 
                                                     @forelse ($testimonials as $testimonial)
                                                     <tr>
-                                                        <td class="product-list-img  " tabindex="0">
+                                                       <!--  <td class="product-list-img  " tabindex="0">
                                                             <img  src="{{ $testimonial->imageUrl }}" class="img-fluid avatar-md rounded" alt="Testimonial Image">
-                                                        </td>
+                                                        </td> -->
                                                          <td> {{ $testimonial->name}}</td>
                                                          <td> {{ $testimonial->designation}}</td>
                                                          <td> {{ $testimonial->description}}</td>

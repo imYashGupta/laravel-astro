@@ -30,7 +30,7 @@
                     </td>
                     <td>&nbsp;</td>
                     <td>Coupon Discount</td>
-                    <td>${{coupon.discount}}</td>
+                    <td>&#163;{{coupon.discount}}</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                     </td>
                     <td>&nbsp;</td>
                     <td>Total</td>
-                    <td>${{subtotal}}</td>
+                    <td>&#163;{{subtotal}}</td>
                     <td>&nbsp;</td>
                 </tr>
             </tbody>

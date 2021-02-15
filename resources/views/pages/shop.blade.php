@@ -99,10 +99,8 @@
 										@endif
 								 
 									<h4 class="ast_shop_title"><a href="{{route("product",$product->slug)}}">{{$product->name}}</a></h4>
-									<p>&#128;{{$product->price}}</p>
+									<p>&#163;{{$product->price}} @if($product->discount!=0)<small class="cross-text">&#163;{{ $product->actualPrice }}</small>@endif</p>
 									<div class="ast_info_bottom">
-										
-
 										<add-to-cart-btn   product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
 									</div>
 								</div>

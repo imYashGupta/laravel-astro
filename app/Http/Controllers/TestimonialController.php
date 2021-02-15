@@ -42,7 +42,7 @@ class TestimonialController extends Controller
             "name" => ["required"],
             "designation"   => ["required"],
             "description"   => ["required"],
-            "image" => ["required","mimes:jpeg,jpg,png","max:1024"],
+         
             "status" => ["required","in:0,1"]
 
         ]);
@@ -53,13 +53,13 @@ class TestimonialController extends Controller
         $testimonial->description = $request->description;
         $testimonial->status = $request->status;
 
-        $imageFile=$request->file("image");
+        /* $imageFile=$request->file("image");
         $image=\Intervention\Image\Facades\Image::make($imageFile->getRealPath());
         $image->resize(150,150);
         $imageName=Str::random(40).'.'.$imageFile->getClientOriginalExtension();
         Storage::disk('public')->put('testimonials/'.$imageName,(string) $image->encode()); //save thumbnail
 
-        $testimonial->image=$imageName;
+        $testimonial->image=$imageName; */
         $testimonial->save();
         return redirect()->route("testimonial.index")->with("success","Testimonial Created.");
 

@@ -81,7 +81,7 @@
                                                         <td>
                                                             <a href="#" class="font-600 text-muted">#{{$order->id}}</a>
                                                         </td>
-                                                        <td>&euro;{{$order->amount_paid}}</td>
+                                                        <td>&#163;{{$order->amount_paid}}</td>
                                                         <td>{{$order->created_at->format("M d, Y h:i A")}} </td>
                                                         <td><i class="fa fa-cc-paypal text-muted font-20"></i> </td>
                                                         <td>{{ $order->name }} <br>{{ $order->billing_email }}</td>
