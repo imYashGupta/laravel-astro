@@ -69,9 +69,9 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="index.php">home</a></li>
-					<li>//</li>
-					<li><a href="about.php">Product</a></li>
+					<li><a href="/">Home</a></li> 
+					<li>/</li>
+					<li><a href="{{route("shop")}}">Shop</a></li>
 				</ul>
 			</div>
 		</div>

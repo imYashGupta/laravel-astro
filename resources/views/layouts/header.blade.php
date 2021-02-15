@@ -11,11 +11,12 @@
 <div class="sidebar-inner slimscrollleft">
     <div id="sidebar-menu">
         <ul>
+         
             <li class="menu-title">Navigation</li>
+          
             <li>
                 <a href="{{ route("dashboard") }}" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span>  Dashboard  </span> </a>
             </li>
-          
             <li>
                 <a href="{{route("users.index")}}" class="waves-effect"><i class="mdi mdi-account-outline"></i><span> Users </span></a>
             </li>

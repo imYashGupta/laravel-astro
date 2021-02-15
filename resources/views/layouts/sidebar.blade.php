@@ -21,6 +21,11 @@
         </li> --}}
         <!-- Fullscreen -->
         <li class="list-inline-item dropdown notification-list hidden-xs-down">
+            <a class="nav-link waves-effect" href="/" target="_blank" >
+                <i class="mdi mdi-open-in-new noti-icon"></i>
+            </a>
+        </li>
+        <li class="list-inline-item dropdown notification-list hidden-xs-down">
             <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
                 <i class="mdi mdi-fullscreen noti-icon"></i>
             </a>
