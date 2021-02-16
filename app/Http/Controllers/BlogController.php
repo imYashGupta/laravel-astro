@@ -29,8 +29,8 @@ class BlogController extends Controller
     public function blog(Request $request,$slug)
     {
         $blog=Blog::where("slug",$slug)->where("status",1)->first();
-        $blog->views = $blog->views + 1;
-        $blog->update();
+        // $blog->views = $blog->views + 1;
+        // $blog->save();
         return view("pages.blog-single",["blog" => $blog,"categories" => $this->categories,"popularBlogs" => $this->popularBlogs]);
     }
 }

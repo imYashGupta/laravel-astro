@@ -42,8 +42,8 @@
 					<aside class="widget widget_recent_entries">
 						<h4 class="widget-title">Popular Posts</h4>
 						<ul>
-							@foreach ($popularBlogs as $blog)
-							<li><a href="{{ route("blog",$blog->slug) }}">{{Str::limit($blog->title,85,'...')}}</a></li>								
+							@foreach ($popularBlogs as $blogs)
+							<li><a href="{{ route("blog",$blogs->slug) }}">{{Str::limit($blogs->title,85,'...')}}</a></li>								
 							@endforeach
 						</ul>
 					</aside>
@@ -52,7 +52,7 @@
 			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 				<div class="ast_blog_box">
 					<div class="ast_blog_img">
-						<span class="ast_date_tag">28 august, 2018</span>
+						<span class="ast_date_tag">{{$blog->category}}</span>
 						<img src="{{ $blog->thumbnailUrl }}" width="100%" alt="Blog" title="Blog">
 					</div>
 					<div class="ast_blog_info">
