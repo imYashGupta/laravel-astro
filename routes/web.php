@@ -84,3 +84,4 @@ Route::get("newsletter/unsubscribe/{email}/","NewsletterController@unsubcribe")-
 
 
 Route::get("{product_slug}",'ShopController@product')->name("product");
+

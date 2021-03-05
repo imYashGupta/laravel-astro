@@ -23,7 +23,7 @@ class TicketReply extends Model
 
     public function getAttachmentUrl($file)
     {
-        return Storage::disk('public')->url('attachments/'.$file);
+        return Storage::disk('s3')->url('attachments/'.$file);
     }
     public function markdown()
     {

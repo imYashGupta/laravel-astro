@@ -65,13 +65,13 @@
                                                         </div>
                                                             <textarea name="description" id="summernote" class="summernote" cols="30" rows="10">{{ $product ? $product->description : old("description") }}</textarea>
                                                             {{-- <textarea  class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5">@if($product){{ $product->description }}@else{{ old('description')}}@endif</textarea> --}}
-                                                            
+
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="category">Category</label> 
-                                                            <select name="category" id="category" class="form-control @error('category') is-invalid @enderror"> 
+                                                            <label for="category">Category</label>
+                                                            <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
                                                                 <option value="">Choose Category</option>
                                                                 @foreach($categories as $category)
                                                                 <option {{ $product ? ($product->category_id==$category->id ? "selected" : "") : (old("category")==$category->id ? "selected" : '') }} value="{{$category->id}}">{{$category->name}}</option>
@@ -90,7 +90,7 @@
                                                         <div class="row">
                                                             <div class="form-group col-md-4">
                                                                 <label for="price">Price</label>
-                                                                <input  value="@if($product){{ $product->price }}@else{{ old('price')}}@endif" min="1" id="price" name="price" type="text" class="form-control  @error('price') is-invalid @enderror">
+                                                                <input  value="@if($product){{ $product->actualprice }}@else{{ old('price')}}@endif" min="1" id="price" name="price" type="text" class="form-control  @error('price') is-invalid @enderror">
                                                                 @error('price')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -117,7 +117,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            
+
                                                             <div class="form-group col-md-4">
                                                                 <label for="availability">Availability</label>
                                                                 <select  class="form-control  @error('availability') is-invalid @enderror" name="availability" id="availability">
@@ -163,13 +163,13 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                    
+
                                                         </div>
                                                     </div>
-                                               
 
-                                                    
-                                                   
+
+
+
                                                 </div>
 
                                                 <button type="submit" class="btn btn-success waves-effect waves-light">Save Changes</button>
@@ -177,7 +177,7 @@
                                     </div>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                           
+
                                             <h4 class="mt-0 header-title">Product Images</h4>
                                             @error("images")
                                             <p class="text-danger m-b-30 font-14">{{ $message }}</p>
@@ -187,16 +187,16 @@
                                                 <product-images images-arr="{{$product->images}}"></product-images>
                                                 @endif
                                             <button type="submit" class="btn btn-success waves-effect waves-light">Save Changes</button>
-                                                
+
 
                                         </div>
                                     </div>
                                     <div class="card">
                                         <div class="card-body">
-    
+
                                             <h4 class="card-title">Meta Data</h4>
                                             <p class="card-title-desc">Fill all information below</p>
-    
+
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
@@ -208,7 +208,7 @@
                                                             <input value="@if($product){{ $product->meta_keyword }}@endif" id="metakeywords" name="metakeywords" type="text" class="form-control">
                                                         </div>
                                                     </div>
-    
+
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="metadescription">Meta Description</label>
@@ -216,13 +216,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-    
+
                                                 <button type="submit" class="btn btn-success waves-effect waves-light mr-1">Save Changes</button>
-    
-    
+
+
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                                 </form>
                             </div>
@@ -246,11 +246,11 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
+
             reader.onload = function(e) {
             $('#productThumb').attr('src', e.target.result);
             }
-            
+
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
     }

@@ -37,7 +37,7 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     public function store(Request $request,Ticket $ticket)
     {
         $request->validate([
@@ -47,7 +47,7 @@ class TicketController extends Controller
             "attachments.*.mimes" => "attachments must be a file of type: jpg, jpeg, png, gif.",
             "attachments.*.max" => "attachments must not be more then 4MB.",
         ]);
-        
+
         $reply =new TicketReply();
         $reply->ticket_id = $ticket->id;
         $reply->user_id = auth()->user()->id;
@@ -57,7 +57,7 @@ class TicketController extends Controller
         if($request->has("attachments")){
             foreach ($request->file("attachments") as $attachment) {
                 $attachmentName = Str::random(40).'.'.$attachment->getClientOriginalExtension();
-                Storage::disk('public')->putFileAs('attachments',$attachment,$attachmentName);  
+                Storage::disk('s3')->putFileAs('attachments',$attachment,$attachmentName);
                 array_push($attachments,$attachmentName);
             }
         }
@@ -81,7 +81,7 @@ class TicketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Ticket $ticket)
-    {   
+    {
 //        return $ticket->markdown();
         return view("admin.support.view",["ticket" => $ticket]);
     }

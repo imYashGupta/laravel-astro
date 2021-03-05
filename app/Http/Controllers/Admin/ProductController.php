@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function validation($request,$isCreate)
     {
-        $reqThumb = $isCreate ? 'required|' : ""; 
+        $reqThumb = $isCreate ? 'required|' : "";
         $request->validate([
             "name" => "required",
             "short_description" => "required",
@@ -48,7 +48,7 @@ class ProductController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     * 
+     *
      */
     public function create()
     {
@@ -82,7 +82,7 @@ class ProductController extends Controller
             // }
             $product = new Product();
             $str="created";
-        }   
+        }
         $product->name = $request->name;
         $product->slug = $prod->id ? $prod->slug : $this->genrateUniqueSlug($request->name);
         $product->short_description = $request->short_description;
@@ -102,20 +102,23 @@ class ProductController extends Controller
             $thumbnailImage=\Intervention\Image\Facades\Image::make($thumbnail->getRealPath());
             $thumbnailImage->resize(300,240);
             $thumbnailName=Str::random(40).'.'.$thumbnail->getClientOriginalExtension();
-            Storage::disk('public')->put('products/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
-            Storage::disk('public')->putFileAs('products',$request->file("thumbnail"),$thumbnailName); //save orignal
+            Storage::disk('s3')->put('products/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
+            Storage::disk('s3')->putFileAs('products',$request->file("thumbnail"),$thumbnailName); //save orignal
             $product->thumbnail=$thumbnailName;
         }
         $product->save();
+       /*  if ($request->hasFile("thumbnail")) {
+            DB::table("product_images")->insert(["name" => $thumbnailName, "product_id" => $product->id]);
+        } */
         if($request->has("images")){
             $images =$request->file("images");
             foreach($images as $image){
                 $thumbnailImage=\Intervention\Image\Facades\Image::make($image->getRealPath())->resize(100,100);
                 $imageName = Str::random(40).'.'.$image->getClientOriginalExtension();
-                Storage::disk('public')->putFileAs('products',$image,$imageName); //save orignal 
-                Storage::disk('public')->put('products/thumbnails/'.$imageName,(string) $thumbnailImage->encode()); //save thumbnail cropped
+                Storage::disk('s3')->putFileAs('products',$image,$imageName); //save orignal
+                Storage::disk('s3')->put('products/thumbnails/'.$imageName,(string) $thumbnailImage->encode()); //save thumbnail cropped
                 DB::table("product_images")->insert(["name" => $imageName,"product_id" => $product->id]);
-           
+
             }
         }
        return redirect()->route("product.index")->with("success","Product $str.");
@@ -175,7 +178,7 @@ class ProductController extends Controller
          $slug = Str::slug($productName, '-');
          $slugExists=Product::where("slug",$slug)->exists();
          if ($slugExists) {
-             return $slug."-".Str::random(3);    
+             return $slug."-".Str::random(3);
          }
          else{
              return $slug;
@@ -183,10 +186,10 @@ class ProductController extends Controller
     }
 
     public function deleteImage(Request $request)
-    {   
+    {
         $image = DB::table("product_images")->where("id",$request->id)->first();
         DB::table("product_images")->where("id",$request->id)->delete();
-        Storage::disk('public')->delete('products/'.$image->name);
+        Storage::disk('s3')->delete('products/'.$image->name);
         return response()->json(["response" => "ok"],200);
     }
 }

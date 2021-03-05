@@ -12,7 +12,7 @@ class Blog extends Model
     protected $appends = ["thumbnailUrl","category"];
     public function getThumbnailUrlAttribute()
     {
-        return Storage::disk('public')->url("blogs/thumbnails/".$this->thumbnail);
+        return Storage::disk('s3')->url("blogs/thumbnails/".$this->thumbnail);
     }
 
     public function getCategoryAttribute()

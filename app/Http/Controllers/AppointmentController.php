@@ -19,7 +19,9 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments=Appointment::latest()->get();
+
         return view("admin.appointments.appointments",["appointments" => $appointments]);
+
     }
 
     /**

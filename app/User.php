@@ -53,7 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail
         if(is_null($this->display_image)){
             return asset('assets/images/placeholder/profile-placeholder.png');
         }else{
-            return Storage::disk('public')->url('users/'.$this->display_image);
+             return Storage::disk('s3')->url('users/'.$this->display_image);
+            //return Storage::disk('s3')->response('users/'.$this->display_image);
         }
     }
 

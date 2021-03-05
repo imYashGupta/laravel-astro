@@ -16,7 +16,7 @@ class Product extends Model
     protected $appends = ["thumbnailUrl","category","images","rating","actualprice"];
     public function getThumbnailUrlAttribute()
     {
-        return Storage::disk('public')->url("products/thumbnails/".$this->thumbnail);
+        return Storage::disk('s3')->url("products/thumbnails/".$this->thumbnail);
     }
 
 
@@ -30,15 +30,25 @@ class Product extends Model
         }
     }
 
-    
+
 
     public function getImagesAttribute()
     {
         $collection=DB::table("product_images")->where("product_id",$this->id)->get();
         $collection->map(function($image ){
-            $image->url =  Storage::disk('public')->url("products/".$image->name);
+            $image->url =  Storage::disk('s3')->url("products/".$image->name);
         });
+
+        /* $thumb = collect([
+            "id" => "1a",
+            "name" => $this->thumbnail,
+            "product_id" => $this->id,
+            "url" => Storage::disk('s3')->url("products/" . $this->thumbnail)
+        ]);
+
+        $collection->prepend($thumb); */
         return $collection;
+
     }
 
     //for 100x100 size
@@ -46,14 +56,14 @@ class Product extends Model
     {
         $collection=DB::table("product_images")->where("product_id",$this->id)->get();
         $collection->map(function($image ){
-            $image->url =  Storage::disk('public')->url("products/thumbnails/".$image->name);
+            $image->url =  Storage::disk('s3')->url("products/thumbnails/".$image->name);
         });
         return $collection;
     }
 
     public function thumbnailOrignal()
     {
-        return Storage::disk('public')->url("products/".$this->thumbnail);
+        return Storage::disk('s3')->url("products/".$this->thumbnail);
 
     }
 
@@ -80,4 +90,6 @@ class Product extends Model
     {
         return $this->price+$this->discount;
     }
+
+
 }

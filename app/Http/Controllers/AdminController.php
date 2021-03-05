@@ -11,14 +11,14 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $sales= Order::sum("subtotal");
-        $income= Order::sum("amount_paid");
-        $latestOrders=Order::latest()->limit(5)->get();
+        $sales = Order::sum("subtotal");
+        $income = Order::sum("amount_paid");
+        $latestOrders = Order::latest()->limit(5)->get();
         $newUsers = User::latest()->limit(5)->get();
-        return view("admin.index",compact("sales","income","latestOrders","newUsers"));
+        return view("admin.index", compact("sales", "income", "latestOrders", "newUsers"));
     }
-    
-    
+
+
     public function error(Request $request)
     {
         // return view("admin.error",["code" => ])
@@ -101,14 +101,14 @@ class AdminController extends Controller
     }
 
     public function lockedScreen()
-    {   
-        if(session()->has("locked")){
-            return view("admin.lock-screen",["user" => session()->get("locked")]);
-        }else{
+    {
+        if (session()->has("locked")) {
+            return view("admin.lock-screen", ["user" => session()->get("locked")]);
+        } else {
             $user = auth()->user();
             session(['locked' => $user]);
             Auth::logout();
-            return view("admin.lock-screen",["user" => $user]);
+            return view("admin.lock-screen", ["user" => $user]);
         }
     }
 }

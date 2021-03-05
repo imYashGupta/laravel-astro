@@ -42,7 +42,7 @@ class TestimonialController extends Controller
             "name" => ["required"],
             "designation"   => ["required"],
             "description"   => ["required"],
-         
+
             "status" => ["required","in:0,1"]
 
         ]);
@@ -57,7 +57,7 @@ class TestimonialController extends Controller
         $image=\Intervention\Image\Facades\Image::make($imageFile->getRealPath());
         $image->resize(150,150);
         $imageName=Str::random(40).'.'.$imageFile->getClientOriginalExtension();
-        Storage::disk('public')->put('testimonials/'.$imageName,(string) $image->encode()); //save thumbnail
+        Storage::disk('s3')->put('testimonials/'.$imageName,(string) $image->encode()); //save thumbnail
 
         $testimonial->image=$imageName; */
         $testimonial->save();
@@ -108,15 +108,15 @@ class TestimonialController extends Controller
         $testimonial->designation = $request->designation;
         $testimonial->description = $request->description;
         $testimonial->status = $request->status;
-        
+
         if($request->hasFile("image")){
 
             $imageFile=$request->file("image");
             $image=\Intervention\Image\Facades\Image::make($imageFile->getRealPath());
             $image->resize(150,150);
             $imageName=Str::random(40).'.'.$imageFile->getClientOriginalExtension();
-            Storage::disk('public')->put('testimonials/'.$imageName,(string) $image->encode()); //save thumbnail
-            Storage::disk('public')->delete('testimonials/'.$testimonial->image);
+            Storage::disk('s3')->put('testimonials/'.$imageName,(string) $image->encode()); //save thumbnail
+            Storage::disk('s3')->delete('testimonials/'.$testimonial->image);
             $testimonial->image=$imageName;
 
         }
@@ -132,7 +132,7 @@ class TestimonialController extends Controller
      */
     public function destroy(Testimonial $testimonial)
     {
-        Storage::disk('public')->delete('testimonials/'.$testimonial->image);
+        Storage::disk('s3')->delete('testimonials/'.$testimonial->image);
         $testimonial->delete();
         return redirect()->back()->with("success","testimonial Deleted.");
 

@@ -66,7 +66,7 @@ class UserController extends Controller
         if($request->hasFile("profile_image")){
             $profileImage = $request->file("profile_image");
             $profileImageName = Str::random(40).'.'.$profileImage->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('users',$profileImage,$profileImageName);  
+            Storage::disk('s3')->putFileAs('users',$profileImage,$profileImageName);
             $user->display_image = $profileImageName;
         }
         if($request->has("is_notify")){
@@ -142,7 +142,7 @@ class UserController extends Controller
         if($request->hasFile("profile_image")){
             $profileImage = $request->file("profile_image");
             $profileImageName = Str::random(40).'.'.$profileImage->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('users',$profileImage,$profileImageName);  
+            Storage::disk('s3')->putFileAs('users',$profileImage,$profileImageName);
             $user->display_image = $profileImageName;
         }
         $user->update();

@@ -56,7 +56,7 @@ class BlogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $this->validation($request,true);
         $blog = new Blog();
         $blog->title = $request->title;
@@ -69,7 +69,7 @@ class BlogController extends Controller
         $thumbnailImage=\Intervention\Image\Facades\Image::make($thumbnail->getRealPath());
         $thumbnailImage->resize(550,350);
         $thumbnailName=Str::random(40).'.'.$thumbnail->getClientOriginalExtension();
-        Storage::disk('public')->put('blogs/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
+        Storage::disk('s3')->put('blogs/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
         $blog->thumbnail=$thumbnailName;
         $blog->meta_title = $request->metatitle;
         $blog->meta_keyword = $request->metakeywords;
@@ -122,7 +122,7 @@ class BlogController extends Controller
             $thumbnailImage=\Intervention\Image\Facades\Image::make($thumbnail->getRealPath());
             $thumbnailImage->resize(550,350);
             $thumbnailName=Str::random(40).'.'.$thumbnail->getClientOriginalExtension();
-            Storage::disk('public')->put('blogs/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
+            Storage::disk('s3')->put('blogs/thumbnails/'.$thumbnailName,(string) $thumbnailImage->encode()); //save thumbnail
             $blog->thumbnail=$thumbnailName;
         }
         $blog->meta_title = $request->metatitle;

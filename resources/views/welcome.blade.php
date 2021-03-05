@@ -82,9 +82,11 @@
             <div class="content">
                 <div class="title m-b-md">
                     Coming Soon...
+
                 </div>
 
-                
+
+
             </div>
         </div>
     </body>

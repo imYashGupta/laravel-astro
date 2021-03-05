@@ -53,14 +53,14 @@
     margin-bottom: 15px
 }
 </style>
- 
+
 @endsection
 @section('content')
 
 <!-- Your share button code -->
 
 
-<!-- Header End --> 
+<!-- Header End -->
 <!--Breadcrumb start-->
 <div class="ast_pagetitle">
 <div class="ast_img_overlay"></div>
@@ -73,7 +73,7 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<ul class="breadcrumb">
-					<li><a href="/">Home</a></li> 
+					<li><a href="/">Home</a></li>
 					<li>/</li>
 					<li><a href="{{route("shop")}}">Shop</a></li>
 				</ul>
@@ -81,7 +81,7 @@
 		</div>
 	</div>
 </div>
-<!--Breadcrumb end--> 
+<!--Breadcrumb end-->
 
 <!-- product Description section Start -->
 <div class="ast_proSingle_wrapper ast_toppadder70 ast_bottompadder40">
@@ -95,22 +95,29 @@
 							<div class="col-sm-4 col-xs-12">
 								<div class="product_slider">
 									<!-- slides -->
+
 									<div class="pro_slides_carousel">
+                                        <div class="slick_item">
+                                            <img src="{{$product->thumbnailOrignal()}}" class="img-responsive" />
+                                        </div>
 										@foreach ($product->images as $image)
 										<div class="slick_item">
 											<img src="{{$image->url}}" class="img-responsive" />
 										</div>
 										@endforeach
 									</div>
-								 
+
 									<div class="pro_slider_thumbs">
+                                        <div class="pro_thumb">
+                                            <img src="{{$product->thumbnailUrl}}" class="img-responsive" />
+                                        </div>
 										@foreach ($product->thumbnails as $image)
 
 										<div class="pro_thumb">
 											<img src="{{$image->url}}" class="img-responsive" />
 										</div>
 										@endforeach
-								
+
 									</div>
 								</div>
 							</div>
@@ -128,7 +135,7 @@
 											<i class="fa fa-star-o" aria-hidden="true"></i>
 											@endfor
 										</span>
-							 
+
 										@endif
 									</div>
 									<h2 style="margin: 0;margin-bottom: 15px;color:#832625">&#163;{{$product->price}} @if($product->discount!=0)<small class="cross-text">&#163;{{ $product->actualPrice }}</small>@endif </h2>
@@ -176,7 +183,7 @@
 				<div class="ast_related_pro ast_toppadder70">
 					<div class="ast_heading">
 						<h1>related  <span>products</span></h1>
-					</div>	
+					</div>
 					<div class="owl-carousel owl-theme">
 						@foreach ($relatedProducts as $product)
 						<div class="item">
@@ -192,11 +199,11 @@
 											@for ($i = 0; $i < 5-$product->rating; $i++)
 											<i class="fa fa-star-o" aria-hidden="true"></i>
 											@endfor
-							 
+
 										@endif
 									<h4 class="ast_shop_title"><a href="{{ route("product",$product->slug) }}">{{$product->name}}</a></h4>
 									<p>&#163;{{$product->price}} @if($product->discount!=0)<small class="cross-text">&#163;{{ $product->actualPrice }}</small>@endif</p>
-									
+
 									<div class="ast_info_bottom">
 										<add-to-cart-btn   product='{{ json_encode($product->only("id","slug","price","name","thumbnailUrl","min_qty","max_qty","units")) }}'></add-to-cart-btn>
 									</div>
@@ -204,31 +211,31 @@
 							</div>
 						</div>
 						@endforeach
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- product Description section End --> 
+<!-- product Description section End -->
 
 <!-- Download wrapper start-->
 <div class="ast_download_wrapper ast_toppadder20 ast_bottompadder20">
 	<div class="container">
-		
+
 	</div>
 </div>
- 
+
 @endsection
 @section('scripts')
-	
+
 <script type="text/javascript" src="src/js/price_range_script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="src/js/slick/jquery-migrate-1.2.1.min.js">
 </script>
 <script type="text/javascript" src="src/js/slick/slick.min.js"></script>
 <script>
-	
+
 
 	$("#quantity").on("keypress",function(){
 		return false;

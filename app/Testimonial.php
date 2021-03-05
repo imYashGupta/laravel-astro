@@ -11,6 +11,6 @@ class Testimonial extends Model
 
     public function getImageUrlAttribute()
     {
-        return Storage::disk('public')->url("testimonials/".$this->image);
+        return Storage::disk('s3')->url("testimonials/".$this->image);
     }
 }

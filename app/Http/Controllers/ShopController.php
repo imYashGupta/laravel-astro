@@ -13,7 +13,7 @@ class ShopController extends Controller
     //
 
     public function shop(Request $request)
-    {  
+    {
         $products=Product::where("availability",1);
         if($request->has("category")){
             $category=Category::where("slug",$request->category)->where("status",1)->first();
@@ -27,7 +27,7 @@ class ShopController extends Controller
         }
 
         $categories = Category::where("status",1)->get();
-        
+
         return view("pages.shop",["products" => $products->simplePaginate(9),"categories" => $categories]);
     }
 
@@ -42,7 +42,7 @@ class ShopController extends Controller
         }else{
             $similarProducts = $relatedProducts;
         }
-        
+
         if($product){
             $reviews=Review::where("product_id",$product->id)->where("status",1)->get();
             $collection=$reviews->map(function ($review) {
@@ -72,10 +72,10 @@ class ShopController extends Controller
         $email = auth()->check() ? auth()->user()->email : $request->email;
         $alreadyReviewed=Review::where("product_id",$product->id)->where("email",$email)->first();
         if(!is_null($alreadyReviewed)){
-   
+
             $message = $alreadyReviewed->status==1 ? "Your review is already been added." : "Your review is awaiting approval.";
             return response()->json(["message" => $message],200);
-        }     
+        }
         $review = new Review();
         $review->user_id  = auth()->check() ? auth()->user()->id : NULL;
         $review->email = $email;
@@ -93,5 +93,5 @@ class ShopController extends Controller
         return response()->json(["message" => "Your review is awaiting approval."],201);
 
     }
- 
+
 }
